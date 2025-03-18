@@ -23,12 +23,14 @@ jobs:
           echo "FIREBASE_APP_ID=${{ secrets.FIREBASE_APP_ID }}" >> $GITHUB_ENV
           echo "FIREBASE_MEASUREMENT_ID=${{ secrets.FIREBASE_MEASUREMENT_ID }}" >> $GITHUB_ENV
 
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CREATIVE_HUB_8D4DA }}
           channelId: live
           projectId: creative-hub-8d4da
+        continue-on-error: true
 
 
 
