@@ -24,7 +24,7 @@ export class AppComponent {
 
 
   constructor(
-    private storage: AngularFireStorage,  // CRUD Service
+    private storage: AngularFireStorage,
     private domSanitizer: DomSanitizer
   ) {}
 
@@ -35,7 +35,6 @@ export class AppComponent {
 
       const fileRef = this.storage.ref(filePath);
       const task = this.storage.upload(filePath, file);
-      // this.previewURL = URL.createObjectURL(file);
       this.previewURL = this.domSanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(file));
 
       this.fileType = this.getFileType(file);
@@ -48,11 +47,10 @@ export class AppComponent {
             fileRef.getDownloadURL().subscribe((url) => {
               console.log('File uploaded successfully. URL:', url);
 
-              // Store the file details for later submission
               this.uploadedFileData = {
                 fileName: file.name,
                 url: url,
-                filePath: filePath // Save the file path for deletion
+                filePath: filePath
               };
               this.uploadComplete = true;
             });
@@ -67,8 +65,6 @@ export class AppComponent {
     }
 
   }
-
-
 
 
   deletePreview(): void {
