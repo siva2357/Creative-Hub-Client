@@ -106,7 +106,7 @@ export class AppComponent {
     } else if (mimeType.startsWith('audio/')) {
       return 'audio';
     } else {
-      return 'unknown'; // For other file types (could be handled further)
+      return 'unknown';
     }
   }
 
