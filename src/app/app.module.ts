@@ -14,6 +14,7 @@ import { environment } from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig), // Use legacy compatibility mode
+
     AngularFireStorageModule, // Use storage services
   ],
   providers: [],

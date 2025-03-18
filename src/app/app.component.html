@@ -1,1 +1,31 @@
 <p>Website working fine and successfully</p>
+<div class="col-md-6 px-3">
+  <div class="mb-5">
+    <div class="container d-flex flex-column align-items-center justify-content-center rounded-3 file-upload-container p-4 border border-primary border-dashed">
+      <!-- PREVIEW SECTION -->
+      <div class="col w-100">
+        <div *ngIf="!ifPreview" class="d-flex align-items-center justify-content-center bg-light rounded-3 mt-4 p-4 border border-secondary" style="min-height: 200px;">
+          <p class="text-muted text-center poppins-regular" style="font-size: 14px;">Uploaded Media Preview will be shown here</p>
+        </div>
+
+        <div *ngIf="ifPreview" class="d-flex flex-wrap align-items-center justify-content-center bg-light rounded-3 mt-4 p-2 border border-secondary">
+          <div class="card position-relative">
+            <ng-container *ngIf="fileType === 'image'">
+              <img [src]="previewURL" class="card-img-top rounded" style="height: 150px;" alt="Preview Image">
+            </ng-container>
+            <i *ngIf="uploadComplete" class="bi bi-x-circle-fill position-absolute text-danger" style="right: 10px; top: 5px; font-size: 1.5rem; cursor: pointer;" (click)="deletePreview()"></i>
+          </div>
+        </div>
+      </div>
+
+      <input type="file" id="companyLogo" formControlName="companyLogo" (change)="uploadFile($event)" hidden />
+      <label for="companyLogo" class="file-upload-label mt-3">
+        <i class="bi bi-cloud-arrow-up upload-icon text-primary" style="font-size: 30px; cursor: pointer;"></i>
+      </label>
+      <p class="text-muted poppins-regular" style="font-size: 14px;">Click to upload file</p>
+
+
+      <!-- Success message -->
+    </div>
+  </div>
+</div>
