@@ -10,6 +10,7 @@
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
+
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
@@ -27,16 +28,17 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "fileReplacements": [
+  {
+    "replace": "./src/environments/environment.ts",
+    "with": "./src/environments/environment.prod.ts"
+  }
+]
+
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -62,6 +64,10 @@
           },
           "defaultConfiguration": "production"
         },
+
+
+
+
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
