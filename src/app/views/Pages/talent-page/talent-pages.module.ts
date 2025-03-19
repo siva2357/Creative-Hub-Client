@@ -31,8 +31,6 @@ import { ChangePasswordPageComponent } from './talent-sign-up/change-password-pa
     ConfirmationComponent,
     OtpVerificationPageComponent,
     ChangePasswordPageComponent,
-
-
   ],
   imports: [
     CommonModule,
