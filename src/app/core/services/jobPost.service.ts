@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 })
 export class JobPostService {
 
-  private baseUrl: string = `${environment.apiUrl}`; // Automatically selects correct URL
+  private baseUrl: string = `${environment.apiUrl}/api`; // Automatically selects correct URL
 
   jobList: JobPost[] = [];
 

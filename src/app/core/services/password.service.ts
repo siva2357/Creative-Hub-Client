@@ -12,7 +12,7 @@ export class PasswordService {
 
   constructor(private http: HttpClient) {}
 
-  private baseUrl: string = `${environment.apiUrl}/auth`; // Automatically selects correct URL
+  private baseUrl: string = `${environment.apiUrl}/api/auth`; // Automatically selects correct URL
 
   private role = localStorage.getItem('userRole') || '';
   private userData = JSON.parse(localStorage.getItem('userData') || '{}');

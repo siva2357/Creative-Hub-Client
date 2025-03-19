@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
 
-  private baseUrl: string = `${environment.apiUrl}/auth`; // Automatically selects correct URL
+  private baseUrl: string = `${environment.apiUrl}/api/auth`; // Automatically selects correct URL
 
   private userRole: string | null = null;
 

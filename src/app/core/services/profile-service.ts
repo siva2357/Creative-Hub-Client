@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ProfileService {
-  private baseUrl: string = `${environment.apiUrl}`; // Automatically selects correct URL
+  private baseUrl: string = `${environment.apiUrl}/api`; // Automatically selects correct URL
 
   private role = localStorage.getItem('userRole') || '';
   private userData = JSON.parse(localStorage.getItem('userData') || '{}');
