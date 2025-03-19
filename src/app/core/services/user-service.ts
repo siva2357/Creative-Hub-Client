@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-  private baseUrl: string = `${environment.apiUrl}/api/auth`; // Automatically selects correct URL
+  private baseUrl: string = `${environment.apiUrl}/auth`; // Automatically selects correct URL
 
   private role = localStorage.getItem('userRole') || '';
   private userData = JSON.parse(localStorage.getItem('userData') || '{}');

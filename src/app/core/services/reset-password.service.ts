@@ -10,7 +10,7 @@ export class ResetPasswordService {
 
   constructor(private http: HttpClient) {}
 
-  private baseUrl: string = `${environment.apiUrl}/api/auth`; // Automatically selects correct URL
+  private baseUrl: string = `${environment.apiUrl}/auth`; // Automatically selects correct URL
 
 
   sendForgotPasswordCode(email: string): Observable<any> {
