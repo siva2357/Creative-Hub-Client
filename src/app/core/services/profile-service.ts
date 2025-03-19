@@ -6,7 +6,7 @@ import {jwtDecode} from 'jwt-decode' ;
 import { University } from '../models/university.model';
 import { Company } from '../models/company.model';
 import { RecruiterProfile, SeekerProfile } from '../models/profile-details.model';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'

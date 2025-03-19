@@ -8,7 +8,7 @@ import { Recruiter, Seeker } from '../models/user.model';
 import { Router } from '@angular/router';
 import {jwtDecode} from 'jwt-decode' ;
 import { getAuth, signInWithCustomToken } from "firebase/auth";
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
