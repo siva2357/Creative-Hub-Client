@@ -6,7 +6,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { JobPost, JobPostFilterParams } from '../models/jobPost.model';
 import { ApiSearchParams } from '../models/api-pagination-params';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'

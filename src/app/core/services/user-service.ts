@@ -5,8 +5,7 @@ import { Recruiter, Seeker } from '../models/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {jwtDecode} from 'jwt-decode' ;
 import { RecruiterProfile } from '../models/profile-details.model';
-import { environment } from 'src/environments/environment.prod';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
