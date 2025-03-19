@@ -6,13 +6,14 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { JobPost, JobPostFilterParams } from '../models/jobPost.model';
 import { ApiSearchParams } from '../models/api-pagination-params';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JobPostService {
 
-  private baseUrl: string = 'http://localhost:3000/api';
+  private baseUrl: string = `${environment.apiUrl}`; // Automatically selects correct URL
 
   jobList: JobPost[] = [];
 

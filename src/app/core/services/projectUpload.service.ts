@@ -4,12 +4,13 @@ import {jwtDecode} from 'jwt-decode' ;
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ProjectUpload,ProjectResponse } from '../models/project-upload.model';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectUploadService {
 
-  private baseUrl: string = 'http://localhost:3000/api';
+  private baseUrl: string = `${environment.apiUrl}`; // Automatically selects correct URL
 
   projectList: ProjectUpload[] = [];
 
