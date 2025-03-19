@@ -1,0 +1,13 @@
+.cash-card {
+	width: fit-content;
+}
+
+textarea {
+	resize: none;
+}
+
+.icon {
+    cursor: pointer;
+    width: 20px !important;
+    height: 20px !important;
+}

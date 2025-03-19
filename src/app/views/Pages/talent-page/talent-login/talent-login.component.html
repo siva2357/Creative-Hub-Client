@@ -1,0 +1,98 @@
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100" style="font-family: 'Poppins', sans-serif;">
+  <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+    <div *ngIf="!isLoading">
+      <div class="card shadow-lg border-primary rounded-3" style="max-width: 100%;">
+        <div class="card-body p-5">
+
+          <div class="container text-center mb-3">
+            <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1737024440/Logo_qboacm.svg" alt="Logo" class="img-fluid rounded-circle" style="width: 80px; height: 80px;">
+          </div>
+
+          <h4 class="text-center poppins-bold">Welcome back </h4>
+          <form [formGroup]="loginDetails" (ngSubmit)="onSubmit()">
+
+
+
+            <!-- This input field allows the user to enter their email address. It has validation to ensure a valid email format -->
+            <div class="form-group mt-3">
+              <div class="input-group ">
+                <span class="input-group-text"><i class="bi bi-envelope" style="font-size: 1.2rem;"></i></span>
+                <input [ngClass]="{'is-invalid': loginDetails.get('email')?.invalid && loginDetails.get('email')?.touched}"
+                  placeholder="Email Address" id="email" formControlName="email" type="email"
+                  class="form-control form-control-sm rounded-0" style="height: 45px;" />
+              </div>
+              <div *ngIf="loginDetails.get('email')?.touched">
+                <small *ngIf="loginDetails.get('email')?.errors?.['required']" class="text-danger" style="font-size: 12px;">Email
+                  is required.</small>
+                <small *ngIf="loginDetails.get('email')?.errors?.['pattern']" class="text-danger">Invalid Email format.</small>
+              </div>
+            </div>
+
+            <!-- Password Input -->
+            <div class="form-group row align-items-center mt-3">
+              <div class="input-group ">
+
+                <span class="input-group-text"><i class="bi bi-lock" style="font-size: 1.2rem;"></i></span>
+                <input [type]="showPassword ? 'text' : 'password'"
+                  [ngClass]="{'is-invalid': loginDetails.get('password')?.invalid && loginDetails.get('password')?.touched}"
+                  placeholder="Create Password" id="password" formControlName="password" type="password"
+                  class="form-control form-control-sm rounded-0" style="height: 45px;" />
+                <button type="button" class="btn btn-outline-secondary" (click)="showPassword = !showPassword">
+                  <i class="bi" [ngClass]="showPassword ? 'bi-eye' : 'bi-eye-slash'" style="font-size: 1.2rem;"></i>
+                </button>
+              </div>
+              <div *ngIf="loginDetails.get('password')?.touched">
+                <small *ngIf="loginDetails.get('password')?.errors?.['required']" class="text-danger"
+                  style="font-size: 12px;">Password is required.</small>
+                <small *ngIf="loginDetails.get('password')?.errors?.['pattern']" class="text-danger">Invalid Password
+                  format.</small>
+              </div>
+            </div>
+
+            <p class="text-primary mt-3 poppins-medium" (click)="goToForgotPassword()" style="cursor: pointer; font-size: 12px;">
+              Forgot Password?</p>
+
+
+            <!-- Confirm Password Input -->
+
+            <!-- Buttons -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-sm btn-outline-primary px-5 py-2  poppins-medium"
+                style="font-size: 14px;">Login</button>
+            </div>
+          </form>
+
+
+
+
+
+          <!-- Error Message for Invalid Form -->
+          <div *ngIf="submitted && loginDetails.invalid" class="text-danger mt-3 text-center poppins-medium">
+            {{ errorMessage }}
+          </div>
+
+          <!-- Existing error message for login failure -->
+          <div *ngIf="errorMessage && !loginDetails.invalid" class="text-danger mt-3 text-center poppins-medium">
+            {{ errorMessage }}
+          </div>
+
+
+        <div class="card-footer text-center mt-3">
+          <p class="mb-0 poppins-medium" >New user? <span class="text-primary poppins-medium" (click)="register()" style="cursor: pointer; font-size: 14px;">Create an account</span></p>
+        </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="d-flex justify-content-center align-items-center mt-4" *ngIf="isLoading">
+      <div class="text-center">
+        <div class="spinner-border" role="status"></div>
+        <p class="mt-2" *ngIf="loginSuccess">Redirecting to main page...</p>
+        <p class="mt-2" *ngIf="!loginSuccess">Redirecting to login page...</p>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,36 @@
+
+.card {
+  transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+  border: 1px solid transparent; /* Initially, no border */
+}
+
+.card:hover {
+  box-shadow: 0 0 10px 5px rgba(0, 149, 255, 0.7); /* Blue glow effect */
+  border: 1px solid rgba(0, 0, 255, 0.7); /* Blue border when hovered */
+}
+
+.feature-card {
+background: linear-gradient(135deg, #354f80, #183657);
+border: none;
+transition: transform 0.3s ease-in-out;
+}
+.feature-card:hover {
+transform: translateY(-8px);
+}
+.feature-icon {
+width: 60px;
+height: 60px;
+background: rgba(255, 255, 255, 0.2);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 2rem;
+color: #3baaf5;
+transition: all 0.3s ease-in-out;
+}
+.feature-card:hover .feature-icon {
+background: #3baaf5;
+color: #fff;
+
+}

@@ -1,0 +1,149 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Cover Section -->
+
+
+<!-- Cover Section -->
+<div class="container-fluid mt-5 mb-5 p-5 rounded-5" style="background: radial-gradient(circle, rgba(255, 255, 255, 0.648), #11131c);   position: relative;  overflow: hidden;">
+  <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1735967997/hiring_people_dsgpfa.png"  alt="AR/VR Background"  style=" position: absolute;  top: 0;  left: 0;  width: 100%;  height: 700px;  object-fit: cover; z-index: 1; opacity: 0.3;">
+
+  <div style="position: relative; z-index: 2; text-align: center;">
+
+
+        <div class="text-center rounded-3">
+          <h1 class="mt-5 display-4 text-black">Find Your <span class="fw-bold">Dream Job</span> Today</h1>
+          <p class="col-lg-6 mx-auto mb-4 mt-4 text-black fs-4">Search and apply for the best job opportunities that match your skills.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+
+<!-- User Profiles Section -->
+<div class="container my-5">
+  <div class="row g-4">
+      <!-- Filter Section -->
+      <div class="col-lg-4">
+        <div class="card shadow-sm p-4 rounded-4 border-0">
+          <h4 class="fw-semibold text-primary mb-3">Filters</h4>
+
+          <!-- Search Posts -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Search Posts</label>
+            <input type="text" class="form-control form-control-md border-secondary" placeholder="Search posts">
+          </div>
+
+          <!-- Location -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Location</label>
+            <input type="text" class="form-control form-control-md border-secondary" placeholder="Enter location">
+          </div>
+
+          <!-- Category Dropdown -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Category</label>
+            <select class="form-select  form-select-md border-secondary">
+              <option selected>Choose Category</option>
+              <option>Sketch</option>
+              <option>NFT</option>
+              <option>3D Art</option>
+            </select>
+          </div>
+
+          <!-- Job Type Dropdown -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Job Type</label>
+            <select class="form-select  form-select-md border-secondary">
+              <option selected>Select Job Type</option>
+              <option>Full-Time</option>
+              <option>Part-Time</option>
+              <option>Freelance</option>
+            </select>
+          </div>
+
+          <!-- Qualification Dropdown -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Qualification</label>
+            <select class="form-select  form-select-md border-secondary">
+              <option selected>Select Qualification</option>
+              <option>Bachelor's</option>
+              <option>Master's</option>
+              <option>Diploma</option>
+            </select>
+          </div>
+
+          <!-- Skills Dropdown -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Skills</label>
+            <select class="form-select  form-select-md border-secondary">
+              <option selected>Select Skills</option>
+              <option>3D Modeling</option>
+              <option>Animation</option>
+              <option>Graphic Design</option>
+            </select>
+          </div>
+
+          <!-- Apply Filters Button -->
+          <button class="btn btn-primary w-100 mt-3">Apply Filters</button>
+
+        </div>
+      </div>
+
+
+      <!-- Profiles Display Section -->
+      <div class="col-lg-8">
+        <div class="row g-5">
+            <div class="col-md-6">
+                <app-job-post-card></app-job-post-card>
+            </div>
+            <div class="col-md-6">
+              <app-job-post-card></app-job-post-card>
+          </div>
+          <div class="col-md-6">
+            <app-job-post-card></app-job-post-card>
+        </div>
+        <div class="col-md-6">
+          <app-job-post-card></app-job-post-card>
+      </div>
+      <div class="col-md-6">
+        <app-job-post-card></app-job-post-card>
+    </div>
+    <div class="col-md-6">
+      <app-job-post-card></app-job-post-card>
+  </div>
+
+        </div>
+
+        <!-- Pagination -->
+        <nav class="mt-5 d-flex justify-content-center">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+            </ul>
+        </nav>
+    </div>
+
+  </div>
+</div>

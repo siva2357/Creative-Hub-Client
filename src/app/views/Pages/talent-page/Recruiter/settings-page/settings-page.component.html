@@ -1,0 +1,64 @@
+
+
+<div class="container-fluid mt-5">
+  <div class="row">
+
+<!-- Sidebar Navigation (Tabs) inside a Card -->
+<div class="col-md-3">
+  <div class="card p-3">
+    <ul class="nav flex-column" id="settingsTab" role="tablist">
+      <li class="nav-item mb-2" role="presentation">
+        <button class="btn w-100 custom-tab active" id="main-settings-tab" data-bs-toggle="tab" data-bs-target="#main-settings" type="button" role="tab">
+          Profile Settings
+        </button>
+      </li>
+      <li class="nav-item mb-2" role="presentation">
+        <button class="btn w-100 custom-tab" id="social-network-tab" data-bs-toggle="tab" data-bs-target="#social-network" type="button" role="tab">
+          Social Network
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="btn w-100 custom-tab" id="manage-account-tab" data-bs-toggle="tab" data-bs-target="#manage-account" type="button" role="tab">
+          Manage Account
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Tab Content -->
+<div class="col-md-9">
+  <div class="tab-content " id="settingsTabContent">
+    <div class="tab-pane fade show active" id="main-settings" role="tabpanel">
+      <div class="card p-4 ">
+        <h5>Profile Settings</h5>
+        <app-recruiter-edit-profile></app-recruiter-edit-profile>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="social-network" role="tabpanel">
+      <div class="card p-4">
+        <h3>Social Network</h3>
+        <p>Connect your social accounts.</p>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="manage-account" role="tabpanel">
+      <div class="card p-4">
+        <h3>Manage Account</h3>
+        <p>Delete or deactivate your account.</p>
+
+        <button (click)="deleteAccount()" class="btn btn-danger w-25">Delete Account</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  </div>
+</div>
+
+
+
+
+

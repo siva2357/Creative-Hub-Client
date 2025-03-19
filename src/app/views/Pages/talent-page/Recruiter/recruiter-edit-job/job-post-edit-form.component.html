@@ -1,0 +1,145 @@
+<div class="container bg-body-tertiary mt-5 mb-5 p-4 rounded shadow " *ngIf="!isLoading" style="font-family: 'Poppins', sans-serif;">
+
+  <h5 class="mb-4 poppins-semibold">{{ isEditMode ? 'Edit Job post' : 'View Job post' }}</h5>
+
+  <hr>
+  <form [formGroup]="jobPostUpdateForm" (ngSubmit)="updateJobPost()">
+    <!-- Job ID, Job Role Title, Job Type -->
+
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-label Poppins-medium">Job ID<span class="text-danger">*</span></label>
+          <input [ngClass]="{'is-invalid':  jobPostUpdateForm.get('jobId')?.invalid &&  jobPostUpdateForm.get('jobId')?.touched}" placeholder="Enter job id" id="jobId" formControlName="jobId" type="text" class="form-control form-control-sm rounded-0"/>
+          <small *ngIf="jobPostUpdateForm.get('jobId')?.hasError('required') && jobPostUpdateForm.get('jobId')?.touched" class="text-danger"> Job ID is required. </small>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label Poppins-medium">Job title<span class="text-danger">*</span></label>
+          <input [ngClass]="{'is-invalid':  jobPostUpdateForm.get('jobTitle')?.invalid &&  jobPostUpdateForm.get('jobTitle')?.touched}" placeholder="Enter job title" id="jobTitle" formControlName="jobTitle" type="text" class="form-control form-control-sm rounded-0" />
+          <small *ngIf="jobPostUpdateForm.get('jobTitle')?.hasError('required') && jobPostUpdateForm.get('jobTitle')?.touched" class="text-danger"> Job Title is required. </small>
+        </div>
+
+      </div>
+
+
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <label class="form-label Poppins-medium">Job Category<span class="text-danger">*</span></label>
+          <select [ngClass]="{'is-invalid': jobPostUpdateForm.get('jobCategory')?.invalid && jobPostUpdateForm.get('jobCategory')?.touched}" id="jobCategory" class="form-select form-select-sm" formControlName="jobCategory" required>
+            <option value="">Select Job category</option>
+            <option *ngFor="let category of jobCategories" [value]="category">
+              {{ category}}
+            </option>
+          </select>
+          <small *ngIf="jobPostUpdateForm.get('jobCategory')?.hasError('required') && jobPostUpdateForm.get('jobCategory')?.touched" class="text-danger"> Job category is required. </small>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label Poppins-medium">Experience<span class="text-danger">*</span></label>
+          <select [ngClass]="{'is-invalid': jobPostUpdateForm.get('experience')?.invalid && jobPostUpdateForm.get('experience')?.touched}" id="experience" class="form-select form-select-sm" formControlName="experience" required>
+            <option value="">Select Experience</option>
+            <option *ngFor="let exp of experience" [value]="exp">
+              {{ exp }}
+            </option>
+          </select>
+          <small *ngIf="jobPostUpdateForm.get('experience')?.hasError('required') && jobPostUpdateForm.get('experience')?.touched" class="text-danger"> Experience is required. </small>
+        </div>
+      </div>
+
+
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <label class="form-label Poppins-medium">Job Type<span class="text-danger">*</span></label>
+          <select [ngClass]="{'is-invalid': jobPostUpdateForm.get('jobType')?.invalid && jobPostUpdateForm.get('jobType')?.touched}" id="jobType" class="form-select form-select-sm" formControlName="jobType" required>
+            <option value="">Job Type</option>
+            <option *ngFor="let type of jobType" [value]="type">
+              {{ type }}
+            </option>
+          </select>
+          <small *ngIf="jobPostUpdateForm.get('jobType')?.hasError('required') && jobPostUpdateForm.get('jobType')?.touched" class="text-danger">Job Type is required.</small>
+        </div>
+
+
+        <div class="col-md-6">
+          <label class="form-label Poppins-medium">Location<span class="text-danger">*</span></label>
+          <input [ngClass]="{'is-invalid':  jobPostUpdateForm.get('location')?.invalid &&  jobPostUpdateForm.get('location')?.touched}"  placeholder="Enter location" id="location" formControlName="location" type="text" class="form-control form-control-sm rounded-0"/>
+          <small *ngIf="jobPostUpdateForm.get('location')?.hasError('required') && jobPostUpdateForm.get('location')?.touched" class="text-danger">Location is required. </small>
+        </div>
+      </div>
+
+
+      <div class="row mt-3">
+
+        <div class="col-md-6">
+          <label class="form-label Poppins-medium">Vacancies<span class="text-danger">*</span></label>
+          <input [ngClass]="{'is-invalid':  jobPostUpdateForm.get('vacancy')?.invalid &&  jobPostUpdateForm.get('vacancy')?.touched}" placeholder="Enter vacancy" id="vacancy" formControlName="vacancy" type="text" class="form-control form-control-sm rounded-0"/>
+          <small *ngIf="jobPostUpdateForm.get('vacancy')?.hasError('required') && jobPostUpdateForm.get('vacancy')?.touched"  class="text-danger">Vacancy is required. </small>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label Poppins-medium">Salary<span class="text-danger">*</span></label>
+          <select [ngClass]="{'is-invalid': jobPostUpdateForm.get('salary')?.invalid && jobPostUpdateForm.get('salary')?.touched}" id="salary" class="form-select form-select-sm" formControlName="salary" required>
+            <option value="">Select Salary</option>
+            <option *ngFor="let salary of salaries " [value]="salary">
+              {{ salary }}
+            </option>
+          </select>
+          <small *ngIf="jobPostUpdateForm.get('salary')?.hasError('required') && jobPostUpdateForm.get('salary')?.touched" class="text-danger"> Salary is required. </small>
+        </div>
+
+      </div>
+
+
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <label class="form-label fPoppins-medium">Job Deadline<span class="text-danger">*</span></label>
+          <input [ngClass]="{'is-invalid':  jobPostUpdateForm.get('applyByDate')?.invalid &&  jobPostUpdateForm.get('applyByDate')?.touched}" placeholder="Enter job id" id="applyByDate" formControlName="applyByDate" type="date" class="form-control form-control-sm rounded-0"/>
+          <small *ngIf="jobPostUpdateForm.get('applyByDate')?.hasError('required') && jobPostUpdateForm.get('applyByDate')?.touched" class="text-danger"> Job deadline is required. </small>
+        </div>
+
+
+        <div class="col-md-6">
+          <label class="form-label Poppins-medium">Qualification <span class="text-danger">*</span></label>
+          <select [ngClass]="{'is-invalid': jobPostUpdateForm.get('qualification')?.invalid && jobPostUpdateForm.get('qualification')?.touched}" id="qualification" class="form-select form-select-sm" formControlName="qualification" required>
+            <option value="">Select Qualification</option>
+            <option *ngFor="let qualification of qualifications" [value]="qualification">
+              {{ qualification }}
+            </option>
+          </select>
+          <small *ngIf="jobPostUpdateForm.get('qualification')?.hasError('required') && jobPostUpdateForm.get('qualification')?.touched" class="text-danger"> Qualificationis required. </small>
+        </div>
+
+      </div>
+
+
+      <div class="col mt-3">
+          <label class="form-label Poppins-medium">Job Description <span class="text-danger">*</span></label>
+          <div class="NgxEditor__Wrapper">
+            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+            <ngx-editor  [ngClass]="{'is-invalid':  jobPostUpdateForm.get('jobDescription')?.invalid &&  jobPostUpdateForm.get('jobDescription')?.touched}" [editor]="editor" id="jobDescription"  class="form-control form-control-sm"  formControlName="jobDescription" [placeholder]="'Enter job description'" required></ngx-editor>
+          </div>
+          <small *ngIf="jobPostUpdateForm.get('jobDescription')?.hasError('required') && jobPostUpdateForm.get('jobDescription')?.touched" class="text-danger"> Job description is required. </small>
+       </div>
+<hr>
+
+      <!-- Form Actions -->
+      <div class="d-flex justify-content-between mt-5">
+        <button type="button" class="btn btn-sm btn-outline-danger px-4 py-2 Poppins-medium" (click)="discardChanges()" *ngIf="isEditMode">Discard</button>
+        <button type="submit" class="btn btn-sm btn-outline-primary px-4 py-2 Poppins-medium" *ngIf="isEditMode">Update</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary px-4 py-2 Poppins-medium" (click)=" goToJobpostPage()" *ngIf="!isEditMode">Back</button>
+        <button type="button" class="btn btn-sm btn-outline-info px-4 py-2 Poppins-medium" (click)="openEditMode()" *ngIf="!isEditMode">Edit</button>
+      </div>
+    </form>
+
+</div>
+
+<div class="container-fluid" *ngIf="isLoading">
+  <div class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="mt-3">
+      <p>Creating Job Post</p>
+    </div>
+  </div>
+</div>

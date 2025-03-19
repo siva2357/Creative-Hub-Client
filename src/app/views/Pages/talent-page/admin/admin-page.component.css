@@ -1,0 +1,10 @@
+.main-content {
+  padding: 10px;
+  margin-left: 65px;
+  width: calc(100% - 65px);
+}
+
+.main-content.shifted {
+  margin-left: 200px;
+  width: calc(100% - 200px);
+}

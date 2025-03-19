@@ -1,0 +1,115 @@
+
+.nav-link {
+  color: black; /* Set the default color for inactive links */
+  cursor: pointer;
+}
+
+.nav-link.active {
+  color: blueviolet; /* Set the color for the active link */
+ background-color: rgb(226, 220, 220);
+
+}
+
+.overlay-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.edit-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.overlay-card img {
+  transition: transform 0.3s ease;
+}
+
+.overlay-card:hover img {
+  transform: scale(1.1);
+}
+
+.overlay-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.overlay-card:hover .overlay-content {
+  opacity: 1;
+}
+
+.see-more-link {
+  display: inline-block;
+  text-decoration: underline;
+  color: white;
+}
+
+
+.nav-link {
+  color: black; /* Set the default color for inactive links */
+  cursor: pointer;
+}
+
+.nav-link.active {
+  color: blueviolet; /* Set the color for the active link */
+ background-color: rgb(226, 220, 220);
+
+}
+
+.overlay-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.edit-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.overlay-card img {
+  transition: transform 0.3s ease;
+}
+
+.overlay-card:hover img {
+  transform: scale(1.1);
+}
+
+.overlay-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.overlay-card:hover .overlay-content {
+  opacity: 1;
+}
+
+.see-more-link {
+  display: inline-block;
+  text-decoration: underline;
+  color: white;
+}
+
+
+
+

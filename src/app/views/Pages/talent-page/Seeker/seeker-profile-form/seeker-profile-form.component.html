@@ -1,0 +1,286 @@
+
+
+
+
+
+<div class="container-fluid mt-3" *ngIf="!isLoading">
+
+
+  <form [formGroup]="profileDetailsForm" (ngSubmit)="submitProfile()">
+
+
+<div class="row mt-5">
+  <div class="col mb-5">
+    <div class="container d-flex flex-row align-items-center justify-content-start rounded-3">
+      <!-- Profile Image -->
+      <div class="profile-avatar position-relative rounded me-3" style="width: 100px; height: 100px; overflow: hidden;">
+        <img [src]="previewURL || 'https://res.cloudinary.com/dpp8aspqs/image/upload/v1737024440/Logo_qboacm.svg'"
+          alt="Avatar" class="w-100 h-100">
+      </div>
+
+      <!-- Title & Button Section -->
+      <div class="d-flex flex-column">
+        <!-- File Input inside Label -->
+
+
+
+
+
+<input type="file" id="fileInput" #fileInput name="fileInput" formControlName="profilePicture" (change)="onFileChange($event)" hidden />
+
+<button class="btn btn-primary btn-sm" (click)="fileInput.click()">
+
+  Upload Photo
+</button>
+
+
+        <small *ngIf="profileDetailsForm .get('profilePicture')?.hasError('required') && profileDetailsForm .get('profilePicture')?.touched" class="text-danger"> Profile picture is required.</small>
+
+
+        <small class="text-muted mt-2" style="font-size: 12px;">
+          <i class="bi bi-info-circle" style="font-size: 1rem; color: rgb(0, 110, 255);"></i> Allowed formats: JPEG, PNG, JPG
+        </small>
+
+        <small *ngIf="profileDetailsForm.get('profilePicture')?.hasError('required') && profileDetailsForm.get('profilePicture')?.touched"
+          class="text-danger">
+          Profile picture is required.
+        </small>
+
+        <p *ngIf="uploadComplete" class="text-success mt-2">Upload Completed!</p>
+      </div>
+    </div>
+
+    <!-- Dynamic Progress Bar -->
+    <div class="progress w-100 mt-3 mb-5" *ngIf="fileUploadProgress | async as progress" role="progressbar">
+      <div class="progress-bar" [style.width.%]="progress">{{ progress }}%</div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <!-- Job ID, Job Role Title, Job Type, Job Level -->
+  <h5>Basic Details</h5>
+  <div class="row mt-3">
+
+      <div class="col">
+          <label for="firstName" class="form-label ">Fullname : </label>
+          <input type="text" id="firstName" formControlName="firstName" class="form-control form-control-sm" placeholder="First name" required>
+          <small *ngIf="profileDetailsForm.get('firstName')?.hasError('required') && profileDetailsForm.get('firstName')?.touched" class="text-danger">Firstname is required.</small>
+      </div>
+
+
+      <div class="col">
+        <label for="lastName" class="form-label ">Lastname : </label>
+        <input type="text" id="lastName" formControlName="lastName" class="form-control form-control-sm" placeholder="Last name" required>
+        <small *ngIf="profileDetailsForm.get('lastName')?.hasError('required') && profileDetailsForm.get('lastName')?.touched" class="text-danger">Lastname  is required.</small>
+    </div>
+
+
+      <div class="col">
+          <label for="userName" class="form-label">Username :</label>
+          <input type="text" id="userName" formControlName="userName"  class="form-control form-control-sm" placeholder="Username" required>
+          <small *ngIf="profileDetailsForm.get('userName')?.hasError('required') && profileDetailsForm.get('userName')?.touched" class="text-danger">Username is required.</small>
+      </div>
+
+
+
+  </div>
+
+
+    <div class="row mt-3">
+
+
+      <div class="col">
+        <label for="email" class="form-label">Email ID : </label>
+        <input type="text" id="email" formControlName="email"  class="form-control form-control-sm" placeholder="Email" required>
+        <small *ngIf="profileDetailsForm.get('email')?.hasError('required') && profileDetailsForm.get('email')?.touched" class="text-danger">Email is required.</small>
+    </div>
+
+        <div class="col">
+            <label for="email" class="form-label">Date of Birth :</label>
+            <input type="date" id="dateOfBirth" formControlName="dateOfBirth"  class="form-control form-control-sm" placeholder="Email" required>
+            <small *ngIf="profileDetailsForm.get('dateOfBirth')?.hasError('required') && profileDetailsForm.get('dateOfBirth')?.touched" class="text-danger">Date of birth is required.</small>
+        </div>
+
+        <div class="col">
+            <label for="gender" class="form-label">Gender :</label>
+            <select id="gender" class="form-select form-select-sm"  formControlName="gender" required>
+              <option value="">Select gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+          </select>
+            <small *ngIf="profileDetailsForm.get('gender')?.hasError('required') && profileDetailsForm.get('gender')?.touched" class="text-danger">Gender is required.</small>
+        </div>
+
+    </div>
+</div>
+
+  <div class="container mt-5">
+    <h5>Contact Details</h5>
+    <!-- Category, Skills, Proficiency, Languages -->
+    <div class="row  mt-3">
+
+        <div class="col">
+            <label for="streetAddress" class="form-label">Street address :</label>
+            <input type="text" id="streetAddress" formControlName="streetAddress" class="form-control form-control-sm" placeholder="Street address" required>
+            <small *ngIf="profileDetailsForm.get('streetAddress')?.hasError('required') && profileDetailsForm.get('streetAddress')?.touched" class="text-danger">Street address is required.</small>
+        </div>
+
+    </div>
+
+    <div class="row mt-3">
+
+        <div class="col">
+            <label for="city" class="form-label ">City : </label>
+            <select id="city" class="form-select form-select-sm"  formControlName="city" required>
+                <option value="">Select city</option>
+                <option value="city 1">city 1</option>
+                <option value="city 2">city 2</option>
+                <option value="city 3">city 3</option>
+            </select>
+            <small *ngIf="profileDetailsForm.get('city')?.hasError('required') && profileDetailsForm.get('city')?.touched" class="text-danger">City is required.</small>
+        </div>
+
+
+        <div class="col">
+            <label for="state" class="form-label">State :</label>
+            <select id="state" class="form-select form-select-sm"  formControlName="state" required>
+                <option value="">Select state</option>
+                <option value="state 1">state 1</option>
+                <option value="state 2">state 2</option>
+                <option value="state 3">state 3</option>
+                <option value="state 4">state 4</option>
+            </select>
+            <small *ngIf="profileDetailsForm.get('state')?.hasError('required') && profileDetailsForm.get('state')?.touched" class="text-danger">State is required.</small>
+        </div>
+
+        <div class="col">
+            <label for="country" class="form-label">Country :</label>
+            <select id="country" class="form-select form-select-sm"  formControlName="country" required>
+                <option value="">Select country</option>
+                <option value="country 1">country 1</option>
+                <option value="country 2">country 2</option>
+                <option value="country 3">country 3</option>
+            </select>
+            <small *ngIf="profileDetailsForm.get('country')?.hasError('required') && profileDetailsForm.get('country')?.touched" class="text-danger">Country is required.</small>
+        </div>
+
+    </div>
+
+
+    <div class="row  mt-3">
+
+
+        <div class="col">
+            <label for="phoneNumber" class="form-label">Phone number :</label>
+            <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control form-control-sm" placeholder="Phonenumber" required>
+            <small *ngIf="profileDetailsForm.get('phoneNumber')?.hasError('required') && profileDetailsForm.get('phoneNumber')?.touched" class="text-danger">Phone number is required.</small>
+        </div>
+
+        <div class="col">
+            <label for="pincode" class="form-label">Pincode : </label>
+            <input type="text" id="pincode" formControlName="pincode" class="form-control form-control-sm" placeholder="Pincode" required>
+            <small *ngIf="profileDetailsForm.get('pincode')?.hasError('required') && profileDetailsForm.get('pincode')?.touched" class="text-danger">Pincode is required.</small>
+        </div>
+
+
+    </div>
+  </div>
+
+
+  <div class="container mt-5">
+    <h5>Professional Details</h5>
+    <!-- Salary,   yearOfGraduation, Location, Vacancy -->
+    <div class="row  mt-3">
+
+        <div class="col">
+            <label for="universityName" class="form-label">University :</label>
+            <select id="universityName"  class="form-select form-select-sm" formControlName="universityName" required>
+                <option value="">Select university</option>
+                <option *ngFor="let university of universityList" [value]="university.universityDetails.universityName">
+                  {{ university.universityDetails.universityName }}
+                </option>
+            </select>
+            <small *ngIf="profileDetailsForm.get('universityName')?.hasError('required') && profileDetailsForm.get('universityName')?.touched" class="text-danger">University name is required.</small>
+
+        </div>
+
+
+        <div class="col">
+            <label for="universityDegree" class="form-label">University degree :</label>
+            <select id="universityDegree"  class="form-select form-select-sm" formControlName="universityDegree" required>
+              <option value="">Select university degree</option>
+              <option value="University degree 1">University degree 1</option>
+              <option value="University degree 2">University degree 2</option>
+              <option value="university degree 3">university degree 3</option>
+              <option value="University degree 4">University degree 4</option>
+          </select>
+            <small *ngIf="profileDetailsForm.get('universityDegree')?.hasError('required') && profileDetailsForm.get('universityDegree')?.touched" class="text-danger">University degree is required.</small>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="row mt-3">
+
+        <div class="col">
+            <label for="yearOfGraduation" class="form-label">Year of graduation :</label>
+            <input type="date" id="yearOfGraduation" formControlName="yearOfGraduation"  class="form-control form-control-sm" placeholder=" yearOfGraduation" required>
+          <small *ngIf="profileDetailsForm.get('yearOfGraduation')?.hasError('required') && profileDetailsForm.get('yearOfGraduation')?.touched" class="text-danger">Year of graduation is required.</small>
+        </div>
+
+        <div class="col">
+            <label for="universityNumber" class="form-label ">University Number :</label>
+            <input type="text" id="universityNumber" formControlName="universityNumber"  class="form-control form-control-sm" placeholder="University number " required>
+          <small *ngIf="profileDetailsForm.get('universityNumber')?.hasError('required') && profileDetailsForm.get('universityNumber')?.touched" class="text-danger">University number is required.</small>
+        </div>
+
+
+    </div>
+  </div>
+
+
+  <div class="container mt-5">
+    <h5>Bio Details</h5>
+
+    <!-- Job Descriptions -->
+    <div class="row  mt-3">
+
+        <div class="col">
+            <div class="NgxEditor__Wrapper">
+              <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+              <ngx-editor [editor]="editor"  class="form-control form-control-sm" formControlName="bioDescription" [placeholder]="'Enter bio description'" required></ngx-editor>
+            </div>
+            <small *ngIf="profileDetailsForm.get('bioDescription')?.hasError('required') && profileDetailsForm.get('bioDescription')?.touched" class="text-danger">Bio details is required.</small>
+        </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="d-flex justify-content-between mt-5">
+    <button type="button" class="btn btn-secondary" (click)="discard()">Discard</button>
+    <button type="submit" class="btn btn-success" [disabled]="profileDetailsForm.invalid">Save</button>
+  </div>
+
+
+  </form>
+</div>
+
+<div class="container-fluid" *ngIf="isLoading">
+  <div class="text-center">
+      <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="mt-3">
+          <p>Saving profile details</p>
+      </div>
+  </div>
+</div>
+

@@ -1,0 +1,11 @@
+  /* Main Content */
+  .main-content {
+    padding: 10px;
+    margin-left: 80px; /* Default margin to match closed sidebar */
+  }
+
+  .main-content.shifted {
+    margin-left: 200px; /* Shift when sidebar is open */
+    width: calc(100% - 200px); /* Adjust width based on sidebar open state */
+  }
+

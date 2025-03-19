@@ -1,0 +1,33 @@
+.table-responsive {
+  position: relative;
+  max-height: 500px; /* Adjust based on your need */
+
+}
+
+.table {
+  width: 100%;
+  min-width: 900px; /* Ensures horizontal scrolling if necessary */
+  border-collapse: collapse;
+
+}
+
+.table thead {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #fff; /* Ensures header is visible */
+}
+
+th, td {
+  white-space: nowrap; /* Prevents text from wrapping */
+  padding: 10px;
+  vertical-align: middle;
+}
+
+th {
+  background-color: #f8f9fa; /* Light background for sticky header */
+}
+
+.table tbody {
+  overflow-y: auto;
+}

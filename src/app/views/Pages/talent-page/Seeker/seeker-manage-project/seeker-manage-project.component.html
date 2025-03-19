@@ -1,0 +1,152 @@
+
+
+
+
+
+<div class="container-fluid mt-5">
+
+  <div class="mb-3 d-flex flex-wrap align-items-center gap-3">
+    <label for="search" class="form-label mb-0">Search Projects:</label>
+    <div class="flex-grow-1">
+      <input
+        type="text"
+        id="search"
+        [(ngModel)]="searchTerm"
+        class="form-control shadow-sm"
+        placeholder="Search by project title, project type"
+        (input)="filterData()"
+      >
+    </div>
+    <button class="btn btn-secondary px-4" (click)="resetSearch()">Reset</button>
+  </div>
+
+
+
+
+
+
+  <div class="table-responsive mb-5">
+    <table class="table table-hover  text-center align-middle shadow-sm" style="font-size: 14px;">
+      <thead class="table-light">
+        <tr>
+          <th scope="col" style="width: 5%;">
+            <input type="checkbox" [checked]="isAllSelected()" (change)="toggleSelectAll()">
+          </th>
+          <th scope="col" style="width: 5%;">S.No</th>
+          <th scope="col" style="width: 10%;">Project Image</th>
+          <th scope="col" style="width: 15%;">Project Title</th>
+          <th scope="col" style="width: 10%;">Project Type</th>
+          <th scope="col" style="width: 10%;">Softwares</th>
+          <th scope="col" style="width: 10%;">Tags</th>
+          <th scope="col" style="width: 10%;">Project Description</th>
+          <th scope="col" style="width: 15%;">Actions</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="filteredData.length > 0">
+        <tr *ngFor="let project of paginatedData; let i = index">
+          <td>
+            <input type="checkbox" [(ngModel)]="project.selected" (change)="selectProject(project)">
+          </td>
+          <td>{{ (currentPage - 1) * itemsPerPage + (i + 1) }}</td>
+
+          <td style="text-align: center; vertical-align: middle;">
+
+            <ng-container *ngIf="isImage(project.projectDetails.file.url); else otherMedia">
+              <img
+                [src]="project.projectDetails.file.url"
+                alt="Project Image"
+                width="150px"
+                height="auto"
+                (error)="project.projectDetails.file.url = 'assets/images/placeholder.png'"
+                style="border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);"
+              >
+            </ng-container>
+
+            <ng-template #otherMedia>
+              <ng-container *ngIf="isVideo(project.projectDetails.file.url); else unsupportedMedia">
+                <video
+                  controls
+                  [src]="project.projectDetails.file.url"
+                  width="150px"
+                  height="auto"
+                  (error)="project.projectDetails.file.url = ''"
+                  style="border-radius: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);"
+                ></video>
+              </ng-container>
+
+              <ng-template #unsupportedMedia>
+                <p class="text-danger fw-bold">Unsupported file type: {{ getFileExtension(project.projectDetails.file.url) }}</p>
+              </ng-template>
+            </ng-template>
+
+          </td>
+
+          <td>{{project.projectDetails.projectTitle}}</td>
+          <td>{{project.projectDetails.projectType}}</td>
+          <td>{{project.projectDetails.softwares}}</td>
+          <td>{{project.projectDetails.tags}}</td>
+          <td [innerHTML]="project.projectDetails.sanitizedProjectDescription"></td>
+          <td>
+            <div class="d-flex justify-content-center gap-2">
+              <button class="btn btn-sm btn-outline-info shadow-sm px-3" (click)="goToProjectEdit(project)">Edit</button>
+              <button class="btn btn-sm btn-outline-danger shadow-sm px-3"  (click)="deleteProjectById(project._id!, project.projectDetails.file.fileName)">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+
+      <tbody *ngIf="filteredData.length === 0">
+        <tr>
+          <td colspan="9" class="text-center text-muted fw-bold py-3">No jobs available to display.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="selectedProjects.length > 0" class="text-end">
+      <button class="btn btn-danger px-4 shadow-sm" (click)="deleteSelectedProjects()">Delete All</button>
+    </div>
+  </div>
+
+
+
+  <div class="row align-items-center mb-3 p-2 border rounded shadow-sm bg-light">
+    <!-- Items per page selector -->
+    <div class="col-12 col-md-4 d-flex align-items-center mb-2 mb-md-0">
+      <label for="itemsPerPage" class="fw-bold me-2">Items per page:</label>
+      <select id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="updatePagination()" class="form-select form-select-sm w-auto">
+        <option *ngFor="let size of [5, 10, 15, 20, 50, 100]" [value]="size">{{ size }}</option>
+      </select>
+    </div>
+
+    <!-- Pagination -->
+    <div class="col-12 col-md-4 d-flex justify-content-center mb-2 mb-md-0">
+      <nav aria-label="Page navigation">
+        <ul class="pagination m-0 flex-wrap">
+          <li class="page-item" [class.disabled]="currentPage === 1">
+            <a class="page-link" aria-label="Previous" (click)="onPageChange(currentPage - 1)">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+
+          <li *ngFor="let page of pageNumbers" class="page-item" [class.active]="page === currentPage">
+            <a class="page-link" (click)="onPageChange(page)">{{ page }}</a>
+          </li>
+
+          <li class="page-item" [class.disabled]="currentPage === totalPages">
+            <a class="page-link" aria-label="Next" (click)="onPageChange(currentPage + 1)">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Showing entries info -->
+    <div class="col-12 col-md-4 text-center text-md-end">
+      <div class="text-muted small">
+        <strong>Showing:</strong> {{ (currentPage - 1) * itemsPerPage + 1 }} - {{ getEndIndex() }} of {{ totalEntries }} entries
+      </div>
+    </div>
+  </div>
+
+

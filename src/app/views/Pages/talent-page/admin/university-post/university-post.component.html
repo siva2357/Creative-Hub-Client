@@ -1,0 +1,102 @@
+
+
+
+
+<div class="mt-5" style="display: flex; align-items: center; gap: 5px; text-decoration: none;  color: inherit;">
+  <i class="bi bi-arrow-left" style="font-size: 1.5rem; cursor: pointer;" (click)="goToUniversityPage()"></i>
+  <p style="margin: 0;">Back</p>
+</div>
+
+<div class="container bg-body-tertiary mt-3 mb-5 p-4 rounded shadow" style="font-family: 'Poppins', sans-serif;">
+
+
+
+  <h5 class="mb-4 poppins-semibold ">Create university</h5>
+
+  <form [formGroup]="universityPostForm" (ngSubmit)="submitUniversity()">
+    <div class="row">
+      <!-- Image Upload Section -->
+      <div class="col-md-6 px-3">
+        <div class="mb-5">
+          <div class="container d-flex flex-column align-items-center justify-content-center rounded-3 file-upload-container p-4 border border-primary border-dashed">
+            <!-- PREVIEW SECTION -->
+            <div class="col w-100">
+              <div *ngIf="!ifPreview" class="d-flex align-items-center justify-content-center bg-light rounded-3 mt-4 p-4 border border-secondary" style="min-height: 200px;">
+                <p class="text-muted text-center poppins-regular" style="font-size: 14px;">Uploaded Media Preview will be shown here</p>
+              </div>
+
+              <div *ngIf="ifPreview" class="d-flex flex-wrap align-items-center justify-content-center bg-light rounded-3 mt-4 p-2 border border-secondary">
+                <div class="card position-relative">
+                  <ng-container *ngIf="fileType === 'image'">
+                    <img [src]="previewURL" class="card-img-top rounded" style="height: 150px;" alt="Preview Image">
+                  </ng-container>
+                  <i *ngIf="uploadComplete" class="bi bi-x-circle-fill position-absolute text-danger" style="right: 10px; top: 5px; font-size: 1.5rem; cursor: pointer;" (click)="deletePreview()"></i>
+                </div>
+              </div>
+            </div>
+
+            <input type="file" id="universityLogo" formControlName="universityLogo" (change)="uploadFile($event)" hidden />
+            <label for="universityLogo" class="file-upload-label mt-3">
+              <i class="bi bi-cloud-arrow-up upload-icon text-primary" style="font-size: 30px; cursor: pointer;"></i>
+            </label>
+            <p class="text-muted poppins-regular" style="font-size: 14px;">Click to upload file</p>
+
+            <!-- Dynamic Progress Bar -->
+            <div class="progress w-75 mt-3" *ngIf="fileUploadProgress">
+              <div class="progress-bar bg-success" [style.width.%]="fileUploadProgress | async">
+                {{ fileUploadProgress | async }}%
+              </div>
+            </div>
+
+            <!-- Success message -->
+            <div *ngIf="uploadComplete" class="mt-3 text-success fw-bold">Upload Completed!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Company Details Section -->
+      <div class="col-md-6 px-3">
+        <div class="mb-3">
+          <label for="universityId" class="form-label fw-bold" style="font-size: 14px;"> University ID <span class="text-danger">*</span></label>
+          <input type="text" id="universityId" formControlName="universityId" class="form-control form-control-sm" placeholder="Enter the university ID" required>
+          <small *ngIf="universityPostForm.get('universityId')?.hasError('required') && universityPostForm.get('universityId')?.touched" class="text-danger"> University ID is required.</small>
+        </div>
+
+        <div class="mb-3">
+          <label for="universityName" class="form-label fw-bold" style="font-size: 14px;">University Name <span class="text-danger">*</span></label>
+          <input type="text" id="universityName" formControlName="universityName" class="form-control form-control-sm" placeholder="Enter the university name" required>
+          <small *ngIf="universityPostForm.get('universityName')?.hasError('required') && universityPostForm.get('universityName')?.touched" class="text-danger"> University name is required.</small>
+        </div>
+
+        <div class="mb-3">
+          <label for="universityAddress" class="form-label fw-bold" style="font-size: 14px;">University Address <span class="text-danger">*</span></label>
+          <input type="text" id="universityAddress" formControlName="universityAddress" class="form-control form-control-sm" placeholder="Enter the university address" required>
+          <small *ngIf="universityPostForm.get('universityAddress')?.hasError('required') && universityPostForm.get('universityAddress')?.touched" class="text-danger">University Address is required.</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="d-flex justify-content-between mt-4">
+      <button type="button" class="btn btn-sm btn-outline-danger px-4 py-2 fw-bold" (click)="confirmDiscard()">Discard</button>
+      <button type="submit" class="btn btn-sm btn-outline-primary px-4 py-2 fw-bold" [disabled]="universityPostForm.invalid">Submit</button>
+    </div>
+  </form>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

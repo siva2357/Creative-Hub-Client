@@ -1,0 +1,68 @@
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100" style="font-family: 'Poppins', sans-serif;">
+  <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+    <div *ngIf="!isLoading">
+      <div class="card shadow-lg border-primary rounded-3" style="max-width: 100%;">
+        <div class="card-body p-4">
+
+          <div class="container text-center mb-3">
+            <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1737024440/Logo_qboacm.svg" alt="Logo" class="img-fluid rounded-circle" style="width: 80px; height: 80px;">
+          </div>
+
+          <form [formGroup]="registrationForm" (ngSubmit)="submit()">
+
+            <!-- Email Input -->
+            <div class="form-group mt-3">
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                <input [ngClass]="{'is-invalid': registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched}"
+                  placeholder="Email Address" formControlName="email" type="email" class="form-control" />
+              </div>
+              <small *ngIf="registrationForm.get('email')?.touched && registrationForm.get('email')?.errors?.['required']" class="text-danger">Email is required.</small>
+            </div>
+
+            <!-- Password Input -->
+            <div class="form-group mt-3">
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Create Password" class="form-control" />
+                <button type="button" class="btn btn-outline-secondary" (click)="showPassword = !showPassword">
+                  <i class="bi" [ngClass]="showPassword ? 'bi-eye' : 'bi-eye-slash'"></i>
+                </button>
+              </div>
+              <small *ngIf="registrationForm.get('password')?.touched && registrationForm.get('password')?.errors?.['required']" class="text-danger">Password is required.</small>
+            </div>
+
+            <!-- Confirm Password Input -->
+            <div class="form-group mt-3">
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                <input [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" placeholder="Confirm Password" class="form-control" />
+                <button type="button" class="btn btn-outline-secondary" (click)="showConfirmPassword = !showConfirmPassword">
+                  <i class="bi" [ngClass]="showConfirmPassword ? 'bi-eye' : 'bi-eye-slash'"></i>
+                </button>
+              </div>
+              <small *ngIf="registrationForm.get('confirmPassword')?.touched && registrationForm.get('confirmPassword')?.errors?.['required']" class="text-danger">Confirm Password is required.</small>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-between mt-4">
+              <button (click)="goBack()" class="btn btn-outline-secondary">Back</button>
+              <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid">Submit</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="d-flex justify-content-center align-items-center mt-4" *ngIf="isLoading">
+      <div class="text-center">
+        <div class="spinner-border" role="status"></div>
+        <p class="mt-2" *ngIf="registrationSuccess">Redirecting to confirmation page...</p>
+        <p class="mt-2" *ngIf="!registrationSuccess">Redirecting to signup...</p>
+      </div>
+    </div>
+
+  </div>
+</div>

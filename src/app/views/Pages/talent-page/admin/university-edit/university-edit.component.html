@@ -1,0 +1,84 @@
+
+<div class="container bg-body-tertiary  mt-5 mb-4 p-5 rounded shadow" style="font-family: 'Poppins', sans-serif;">
+
+
+  <form [formGroup]="universityUpdateForm" (ngSubmit)="updateUniversity()">
+    <div class="row">
+      <div class="col-md-6 px-5">
+        <div class="mb-5">
+          <div class="container d-flex flex-column align-items-center justify-content-center rounded-3 file-upload-container p-4 border border-primary border-dashed">
+            <!-- PREVIEW SECTION -->
+            <div class="col w-100">
+
+              <div *ngIf="!ifPreview" class="d-flex flex-wrap align-items-center justify-content-center bg-light rounded-3 mt-4 p-2 border border-secondary">
+                <div class="card position-relative">
+                  <img [src]="fetchedURL" class="card-img-top rounded" style="height: 100px;"  alt="university Logo">
+                </div>
+              </div>
+
+              <div *ngIf="ifPreview" class="d-flex flex-wrap align-items-center justify-content-center bg-light rounded-3 mt-4 p-2 border border-secondary">
+                <div class="card position-relative">
+                  <img [src]="previewURL" class="card-img-top rounded" style="height: 100px;" alt="Preview Image">
+                </div>
+              </div>
+
+            </div>
+
+
+            <input *ngIf="isEditMode" type="file" id="universityLogo" (change)="onFileChange($event, university.universityDetails.universityLogo.fileName)" hidden />
+            <label for="universityLogo" class="file-upload-label mt-3">
+              <i class="bi bi-cloud-arrow-up upload-icon text-primary" style="font-size: 30px; cursor: pointer;"></i>
+            </label>
+            <p class="text-muted poppins-regular" style="font-size: 14px;">Click to upload file</p>
+
+            <!-- Dynamic Progress Bar -->
+            <div class="progress w-75 mt-3" *ngIf="fileUploadProgress">
+              <div class="progress-bar bg-success" [style.width.%]="fileUploadProgress | async">
+                {{ fileUploadProgress | async }}%
+              </div>
+            </div>
+
+            <!-- Success message -->
+            <div *ngIf="uploadComplete" class="mt-3 text-success poppins-medium">Upload Completed!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- university Details Section -->
+      <div class="col-md-6 px-5">
+        <div class="mb-3">
+          <label for="universityId" class="form-label poppins-medium" style="font-size: 14px;"> university ID <span class="text-danger">*</span></label>
+          <input type="text" id="universityId" formControlName="universityId" class="form-control form-control-sm poppins-medium" placeholder="Enter the university ID" required>
+          <small *ngIf="universityUpdateForm.get('universityId')?.hasError('required') && universityUpdateForm.get('universityId')?.touched" class="text-danger"> university ID is required.</small>
+        </div>
+
+        <div class="mb-3">
+          <label for="universityName" class="form-label poppins-medium" style="font-size: 14px;">university Name <span class="text-danger">*</span></label>
+          <input type="text" id="universityName" formControlName="universityName" class="form-control form-control-sm poppins-medium" placeholder="Enter the university name" required>
+          <small *ngIf="universityUpdateForm.get('universityName')?.hasError('required') && universityUpdateForm.get('universityName')?.touched" class="text-danger"> university name is required.</small>
+        </div>
+
+        <div class="mb-3">
+          <label for="universityAddress" class="form-label poppins-medium" style="font-size: 14px;">university Address <span class="text-danger">*</span></label>
+          <input type="text" id="universityAddress" formControlName="universityAddress" class="form-control form-control-sm poppins-medium" placeholder="Enter the university address" required>
+          <small *ngIf="universityUpdateForm.get('universityAddress')?.hasError('required') && universityUpdateForm.get('universityAddress')?.touched" class="text-danger">university Address is required.</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="d-flex justify-content-between ">
+      <button type="button" class="btn btn-sm btn-outline-danger px-4  poppins-medium" (click)="discardChanges()" *ngIf="isEditMode">Discard</button>
+      <button type="submit" class="btn btn-sm btn-outline-primary px-4  poppins-medium" *ngIf="isEditMode">Update</button>
+      <button type="button" class="btn btn-sm btn-outline-danger px-4  poppins-medium" (click)=" goToUniversityPage()" *ngIf="!isEditMode">Back</button>
+      <button type="button" class="btn btn-sm btn-outline-info px-4  poppins-medium" (click)="openEditMode()" *ngIf="!isEditMode">Edit</button>
+    </div>
+
+
+  </form>
+
+
+</div>
+
+
+

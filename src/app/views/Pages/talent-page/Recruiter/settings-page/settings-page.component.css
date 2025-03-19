@@ -1,0 +1,11 @@
+.custom-tab {
+  background-color: white;
+  color: #0d6efd; /* Primary blue text */
+  border: 1px solid #0d6efd;
+}
+
+.custom-tab.active {
+  background-color: #0069c5 !important; /* Secondary gray */
+  color: #ffffff !important; /* Keep text blue */
+  border-color: #6c757d !important;
+}

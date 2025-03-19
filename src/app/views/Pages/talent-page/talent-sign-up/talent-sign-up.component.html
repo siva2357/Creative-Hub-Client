@@ -1,0 +1,24 @@
+<div class="container-fluid d-flex justify-content-center align-items-center position-absolute top-50 start-50 translate-middle p-3" style="font-family: 'Poppins', sans-serif; width: 100vw; height: 100vh;">
+  <div class="card text-center shadow-lg w-100" style="max-width: 400px; border-radius: 15px;  border: 2px solid #007bff;">
+    <div class="card-body" style="border-radius: 15px;">
+      <div class="container pb-3 mt-3 text-center align-items-center">
+        <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1737024440/Logo_qboacm.svg" alt="Logo" class="img-fluid" style="max-width: 100px; height: auto; object-fit: cover; border-radius: 50%;">
+      </div>
+      <div class="row justify-content-center mb-3 mt-3">
+        <div class="d-flex flex-column align-items-center justify-content-center w-100">
+          <h4 class="text-center mb-4 poppins-bold">Registration Details</h4>
+          <div class="mb-4 w-100">
+            <div class="d-flex flex-wrap justify-content-center align-items-center gap-3 w-100">
+              <input type="radio" id="seekerRadio" name="userType" class="btn-check" (change)="selectUserType('seeker')" autocomplete="off">
+              <label class="btn btn-outline-primary rounded-3 px-3 py-2 poppins-medium" for="seekerRadio" style="font-size: 14px;">As Seeker</label>
+              <input type="radio" id="recruiterRadio" name="userType" class="btn-check" (change)="selectUserType('recruiter')" autocomplete="off">
+              <label class="btn btn-outline-primary rounded-3 px-3 py-2 poppins-medium" for="recruiterRadio" style="font-size: 14px;">As Recruiter</label>
+            </div>
+          </div>
+          <button *ngIf="isUserTypeSelected" type="button" class="btn btn-outline-primary rounded-3 px-4 py-2 poppins-medium w-75" style="font-size: 14px;" (click)="navigateToRegistration()"> Sign Up</button>
+          <p class="mb-0 text-center mt-3 poppins-regular" style="font-size: 14px;">Already a member? <span class="text-primary poppins-semibold" (click)="login()" style="cursor: pointer;">Login</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

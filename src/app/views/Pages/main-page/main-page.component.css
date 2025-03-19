@@ -1,0 +1,84 @@
+
+
+  .card {
+    transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+    border: 1px solid transparent; /* Initially, no border */
+}
+
+.card:hover {
+    box-shadow: 0 0 10px 5px rgba(0, 149, 255, 0.7); /* Blue glow effect */
+    border: 1px solid rgba(0, 0, 255, 0.7); /* Blue border when hovered */
+}
+
+.feature-card {
+  background: linear-gradient(135deg, #354f80, #183657);
+  border: none;
+  transition: transform 0.3s ease-in-out;
+}
+.feature-card:hover {
+  transform: translateY(-8px);
+}
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #3baaf5;
+  transition: all 0.3s ease-in-out;
+}
+.feature-card:hover .feature-icon {
+  background: #3baaf5;
+  color: #fff;
+
+}
+
+
+
+
+
+/* Text Glow Effect */
+.text-shadow {
+    text-shadow: 0 0 10px rgba(0, 149, 255, 0.7);
+}
+
+/* Button Gradient */
+.btn-gradient {
+    background: linear-gradient(135deg, #0066ff, #00ccff);
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(135deg, #00ccff, #0066ff);
+    transform: scale(1.05);
+}
+
+/* Neon Border */
+.neon-border {
+    border: 1px solid rgba(0, 149, 255, 0.7);
+    transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+
+/* Glow Effect on Hover */
+.glow-effect {
+    box-shadow: 0 0 20px 10px rgba(0, 149, 255, 0.7);
+    border: 1px solid rgba(0, 0, 255, 0.9);
+}
+
+/* Grid Image Hover */
+.grid-hover {
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+    filter: brightness(0.8);
+}
+
+.grid-hover:hover {
+    transform: scale(1.05);
+    filter: brightness(1);
+}

@@ -1,0 +1,86 @@
+<div class="container bg-body-tertiary mt-5 mb-5">
+
+  <div *ngIf="projects.length > 0" class="container mt-5 mb-5">
+    <!-- Categories Tabs -->
+    <div class="mb-4">
+      <div class="d-flex justify-content-center ">
+        <ul class="nav nav-tabs">
+          <li class="nav-item" *ngFor="let category of filteredCategories">
+            <a class="nav-link" [class.active]="selectedCategory === category" (click)="selectCategory(category)">
+              {{ category }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+      <!-- All Projects -->
+      <div class="tab-pane fade show active" *ngIf="selectedCategory === 'All'">
+        <div class="row">
+          <div *ngFor="let project of projects" class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="card h-100">
+
+              <div *ngIf="isImage(project.projectDetails.file.url)">
+                <img [src]="project.projectDetails.file.url" class="card-img-top"
+                     alt="{{ project.projectDetails.projectTitle }}" style="height: 200px; object-fit: cover;">
+              </div>
+
+              <div *ngIf="isVideo(project.projectDetails.file.url)">
+                <video controls [src]="project.projectDetails.file.url" class="card-img-top"
+                       style="height: 200px; object-fit: cover;"></video>
+              </div>
+
+              <div class="card-body">
+                <h5 class="card-title">{{ project.projectDetails.projectTitle }}</h5>
+                <p class="card-text" [innerHTML]="project.projectDetails.projectDescription"></p>
+                <a class="btn btn-link p-0 mt-2 text-primary" (click)="viewDetails(project)">View More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category-specific Projects -->
+      <div class="tab-pane fade" *ngFor="let category of categories"
+           [class.show]="selectedCategory === category" [class.active]="selectedCategory === category">
+        <div *ngIf="selectedCategory !== 'All' && projectsByCategory[category]?.length === 0" class="text-center">
+          No projects found.
+        </div>
+
+        <div class="row" *ngIf="selectedCategory !== 'All' && projectsByCategory[category] && projectsByCategory[category].length > 0">
+          <div *ngFor="let project of projectsByCategory[category]" class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="card h-100">
+
+              <div *ngIf="isImage(project.projectDetails.file.url)">
+                <img [src]="project.projectDetails.file.url" class="card-img-top"
+                     alt="{{ project.projectDetails.projectTitle }}" style="height: 200px; object-fit: cover;">
+              </div>
+
+              <div *ngIf="isVideo(project.projectDetails.file.url)">
+                <video controls [src]="project.projectDetails.file.url" class="card-img-top"
+                       style="height: 200px; object-fit: cover;"></video>
+              </div>
+
+              <div class="card-body">
+                <h5 class="card-title">{{ project.projectDetails.projectTitle }}</h5>
+                <p class="card-text" [innerHTML]="project.projectDetails.projectDescription"></p>
+                <a class="btn btn-link p-0 mt-2 text-primary" (click)="viewDetails(project)">View More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- No Data Image -->
+<div *ngIf="projects.length === 0" class="container d-flex justify-content-center align-items-center">
+  <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1716276008/No_data-amico_zhoryt.svg"
+       style="height: 580px; width: 580px;">
+</div>

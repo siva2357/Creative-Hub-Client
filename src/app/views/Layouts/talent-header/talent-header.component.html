@@ -1,0 +1,36 @@
+<header>
+  <nav class="navbar shadow bg-body-secondary fixed-top" style="height: 50px; font-family: 'Poppins', sans-serif;">
+    <div class="container-fluid">
+      <!-- Brand Section -->
+      <div class="navbar-brand d-flex align-items-center" style="text-decoration: none; color: black; cursor: pointer; margin-top: -10px;">
+        <img class="logo" style="margin-left: 20px; margin-right: 10px;"
+             src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1737024440/Logo_qboacm.svg"
+             alt="logo" width="40" height="40">
+        <div class="logo_name me-3 poppins-medium" *ngIf="sidebarOpen" style="font-size: 16px;">Creative Hub</div>
+        <i [ngClass]="!sidebarOpen ? 'bi bi-justify' : 'bi bi-justify'"
+           id="btn" style="font-size: 1.5rem;" (click)="toggle()"></i>
+      </div>
+
+      <!-- Right-Side Content -->
+      <div class="d-flex align-items-center" style="margin-right: 30px; margin-top: -5px;">
+
+        <button type="button" class="btn btn-light rounded-circle me-3">
+          <i class="bi bi-bell" style=" color: black;"></i>
+        </button>
+
+        <div class="poppins-medium" style="margin-right: 20px; font-size: 14px;">{{userName}}</div>
+        <div class="dropdown">
+          <button class="nav-link d-flex justify-content-center align-items-center rounded-circle text-decoration-none bg-white" data-bs-toggle="dropdown" aria-expanded="false">
+            <img [src]="profile" alt="Profile Image" style="width: 35px; height: 35px; border-radius: 50%;">
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end shadow">
+            <li><a class="dropdown-item" (click)="goToAccountSettingsPage()">Settings</a></li>
+            <li><a class="dropdown-item" (click)="goToChangePasswordPage()">Change password</a></li>
+            <hr class="mb-0 mt-0">
+            <li><a class="dropdown-item" style="cursor: pointer; font-size: 14px;" (click)="onLogout()">Sign Out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

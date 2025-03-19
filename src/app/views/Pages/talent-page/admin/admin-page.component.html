@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <!-- HEADER -->
+  <app-talent-header (toggleSidebar)="toggleSidebar()" [sidebarOpen]="sidebarOpen"></app-talent-header>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar-container">
+    <app-talent-sidebar [menuItems]="menu" [sidebarOpen]="sidebarOpen" (toggleSidebar)="toggleSidebar()"></app-talent-sidebar>
+  </div>
+
+  <!-- MAIN CONTENT AREA -->
+  <div class="main-content" [ngClass]="{'shifted': sidebarOpen}">
+    <router-outlet></router-outlet>
+  </div>
+</div>

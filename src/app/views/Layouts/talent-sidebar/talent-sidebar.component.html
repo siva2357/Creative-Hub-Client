@@ -1,0 +1,11 @@
+<div class="sidebar" [ngClass]="{'open': sidebarOpen}" style="font-family: 'Poppins', sans-serif;">
+  <ul class="nav-list" style="margin-top: 60px;">
+    <li *ngFor="let menu of menuItems" style="margin-left: 10px; margin-right: 10px; margin-top: 15px;">
+      <a [routerLink]="menu.link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <i [class]="menu.icon" style="font-size: 1.2rem;"></i>
+        <span class="links_name poppins-medium" style="margin-left: 10px; font-size: 14px;">{{ menu.label }}</span>
+      </a>
+      <span class="tooltip  poppins-regular" style="font-size: 14px;">{{ menu.label }}</span>
+    </li>
+  </ul>
+</div>
