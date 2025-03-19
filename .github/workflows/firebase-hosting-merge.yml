@@ -15,6 +15,7 @@ jobs:
         run: |
           echo "export const environment = {" > src/environments/environment.ts
           echo "  production: false," >> src/environments/environment.ts
+          echo "   apiUrl: '${{ secrets. BACKEND_API_URL}}'," >> src/environments/environment.ts
           echo "  firebaseConfig: {" >> src/environments/environment.ts
           echo "    apiKey: '${{ secrets.FIREBASE_API_KEY }}'," >> src/environments/environment.ts
           echo "    authDomain: '${{ secrets.FIREBASE_AUTH_DOMAIN }}'," >> src/environments/environment.ts
