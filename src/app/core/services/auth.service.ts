@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
 
-  private baseUrl: string = `${environment.apiUrl}/auth`; // Automatically selects correct URL
+  private baseUrl: string = `${environment.apiUrl}`; // Automatically selects correct URL
 
   private userRole: string | null = null;
 
@@ -31,7 +31,7 @@ export class AuthService {
 
   // Register recruiter and send OTP code
 registerRecruiter(recruiterData: Recruiter): Observable<any> {
-  return this.http.post(`${this.baseUrl}/recruiter/signup`, recruiterData)
+  return this.http.post(`${this.baseUrl}/auth/recruiter/signup`, recruiterData)
     .pipe(
       switchMap((response: any) => {
         // After successful registration, send OTP verification code
@@ -44,7 +44,7 @@ registerRecruiter(recruiterData: Recruiter): Observable<any> {
 
     // Register recruiter and send OTP code
 registerSeeker(seekerData: Seeker): Observable<any> {
-  return this.http.post(`${this.baseUrl}/seeker/signup`, seekerData)
+  return this.http.post(`${this.baseUrl}/auth/seeker/signup`, seekerData)
     .pipe(
       switchMap((response: any) => {
         // After successful registration, send OTP verification code
@@ -56,7 +56,7 @@ registerSeeker(seekerData: Seeker): Observable<any> {
 
 
 login(loginData: Login): Observable<LoginResponse> {
-  return this.http.post<LoginResponse>(`${this.baseUrl}/login/user`, loginData)
+  return this.http.post<LoginResponse>(`${this.baseUrl}/auth/login/user`, loginData)
     .pipe(
       tap(response => {
         if (response && response.role && response.token !== undefined) {
@@ -107,7 +107,7 @@ logout() {
     'Content-Type': 'application/json'
   });
 
-  this.http.post(`${this.baseUrl}/logout/user`, {}, { headers, withCredentials: true }).subscribe(
+  this.http.post(`${this.baseUrl}/auth/logout/user`, {}, { headers, withCredentials: true }).subscribe(
     (response: any) => {
       console.log(response.message);
 
@@ -157,13 +157,13 @@ private handleError(error: any): Observable<never> {
 
   // Send verification code
 sendVerificationCode(email: string): Observable<any> {
-  return this.http.patch(`${this.baseUrl}/send-verification-code`, { email })
+  return this.http.patch(`${this.baseUrl}/auth/send-verification-code`, { email })
     .pipe(catchError(error => this.handleError(error)));
 }
 
 
 verifyOtp(providedCode: string, email: string): Observable<any> {
-  return this.http.patch(`${this.baseUrl}/verify-verification-code`, {
+  return this.http.patch(`${this.baseUrl}/auth/verify-verification-code`, {
       email,
       providedCode
     })
@@ -177,7 +177,7 @@ verifyOtp(providedCode: string, email: string): Observable<any> {
 
  // Function to resend OTP to the user's email
  resendOtp(email: string): Observable<any> {
-  return this.http.patch(`${this.baseUrl}/send-verification-code`, { email })
+  return this.http.patch(`${this.baseUrl}/auth/send-verification-code`, { email })
     .pipe(catchError(error => this.handleError(error)));
 }
 
