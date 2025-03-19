@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: '',
+  apiUrl: 'https://creative-hub-server.onrender.com',
   firebaseConfig: {
     apiKey: '',
     authDomain: '',

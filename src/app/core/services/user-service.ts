@@ -5,12 +5,12 @@ import { Recruiter, Seeker } from '../models/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {jwtDecode} from 'jwt-decode' ;
 import { RecruiterProfile } from '../models/profile-details.model';
-import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private baseUrl: string = `${environment.apiUrl}/auth`; // Automatically selects correct URL
+  private baseUrl: string = 'http://localhost:3000/api/auth';
 
   private role = localStorage.getItem('userRole') || '';
   private userData = JSON.parse(localStorage.getItem('userData') || '{}');

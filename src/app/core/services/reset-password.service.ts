@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError, of, pipe } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,18 +10,18 @@ export class ResetPasswordService {
 
   constructor(private http: HttpClient) {}
 
-  private baseUrl: string = `${environment.apiUrl}`; // Automatically selects correct URL
+  private baseUrl: string = 'http://localhost:3000/api/auth';
 
 
   sendForgotPasswordCode(email: string): Observable<any> {
-    return this.http.patch(`${this.baseUrl}/auth/forgot-password-code`, { email })
+    return this.http.patch(`${this.baseUrl}/forgot-password-code`, { email })
       .pipe(catchError(error => {
         throw error;
       }));
   }
 
   verifyForgotPasswordCode(providedCode: string, email: string): Observable<any> {
-    return this.http.patch(`${this.baseUrl}/auth/verify-forgotPassword-code`,  {
+    return this.http.patch(`${this.baseUrl}/verify-forgotPassword-code`,  {
       email,
       providedCode
     })
@@ -31,13 +31,13 @@ export class ResetPasswordService {
 
    // Function to resend OTP to the user's email
  resendOtp(email: string): Observable<any> {
-  return this.http.patch(`${this.baseUrl}/auth/forgot-password-code`, { email })
+  return this.http.patch(`${this.baseUrl}/forgot-password-code`, { email })
   .pipe(catchError(error => this.handleError(error)));
 }
 
 
   resetPassword(email: string,  newPassword: string): Observable<any> {
-    return this.http.patch(`${this.baseUrl}/auth/reset-password`, {
+    return this.http.patch(`${this.baseUrl}/reset-password`, {
       email,
       newPassword
     })

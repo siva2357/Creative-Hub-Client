@@ -15,7 +15,9 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
 
-  private baseUrl: string = `${environment.apiUrl}`; // Automatically selects correct URL
+  private baseUrl: string = environment.apiUrl;
+
+
 
   private userRole: string | null = null;
 
@@ -34,6 +36,7 @@ registerRecruiter(recruiterData: Recruiter): Observable<any> {
   return this.http.post(`${this.baseUrl}/auth/recruiter/signup`, recruiterData)
     .pipe(
       switchMap((response: any) => {
+
         // After successful registration, send OTP verification code
         return this.sendVerificationCode(recruiterData.registrationDetails.email);
       }),

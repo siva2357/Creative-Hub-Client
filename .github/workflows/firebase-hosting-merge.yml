@@ -14,8 +14,8 @@ jobs:
       - name: Create `environment.ts`
         run: |
           echo "export const environment = {" > src/environments/environment.ts
+          echo "  apiUrl: 'http://localhost:3000'," >> src/environments/environment.ts
           echo "  production: false," >> src/environments/environment.ts
-          echo "  apiUrl: 'http://localhost:3000/api'," >> src/environments/environment.ts
           echo "  firebaseConfig: {" >> src/environments/environment.ts
           echo "    apiKey: '${{ secrets.FIREBASE_API_KEY }}'," >> src/environments/environment.ts
           echo "    authDomain: '${{ secrets.FIREBASE_AUTH_DOMAIN }}'," >> src/environments/environment.ts
@@ -30,8 +30,8 @@ jobs:
       - name: Create `environment.prod.ts`
         run: |
           echo "export const environment = {" > src/environments/environment.prod.ts
+          echo "  apiUrl: 'https://creative-hub-server.onrender.com'," >> src/environments/environment.prod.ts
           echo "  production: true," >> src/environments/environment.prod.ts
-          echo "  apiUrl: '${{ secrets.BACKEND_API_URL }}'," >> src/environments/environment.prod.ts
           echo "  firebaseConfig: {" >> src/environments/environment.prod.ts
           echo "    apiKey: '${{ secrets.FIREBASE_API_KEY }}'," >> src/environments/environment.prod.ts
           echo "    authDomain: '${{ secrets.FIREBASE_AUTH_DOMAIN }}'," >> src/environments/environment.prod.ts

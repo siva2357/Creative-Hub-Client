@@ -3,7 +3,6 @@ import { Observable, throwError, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ChangePassword} from '../models/password.model';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,7 @@ export class PasswordService {
 
   constructor(private http: HttpClient) {}
 
-  private baseUrl: string = `${environment.apiUrl}/auth`; // Automatically selects correct URL
+  private baseUrl: string = 'http://localhost:3000/api/auth';
 
   private role = localStorage.getItem('userRole') || '';
   private userData = JSON.parse(localStorage.getItem('userData') || '{}');
