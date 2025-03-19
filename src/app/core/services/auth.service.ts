@@ -8,13 +8,15 @@ import { Recruiter, Seeker } from '../models/user.model';
 import { Router } from '@angular/router';
 import {jwtDecode} from 'jwt-decode' ;
 import { getAuth, signInWithCustomToken } from "firebase/auth";
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private baseUrl: string = 'http://localhost:3000/api/auth';
+  private baseUrl: string = `${environment.apiUrl}/auth`; // Automatically selects correct URL
+
   private userRole: string | null = null;
 
   constructor(private http: HttpClient, private router: Router) { }

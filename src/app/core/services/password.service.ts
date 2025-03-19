@@ -3,6 +3,7 @@ import { Observable, throwError, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ChangePassword} from '../models/password.model';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,13 @@ export class PasswordService {
 
   constructor(private http: HttpClient) {}
 
-  private baseUrl: string = 'http://localhost:3000/api/auth';
-  private role = localStorage.getItem('userRole') || '';  
-  private userData = JSON.parse(localStorage.getItem('userData') || '{}');  
+  private baseUrl: string = `${environment.apiUrl}/auth`; // Automatically selects correct URL
+
+  private role = localStorage.getItem('userRole') || '';
+  private userData = JSON.parse(localStorage.getItem('userData') || '{}');
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('JWT_Token'); 
+    return !!localStorage.getItem('JWT_Token');
   }
 
   private getHeaders(): HttpHeaders {
@@ -41,8 +43,8 @@ export class PasswordService {
     if (error.status === 401) {
       alert('❌ Unauthorized! Please log in again.');
       localStorage.clear();
-      window.location.href = 'talent-page/login';  
+      window.location.href = 'talent-page/login';
     }
-    return throwError(() => new Error(error.message || 'API Error')); 
+    return throwError(() => new Error(error.message || 'API Error'));
   }
 }

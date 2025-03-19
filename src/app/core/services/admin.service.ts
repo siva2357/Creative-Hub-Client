@@ -5,12 +5,14 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import {jwtDecode} from 'jwt-decode' ;
 import { University } from '../models/university.model';
 import { Company } from '../models/company.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
-  private baseUrl: string = 'http://localhost:3000/api';
+  private baseUrl: string = `${environment.apiUrl}`; // Automatically selects correct URL
+
 
   private getHeaders(): HttpHeaders {
 const token = localStorage.getItem('JWT_Token');
