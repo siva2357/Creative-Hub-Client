@@ -30,7 +30,7 @@ jobs:
       - name: Replace Environment Variables in `environment.prod.ts`
 
         run: |
-          sed -i "s|apiUrl: ''|apiUrl: '${{ secrets. BACKEND_API_URL }}'|" src/environments/environment.prod.ts
+          sed -i "s|apiUrl: ''|apiUrl: '${{ secrets.BACKEND_API_URL }}'|" src/environments/environment.prod.ts
           sed -i "s|apiKey: ''|apiKey: '${{ secrets.FIREBASE_API_KEY }}'|" src/environments/environment.prod.ts
           sed -i "s|authDomain: ''|authDomain: '${{ secrets.FIREBASE_AUTH_DOMAIN }}'|" src/environments/environment.prod.ts
           sed -i "s|projectId: ''|projectId: '${{ secrets.FIREBASE_PROJECT_ID }}'|" src/environments/environment.prod.ts
