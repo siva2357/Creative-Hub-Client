@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'purpose-page', component: PurposePageComponent, title: 'Purpose Page' },
   { path: 'cloud-page', component: CloudPageComponent, title: 'Cloud Page' },
   { path: 'talent-page', loadChildren: () => import('./views/Pages/talent-page/talent-pages.module').then((m) => m.TalentPageModule ), title: 'Talent Page' },
-  { path: '**', redirectTo: 'talent-page' }, // Fallback rou
+  { path: '**', redirectTo: 'main' }, // Fallback rou
 
 ];
 
