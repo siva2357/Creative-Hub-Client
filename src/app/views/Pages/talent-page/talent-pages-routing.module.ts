@@ -20,8 +20,7 @@ const routes: Routes = [
   // // Default path for recruiter redirects to 'recruiter/dashboard'
   // { path: '', redirectTo: 'main', pathMatch: 'full' },
 
-  {
-    path: '', component:  TalentPageComponent, // Main layout component with sidebar
+  { path: '', component:  TalentPageComponent, // Main layout component with sidebar
     children: [
     { path: '', component:  TalentMainPageComponent},
     { path: 'login', component:  TalentLoginComponent }, // Profile page route
