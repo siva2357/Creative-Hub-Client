@@ -2,279 +2,142 @@
 
 
 
-  <section id="landing-page">
-    <div class="container-fluid p-5 " style="background: linear-gradient(135deg, #0d1b2a, #1b263b);">
-      <div class="container mt-5">
-        <div class="row d-flex justify-content-center align-items-center g-5">
 
-          <!-- Left Section (Text) -->
-          <div class="col-lg-6 col-md-12 text-center text-lg-start d-flex flex-column justify-content-center">
-            <h1 class="fw-bold display-5" style="color: #3baaf5;">
-              From Vision to Virtual: <br> Explore the Power of AR and VR
-            </h1>
-            <p class="fw-light text-white">
-              Discover an extensive collection of extended reality courses to enhance your skills in animation and game development.
-            </p>
+<!-- Cover Section -->
+<div class="cover-container d-flex w-100 vh-100 p-3 mx-auto flex-column"
+     style="position: relative; display: flex; align-items: center; justify-content: center;
+            text-align: center; background: url('https://res.cloudinary.com/dpp8aspqs/image/upload/v1742468642/DALL_E_2025-03-20_16.31.19_-_A_vibrant_and_fluid_wave_design_for_a_website_landing_page_background._The_design_features_a_mix_of_visually_striking_colors_including_shades_of_blue_aytnxj.webp') no-repeat center center/cover;
+            min-height: 100vh; width: 100vw;">
 
-          </div>
+  <!-- Dark Overlay for Readability -->
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+              background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(3px);"></div>
 
-          <!-- Right Section (Image) -->
-          <div class="col-lg-6 col-md-12 d-flex justify-content-center">
-            <div class="position-relative d-flex justify-content-center align-items-center"
-              style="max-width: 460px; width: 100%; border-radius: 20%; overflow: hidden; background: rgba(255, 255, 255, 0.05);
-                     box-shadow: 0 0 25px rgba(102, 192, 252, 0.555); padding: 10px;">
-              <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1735309414/3d-rendering-vr-glasses-cinema-removebg-preview_ezaj7j.png"
-                alt="VR Glasses"
-                class="img-fluid"
-                style="object-fit: cover; width: 100%; height: auto; border-radius: 20px;"
-              />
-            </div>
-          </div>
+  <!-- Main Content -->
+  <div class="px-3" style="position: relative; z-index: 2; color: white;">
+    <h1 style="text-shadow: 0 0 15px rgba(0, 0, 0, 0.5); font-size: 3rem; font-weight: bold;">Unlock Opportunities: Build Your Future Today</h1>
+    <p class="lead" style="font-size: 1.2rem;">
+      Explore platforms designed to shape your future: Your all-in-one platform for talent recruitment, learning, publishing, and more
+    </p>
+    <p class="lead d-flex justify-content-center gap-3">
+      <a href="#" class="btn btn-lg btn-primary fw-bold px-4">Get Started</a>
+      <a href="#" class="btn btn-lg btn-outline-light fw-bold px-4">Learn More</a>
+    </p>
+  </div>
 
+</div>
+
+
+
+
+<!-- Job Platform Section -->
+<div class="container-fluid p-5" style="background: linear-gradient(135deg, #ffffff, #63b9eb);">
+  <div class="row align-items-center g-5 py-5  mb-3">
+
+    <!-- Left Content -->
+    <div class="col-lg-6 text-lg-start text-center">
+      <h1 class="display-5 fw-bold text-dark" style="text-shadow: 0 0 8px rgba(0, 0, 0, 0.1);">
+        Discover Your Next Career Move
+      </h1>
+      <p class="lead text-secondary">
+        Connect with top companies, apply for jobs, and take the next step in your career journey—all in one place.
+      </p>
+      <button class="btn btn-primary btn-lg mt-3">Explore Jobs</button>
+    </div>
+
+    <!-- Right Image -->
+    <div class="col-lg-6 d-flex justify-content-center">
+      <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1736057959/Logo_usvb7a.svg"
+           class="img-fluid rounded shadow-lg"
+           alt="Job Platform"
+           style="height: 450px; width: 450px; filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.15));">
+    </div>
+
+  </div>
+</div>
+
+<!-- Course Platform Section -->
+<div class="container-fluid p-5" style="background: linear-gradient(135deg, #ffffff, #63b9eb);">
+  <div class="row align-items-center flex-lg-row-reverse g-5 py-5 mb-3">
+
+    <!-- Right Content -->
+    <div class="col-lg-6 text-lg-start text-center">
+      <h1 class="display-5 fw-bold text-dark" style="text-shadow: 0 0 8px rgba(0, 0, 0, 0.1);">
+        Upgrade Your Skills with Top Courses
+      </h1>
+      <p class="lead text-secondary">
+        Learn from the best industry experts, get certified, and boost your career with high-quality courses.
+      </p>
+      <button class="btn btn-danger btn-lg mt-3">Browse Courses</button>
+    </div>
+
+    <!-- Left Image -->
+    <div class="col-lg-6 d-flex justify-content-center">
+      <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1736057959/Logo_usvb7a.svg"
+           class="img-fluid rounded shadow-lg"
+           alt="Course Platform"
+           style="height: 450px; width: 450px; filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.15));">
+    </div>
+
+  </div>
+</div>
+
+
+  <section class="feature-section">
+
+    <div class="container-fluid p-5 " style="background: white;">
+
+    <h2 class="section-title text-center text-primary">Our Platforms</h2>
+    <div class="row mt-5 mb-5" style="  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; justify-content: center;align-items: stretch;">
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="bi bi-briefcase"></i>
         </div>
+        <div class="feature-content">
+          <h4 style="font-size: 22px;">Talent Platform</h4>
+          <p style="text-align: left; font-size: 14px;">Connect with top companies, apply for jobs, and take the next step in your career journey—all in one place.</p>
+        </div>
+        <a href="talent-page" target="_blank" class="btn btn-outline-primary">Explore Now</a>
+
       </div>
+
+      <div class="feature-card" style="border: 2px solid rgb(9, 73, 209); background-color: #ffffff;">
+        <div class="feature-icon">
+          <i class="bi bi-mortarboard"></i>
+        </div>
+        <div class="feature-content">
+          <h4 style="font-size: 22px;">Course Platform</h4>
+          <p style="text-align: left; font-size: 14px;">Learn from industry experts, get certified, and boost your career with high-quality courses.</p>
+        </div>
+        <a href="learn-page" target="_blank" class="btn btn-outline-primary">Explore Now</a>
+      </div>
+
+      <div class="feature-card" style="border: 2px solid rgb(9, 73, 209); background-color: #ffffff;">
+        <div class="feature-icon">
+          <i class="bi bi-people"></i>
+        </div>
+        <div class="feature-content">
+          <h4 style="font-size: 22px;">Community Hub</h4>
+          <p style="text-align: left; font-size: 14px;">Join a community of learners and professionals to share knowledge and grow together.</p>
+        </div>
+        <a href="blog-page" target="_blank" class="btn btn-outline-primary">Explore Now</a>
+      </div>
+
+      <div class="feature-card" style="border: 2px solid rgb(9, 73, 209); background-color: #ffffff;">
+        <div class="feature-icon">
+          <i class="bi bi-cloud-upload"></i>
+        </div>
+        <div class="feature-content">
+          <h4 style="font-size: 22px;">Cloud Station</h4>
+          <p style="text-align: left; font-size: 14px;">Harness the power of cloud computing to upload, store, and share your work seamlessly.</p>
+        </div>
+        <a href="cloud-page" target="_blank" class="btn btn-outline-primary">Explore Now</a>
+      </div>
+
+    </div>
     </div>
   </section>
-
-
-
-  <section id="hero-section">
-    <div class="container-fluid p-5" style="background: linear-gradient(135deg, #0d1b2a, #1b263b);">
-
-      <div class="container mt-5 mb-5 p-5 rounded-5 position-relative overflow-hidden"
-          style="background: radial-gradient(circle, rgba(255, 255, 255, 0.15), rgba(17, 19, 28, 0.95)); box-shadow: 0px 0px 25px rgba(59, 170, 245, 0.3);">
-
-        <!-- Background Image -->
-        <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1735717423/brain_2-removebg-preview_o2i3vb.png"
-            alt="AR/VR Background"
-            class="position-absolute top-0 start-0 w-100 h-100"
-            style="object-fit: cover; z-index: 1; opacity: 0.2; filter: blur(3px);">
-
-        <!-- Text Content -->
-        <div class="position-relative z-2 text-center">
-          <div class="row mt-4 mb-4">
-            <div class="col-lg-8 mx-auto">
-              <h1 class="mt-5 display-4 fw-bold text-white"
-                  style="text-shadow: 0 0 15px rgba(59, 170, 245, 0.7);">
-                Imagine a World of Opportunities
-              </h1>
-              <p class="lead mt-3 mb-4"
-                  style="color: #3baaf5; font-size: 1.3rem; font-weight: 500;">
-                This Isn't Just A Dream <br> It's A Reality We're Striving For
-              </p>
-              <button class="btn px-5 py-3 rounded-4 fw-semibold shadow-lg"
-                  style="background: linear-gradient(90deg, #3baaf5, #00c3ff);
-                         color: #0d1b2a; font-size: 1.2rem;
-                         box-shadow: 0px 0px 15px rgba(59, 170, 245, 0.6);
-                         transition: all 0.3s;">
-                Learn More
-              </button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-<section id="feature-section">
-  <div class="container-fluid p-5" style="background: linear-gradient(135deg, #0d1b2a, #1b263b);">
-    <div class="container mt-5 mb-5 p-5">
-      <div class="row g-4 justify-content-center">
-
-        <!-- Feature Cards -->
-        <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
-          <div class="card feature-card rounded-4 text-center w-100">
-            <div class="card-body d-flex flex-column align-items-center justify-content-between">
-
-              <!-- Icon Section -->
-              <div class="feature-icon">
-                <i class="bi bi-book-half"></i>
-              </div>
-
-              <!-- Text Section -->
-              <h3 class="fs-2 text-white mt-3">Learn</h3>
-              <p class="text-light px-3">Explore 1000+ resources in Animation & Game Dev.</p>
-
-              <!-- Button Section -->
-              <a href="#" class="btn btn-outline-primary rounded-3 px-3 mt-auto">Explore Now</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
-          <div class="card feature-card rounded-4 text-center w-100">
-            <div class="card-body d-flex flex-column align-items-center justify-content-between">
-
-              <div class="feature-icon">
-                <i class="bi bi-badge-3d"></i>
-              </div>
-
-              <h3 class="fs-2 text-white mt-3">Create</h3>
-              <p class="text-light px-3">Craft immersive experiences with top-notch tools.</p>
-
-              <a href="#" class="btn btn-outline-primary rounded-3 px-3 mt-auto">Explore Now</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
-          <div class="card feature-card rounded-4 text-center w-100">
-            <div class="card-body d-flex flex-column align-items-center justify-content-between">
-
-              <div class="feature-icon">
-                <i class="bi bi-upload"></i>
-              </div>
-
-              <h3 class="fs-2 text-white mt-3">Publish</h3>
-              <p class="text-light px-3">Host & analyze your projects effortlessly.</p>
-
-              <a href="#" class="btn btn-outline-primary rounded-3 px-3 mt-auto">Explore Now</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
-          <div class="card feature-card rounded-4 text-center w-100">
-            <div class="card-body d-flex flex-column align-items-center justify-content-between">
-
-              <div class="feature-icon">
-                <i class="bi bi-cash"></i>
-              </div>
-
-              <h3 class="fs-2 text-white mt-3">Earn</h3>
-              <p class="text-light px-3">Monetize your skills & gain recruiter attention.</p>
-
-              <a href="#" class="btn btn-outline-primary rounded-3 px-3 mt-auto">Explore Now</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section id="gallery-section">
-  <div class="container-fluid p-5" style="background: linear-gradient(135deg, #0d1b2a, #1b263b);">
-    <div class="container mt-5 mb-5 p-5">
-          <div class="row d-flex align-items-center justify-content-center g-3" style="width: 100%; height: 100%;">
-
-              <!-- Left Section: Text & Button -->
-              <div class="col-lg-6 col-md-12  text-lg-start d-flex flex-column justify-content-center px-3">
-                <h1 class="fw-bold text-white text-shadow">Unlock boundless <br> creative potential</h1>
-                <p class="fw-light text-white text-shadow">Discover an extensive collection of extended reality courses to enhance<br> your skills in animation and game development.</p>
-                <a href="#" class="btn btn-gradient w-75 w-md-50 d-inline-flex align-items-center justify-content-center py-2 px-3 mt-3">
-                    Explore Now <i class="bi bi-box-arrow-up-right ms-2"></i>
-                </a>
-            </div>
-
-
-              <!-- Right Section: Image Grid -->
-              <div class="col-lg-6 col-md-12 d-flex justify-content-center">
-                  <div class="container bg-dark p-4 rounded-4 neon-border"
-                      onmouseover="this.classList.add('glow-effect');"
-                      onmouseout="this.classList.remove('glow-effect');">
-
-
-                      <div class="row g-2">
-                        <div class="col-6 col-sm-4 col-md-4">
-                          <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1735285535/nature-abstract-autumn-illustration-leaf-season-tree-generative-ai_r4qmc1.jpg" class="img-fluid rounded-3">
-                        </div>
-                        <div class="col-6 col-sm-4 col-md-4">
-                          <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1735285533/view-dramatic-chess-pieces-with-mysterious-mystical-ambiance_23-2150844691_b9egoj.jpg" class="img-fluid rounded-3">
-                        </div>
-
-                        <div class="col-6 col-sm-4 col-md-4">
-                          <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1720936231/modern-smart-luxury-city-view-modern-luxury-smart-city--futuristic-bike--sf-intricate-artwork-ma-52381324_da3nlq.png" class="img-fluid rounded-3">
-                        </div>
-                        <div class="col-6 col-sm-4 col-md-4">
-                          <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1710832319/b6d66cf2977249409f8fd98fb62fda03_v9gcbq.jpg" class="img-fluid rounded-3">
-                        </div>
-
-                        <div class="col-6 col-sm-4 col-md-4">
-                          <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1735285535/nature-abstract-autumn-illustration-leaf-season-tree-generative-ai_r4qmc1.jpg" class="img-fluid rounded-3">
-                        </div>
-                        <div class="col-6 col-sm-4 col-md-4">
-                          <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1735285533/view-dramatic-chess-pieces-with-mysterious-mystical-ambiance_23-2150844691_b9egoj.jpg" class="img-fluid rounded-3">
-                        </div>
-
-                        <div class="col-6 col-sm-4 col-md-4">
-                          <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1720936231/modern-smart-luxury-city-view-modern-luxury-smart-city--futuristic-bike--sf-intricate-artwork-ma-52381324_da3nlq.png" class="img-fluid rounded-3">
-                        </div>
-                        <div class="col-6 col-sm-4 col-md-4">
-                          <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1710832319/b6d66cf2977249409f8fd98fb62fda03_v9gcbq.jpg" class="img-fluid rounded-3">
-                        </div>
-
-                        <div class="col-6 col-sm-4 col-md-4">
-                          <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1735285535/nature-abstract-autumn-illustration-leaf-season-tree-generative-ai_r4qmc1.jpg" class="img-fluid rounded-3">
-                        </div>
-                        <div class="col-6 col-sm-4 col-md-4">
-                          <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1735285533/view-dramatic-chess-pieces-with-mysterious-mystical-ambiance_23-2150844691_b9egoj.jpg" class="img-fluid rounded-3">
-                        </div>
-
-                        <div class="col-6 col-sm-4 col-md-4">
-                          <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1735285535/nature-abstract-autumn-illustration-leaf-season-tree-generative-ai_r4qmc1.jpg" class="img-fluid rounded-3">
-                        </div>
-                        <div class="col-6 col-sm-4 col-md-4">
-                          <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1735285533/view-dramatic-chess-pieces-with-mysterious-mystical-ambiance_23-2150844691_b9egoj.jpg" class="img-fluid rounded-3">
-                        </div>
-
-
-                    </div>
-
-                  </div>
-              </div>
-
-
-
-          </div>
-      </div>
-  </div>
-</section>
-
-
-
-<section id="playstation-section">
-  <div class="container-fluid p-5" style="background: linear-gradient(135deg, #0d1b2a, #1b263b);">
-
-    <div class="container mt-5 mb-5 p-5 rounded-5 position-relative overflow-hidden"
-        style="background: radial-gradient(circle, rgba(255, 255, 255, 0.15), rgba(17, 19, 28, 0.95)); box-shadow: 0px 0px 25px rgba(59, 170, 245, 0.3);">
-
-      <!-- Background Image -->
-      <video src="https://res.cloudinary.com/dpp8aspqs/video/upload/v1729659614/UNCHARTED__The_Lost_Legacy_-_Launch_Trailer___PS4_x8quss.mp4"
-          alt="AR/VR Background"
-          class="position-absolute top-0 start-0 w-100 h-100"
-          style="object-fit: cover; z-index: 1; opacity: 0.2; filter: blur(3px);"  autoplay muted loop playsinline></video>
-
-      <!-- Text Content -->
-      <div class="position-relative z-2 text-center">
-        <div class="row mt-4 mb-4">
-          <div class="col-lg-8 mx-auto">
-            <h1 class="mt-5 display-5 fw-bold text-white"
-                style="text-shadow: 0 0 15px rgba(59, 170, 245, 0.7);">
-                Deploy and publish your own game and play limitless
-
-            </h1>
-            <p class="lead mt-3 mb-4"
-                style="color: #3baaf5; font-size: 1.3rem; font-weight: 500;">
-                Embark on a journey into a new dimension of learning<br>
-                Game development and animation with cutting-edge technology.
-            </p>
-            <button class="btn btn-outline-info px-5  text-white fw-semibold shadow-lg" style="font-size: 1.2rem; box-shadow: 0px 0px 15px rgba(59, 170, 245, 0.6); transition: all 0.3s;">
-              Learn More
-            </button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
 
 
 
