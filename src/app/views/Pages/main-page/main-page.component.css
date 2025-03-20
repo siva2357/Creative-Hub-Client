@@ -1,84 +1,66 @@
 
 
-  .card {
-    transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
-    border: 1px solid transparent; /* Initially, no border */
-}
-
-.card:hover {
-    box-shadow: 0 0 10px 5px rgba(0, 149, 255, 0.7); /* Blue glow effect */
-    border: 1px solid rgba(0, 0, 255, 0.7); /* Blue border when hovered */
-}
-
+/* Card Styling */
 .feature-card {
-  background: linear-gradient(135deg, #354f80, #183657);
-  border: none;
-  transition: transform 0.3s ease-in-out;
+
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  transition: box-shadow 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 250px;
+  height: 100%;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  cursor: pointer;
+  border: 2px solid rgb(9, 73, 209); background-color: #ffffff; cursor: pointer;
 }
+
 .feature-card:hover {
-  transform: translateY(-8px);
+  box-shadow: 0 0 20px rgba(59, 170, 245, 0.7);
+  transform: translateY(-5px);
 }
+
+/* Icon Styling */
 .feature-icon {
+  font-size: 2rem;
+  color: white;
+  background: linear-gradient(135deg, #0d6efd, #0056b3);
   width: 60px;
   height: 60px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
-  color: #3baaf5;
-  transition: all 0.3s ease-in-out;
-}
-.feature-card:hover .feature-icon {
-  background: #3baaf5;
-  color: #fff;
-
+  border-radius: 50%;
+  margin-bottom: 1rem;
 }
 
 
 
 
-
-/* Text Glow Effect */
-.text-shadow {
-    text-shadow: 0 0 10px rgba(0, 149, 255, 0.7);
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-/* Button Gradient */
-.btn-gradient {
-    background: linear-gradient(135deg, #0066ff, #00ccff);
-    border: none;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 8px;
-    transition: all 0.3s ease-in-out;
-}
+@media (max-width: 768px) {
+  .feature-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
 
-.btn-gradient:hover {
-    background: linear-gradient(135deg, #00ccff, #0066ff);
-    transform: scale(1.05);
-}
+  .feature-section {
+    padding: 2rem;
+  }
 
-/* Neon Border */
-.neon-border {
-    border: 1px solid rgba(0, 149, 255, 0.7);
-    transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
-}
+  .section-title {
+    font-size: 1.5rem;
+  }
 
-/* Glow Effect on Hover */
-.glow-effect {
-    box-shadow: 0 0 20px 10px rgba(0, 149, 255, 0.7);
-    border: 1px solid rgba(0, 0, 255, 0.9);
-}
-
-/* Grid Image Hover */
-.grid-hover {
-    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
-    filter: brightness(0.8);
-}
-
-.grid-hover:hover {
-    transform: scale(1.05);
-    filter: brightness(1);
+  .feature-card {
+    padding: 1.2rem;
+  }
 }
