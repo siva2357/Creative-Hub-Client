@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LearnPageComponent } from './learn-page.component';
+import { LearnPageComponent } from './course-page.component';
 
 describe('LearnPageComponent', () => {
   let component: LearnPageComponent;

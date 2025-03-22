@@ -5,10 +5,12 @@ import { DatePipe } from '@angular/common';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { SeekerProfileCardComponent } from './seeker-profile-card/seeker-profile-card.component';
 import { JobPostCardComponent } from './job-post-card/job-post-card.component';
+import { SampleSeekerProfileComponent } from './sample-seeker-profile/sample-seeker-profile.component';
 @NgModule({
   declarations: [
     SeekerProfileCardComponent,
-    JobPostCardComponent
+    JobPostCardComponent,
+    SampleSeekerProfileComponent
   ],
   imports: [
     CommonModule,
@@ -20,6 +22,7 @@ import { JobPostCardComponent } from './job-post-card/job-post-card.component';
   exports: [
     SeekerProfileCardComponent,
     JobPostCardComponent ,
+    SampleSeekerProfileComponent,
     CommonModule,
 
   ],

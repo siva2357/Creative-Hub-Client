@@ -10,14 +10,21 @@
         <span class=" fw-bold text-white" style="font-size: 24px;">Creative Hub</span>
     </a>
 
-    <!-- Navbar Links -->
+
     <ul class="nav d-flex flex-nowrap justify-content-center align-items-center" style="gap: 5px; white-space: nowrap;">
-      <li class="nav-item"><a href="talent-page" class="nav-link text-white">Talent Platform</a></li>
-      <li class="nav-item"><a href="learn-page" class="nav-link text-white">Course Platform</a></li>
-      <!-- <li class="nav-item"><a href="cloud-page" class="nav-link text-white">Cloud Platform</a></li> -->
-      <li class="nav-item"><a href="blog-page" class="nav-link text-white">Community Platform</a></li>
-      <li class="nav-item"><a href="market-page" class="nav-link text-white">Market Place</a></li>
-  </ul>
+      <li class="nav-item">
+        <a routerLink="/talent-page" [ngClass]="{'active': isActive('/talent-page')}" class="nav-link text-white">Talent Platform</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/course-page" [ngClass]="{'active': isActive('/course-page')}" class="nav-link text-white">Course Platform</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/blog-page" [ngClass]="{'active': isActive('/blog-page')}" class="nav-link text-white">Community Platform</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/market-page" [ngClass]="{'active': isActive('/market-page')}" class="nav-link text-white">Market Place</a>
+      </li>
+    </ul>
 
 </header>
 

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 // Public and Shared Components
 import { MainPageComponent } from './views/Pages/main-page/main-page.component';
-import { LearnPageComponent } from './views/Pages/learn-page/learn-page.component';
+import { CoursePageComponent } from './views/Pages/course-page/course-page.component';
 import { ForDeveloperComponent } from './views/Pages/for-developer/for-developer.component';
 import { AboutPageComponent } from './views/Pages/about-page/about-page.component';
 import { BlogPageComponent } from './views/Pages/blog-page/blog-page.component';
@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'introduction', component: IntroductionLogoComponent, title: 'Introduction page' },
   { path: 'main', component: MainPageComponent, title: 'Main page' },
   { path: 'for-developer', component: ForDeveloperComponent, title: 'For Developer page' },
-  { path: 'learn-page', component: LearnPageComponent, title: 'Learn page' },
+  { path: 'course-page', component: CoursePageComponent, title: 'Learn page' },
   { path: 'about-page', component: AboutPageComponent, title: 'About Page' },
   { path: 'blog-page', component: BlogPageComponent, title: 'Blog Page' },
   { path: 'market-page', component: MarketPageComponent, title: 'Market Page' },
