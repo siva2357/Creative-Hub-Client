@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 
 
 import { MainPageComponent } from './views/Pages/main-page/main-page.component';
-import { LearnPageComponent } from './views/Pages/learn-page/learn-page.component';
+import { CoursePageComponent } from './views/Pages/course-page/course-page.component';
 import { ForDeveloperComponent } from './views/Pages/for-developer/for-developer.component';
 import { AboutPageComponent } from './views/Pages/about-page/about-page.component';
 import { BlogPageComponent } from './views/Pages/blog-page/blog-page.component';
@@ -38,7 +38,7 @@ import { environment } from 'src/environments/environment';
   declarations: [
     AppComponent,
     MainPageComponent,
-    LearnPageComponent,
+    CoursePageComponent,
     ForDeveloperComponent,
     AboutPageComponent,
     BlogPageComponent,
