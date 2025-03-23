@@ -20,22 +20,10 @@ export class AlertService {
   }
 
 
-  showJobUpdatedSuccess(): void {
-    Swal.fire({
-      title: 'Success',
-      text: 'Job updated successfully.',
-      icon: 'success',
-      showConfirmButton: false,
-      timer:1500
-    });
-  }
-
-
-
-  async showJobConfirmClose(): Promise<boolean> {
+  async showCompanyConfirmDelete(): Promise<boolean> {
     const result = await Swal.fire({
       title: 'Are you sure?',
-      text: 'Do you really want to close this job post?',
+      text: 'Do you really want to delete this company?',
       icon: 'warning',
       showCancelButton: true, // Adds a Cancel button
       confirmButtonText: 'Yes, close it!',
@@ -44,10 +32,10 @@ export class AlertService {
     return result.isConfirmed;
   }
 
-  showJobClosedSuccess(): void {
+  showCompanyDeletedSuccess(): void {
     Swal.fire({
       title: 'Success',
-      text: 'Job closed successfully.',
+      text: 'Company deleted successfully.',
       icon: 'success',
       showConfirmButton: false,
       timer:1500

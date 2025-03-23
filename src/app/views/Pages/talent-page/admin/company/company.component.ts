@@ -5,7 +5,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Folder } from 'src/app/core/enums/folder-name.enum';
 import { Company,CompanyResponse } from 'src/app/core/models/company.model';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-
+import { AlertService } from 'src/app/core/services/alerts.service';
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
@@ -17,7 +17,6 @@ export class CompanyComponent implements OnInit{
     errorMessage: string | null = null;
     totalCompanies!: number;
     loading: boolean = false;
-
 
     searchTerm: string = ''; // Variable to store search term
     filteredData: any[] = []; // Filtered jobs after applying search and checkbox filters
@@ -38,7 +37,7 @@ export class CompanyComponent implements OnInit{
   uploadedFileData: { fileName: string; url: string; filePath: string } | null = null;
 
 
-  constructor(private router: Router, private adminService: AdminService, private storage: AngularFireStorage,private sanitizer: DomSanitizer
+  constructor(private router: Router, private adminService: AdminService, private storage: AngularFireStorage,private sanitizer: DomSanitizer, private alert: AlertService
   ){}
 
   ngOnInit() {
@@ -229,51 +228,54 @@ deleteSelected() {
   }
 
 
-  deleteCompanyById(id: string, filePath: string) {
-    if (!id) {
-      console.error("University ID is missing or invalid.");
-      return;
-    }
+async deleteCompanyById(id: string, filePath: string) {
+  if (!id) {
+    console.error("Company ID is missing or invalid.");
+    return;
+  }
 
-    const confirmDelete = confirm("Are you sure you want to delete this university?");
-    if (!confirmDelete) return;
+  try {
+    const userConfirmed = await this.alert.showCompanyConfirmDelete();
+    if (!userConfirmed) return;
     const originalCompanies = [...this.companies];
     this.companies = this.companies.filter(company => company._id !== id);
+
     this.adminService.deleteCompanyById(id).subscribe(
       () => {
+        this.alert.showCompanyDeletedSuccess();
         console.log("Company deleted successfully!");
         if (filePath) {
           this.deleteCompanyLogo(filePath);
         }
-        this.fetchCompanies()
+        this.fetchCompanies();
+        this.updatePagination();
       },
       (error) => {
-        console.error("Error deleting university:", error);
-        alert("Failed to delete the university. Please try again.");
+        console.error("Error deleting company:", error);
+        alert("Failed to delete the company. Please try again.");
         this.companies = originalCompanies;
       }
     );
+  } catch (error) {
+    console.error("Error during deletion process:", error);
+  }
+}
 
-    this.updatePagination()
+deleteCompanyLogo(filePath: string): void {
+  if (!filePath) {
+    console.error("No file path provided for deletion.");
+    return;
   }
 
-  deleteCompanyLogo(filePath: string): void {
-    if (!filePath) {
-      console.error("No file path provided for deletion.");
-      return;
+  const correctedFilePath = `${Folder.Main_Folder}/${Folder.Admin_Folder}/${Folder.Admin_Sub_Folder_3}/${filePath}`;
+  this.storage.ref(correctedFilePath).delete().subscribe({
+    next: () => {
+      console.log("Company logo deleted successfully from Firebase Storage");
+    },
+    error: (error) => {
+      console.error("Error deleting company logo from Firebase Storage:", error);
+      alert("Failed to delete the company logo. Please try again.");
     }
-    const correctedFilePath = `${Folder.Main_Folder}/${Folder.Admin_Folder}/${Folder.Admin_Sub_Folder_3}/${filePath}`;
-    this.storage.ref(correctedFilePath).delete().subscribe({
-      next: () => {
-        console.log("University logo deleted successfully from Firebase Storage");
-      },
-      error: (error) => {
-        console.error("Error deleting university logo from Firebase Storage:", error);
-        alert("Failed to delete the university logo. Please try again.");
-      }
-    });
-  }
-
-
-
+  });
+}
 }
