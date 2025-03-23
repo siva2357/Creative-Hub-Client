@@ -7,6 +7,8 @@ import { Folder } from 'src/app/core/enums/folder-name.enum';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Observable, throwError } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { AlertService } from 'src/app/core/services/alerts.service';
+
 @Component({
   selector: 'app-company-edit',
   templateUrl: './company-edit.component.html',
@@ -42,7 +44,8 @@ export class CompanyEditComponent  implements OnInit  {
     private router: Router,
     private adminService: AdminService,
     private storage: AngularFireStorage,  // CRUD Service
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private alert:AlertService
   ) {}
 
   ngOnInit(): void {
@@ -239,6 +242,9 @@ onFileChange(event: any, filePath: string): void {
         this.isUpdating = true;
         this.adminService.updateCompanyById(this.companyId,companyData).subscribe({
           next: () => {
+            setTimeout(() => {
+              this.isLoading = false;
+              this.alert.showCompanyUpdatedSuccess();
             this.resetState(),
             console.log("University submitted successfully!");
             this.companyUpdateForm.reset();
@@ -249,7 +255,7 @@ onFileChange(event: any, filePath: string): void {
             this.uploadComplete = false;
             this.fileUploadProgress = undefined;
             this.router.navigateByUrl('talent-page/admin/company');
-
+          }, 2000);
           },
           error: (err) => {
             console.error("Error submitting company:", err);

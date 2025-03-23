@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { University } from 'src/app/core/models/university.model';
 import { DEFAULT_TOOLBAR, Editor, Toolbar } from 'ngx-editor';
+import { AlertService } from 'src/app/core/services/alerts.service';
 
 
 @Component({
@@ -39,7 +40,8 @@ export class UniversityPostComponent implements OnInit,  OnDestroy {
     private router: Router,
     private adminService: AdminService,
     private storage: AngularFireStorage,  // CRUD Service
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private alert:AlertService
   ) {}
 
   ngOnInit(): void {
@@ -164,6 +166,9 @@ export class UniversityPostComponent implements OnInit,  OnDestroy {
       this.isSubmitting = true;
       this.adminService.createUniversity(universityData).subscribe({
         next: () => {
+          setTimeout(() => {
+            this.isLoading = false;
+            this.alert.showUniversityCreatedSuccess();
           console.log("University submitted successfully!");
           this.universityPostForm.reset();
           this.uploadedFileData = null;
@@ -173,7 +178,7 @@ export class UniversityPostComponent implements OnInit,  OnDestroy {
           this.uploadComplete = false;
           this.fileUploadProgress = undefined;
           this.router.navigateByUrl('talent-page/admin/university');
-
+        }, 2000);
         },
         error: (err) => {
           console.error("Error submitting university:", err);

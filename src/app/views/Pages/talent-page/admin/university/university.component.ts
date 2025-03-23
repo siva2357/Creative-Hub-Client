@@ -5,7 +5,7 @@ import { AdminService } from 'src/app/core/services/admin.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Folder } from 'src/app/core/enums/folder-name.enum';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-
+import { AlertService } from 'src/app/core/services/alerts.service';
 
 
 @Component({
@@ -39,7 +39,7 @@ export class UniversityComponent implements OnInit  {
   uploadedFileData: { fileName: string; url: string; filePath: string } | null = null;
 
 
-  constructor(private router: Router, private adminService: AdminService, private storage: AngularFireStorage,private sanitizer: DomSanitizer
+  constructor(private router: Router, private adminService: AdminService, private storage: AngularFireStorage,private sanitizer: DomSanitizer, private alert:AlertService
   ){}
 
   ngOnInit() {
@@ -238,22 +238,25 @@ deleteSelected() {
   }
 
 
-  deleteUniversityById(id: string, filePath: string) {
+  async deleteUniversityById(id: string, filePath: string) {
     if (!id) {
       console.error("University ID is missing or invalid.");
       return;
     }
 
-    const confirmDelete = confirm("Are you sure you want to delete this university?");
-    if (!confirmDelete) return;
+    try {
+      const userConfirmed = await this.alert.showUniversityConfirmDelete();
+    if (! userConfirmed) return;
     const originalUniversities = [...this.universities];
     this.universities = this.universities.filter(university => university._id !== id);
     this.adminService.deleteUniversityById(id).subscribe(
       () => {
+        this.alert.showUniversityConfirmDelete()
         console.log("Company deleted successfully!");
         if (filePath) {
           this.deleteUniversityLogo(filePath);
         }
+        this.fetchUniversities();
         this.fetchUniversities()
       },
       (error) => {
@@ -262,8 +265,10 @@ deleteSelected() {
         this.universities = originalUniversities;
       }
     );
+  } catch (error) {
+    console.error("Error during deletion process:", error);
+  }
 
-    this.updatePagination()
   }
 
   deleteUniversityLogo(filePath: string): void {

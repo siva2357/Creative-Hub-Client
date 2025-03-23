@@ -20,13 +20,23 @@ export class AlertService {
   }
 
 
+  showCompanyUpdatedSuccess(): void {
+    Swal.fire({
+      title: 'Success',
+      text: 'Company updated successfully.',
+      icon: 'success',
+      showConfirmButton: false,
+      timer:1500
+    });
+  }
+
   async showCompanyConfirmDelete(): Promise<boolean> {
     const result = await Swal.fire({
       title: 'Are you sure?',
       text: 'Do you really want to delete this company?',
       icon: 'warning',
       showCancelButton: true, // Adds a Cancel button
-      confirmButtonText: 'Yes, close it!',
+      confirmButtonText: 'Yes, delete  it!',
       cancelButtonText: 'No, keep it',
     });
     return result.isConfirmed;
@@ -44,17 +54,49 @@ export class AlertService {
 
 
 
-  async showJobConfirmDelete(): Promise<boolean> {
+  // Admin related actions
+  showUniversityCreatedSuccess(): void {
+    Swal.fire({
+      title: 'Success',
+      text: 'University created successfully.',
+      icon: 'success',
+      showConfirmButton: false,
+      timer:1500
+    });
+  }
+
+  showUniversityUpdatedSuccess(): void {
+    Swal.fire({
+      title: 'Success',
+      text: 'University updated successfully.',
+      icon: 'success',
+      showConfirmButton: false,
+      timer:1500
+    });
+  }
+
+  async showUniversityConfirmDelete(): Promise<boolean> {
     const result = await Swal.fire({
       title: 'Are you sure?',
-      text: 'Do you really want to delete this job post?',
+      text: 'Do you really want to delete this university?',
       icon: 'warning',
       showCancelButton: true, // Adds a Cancel button
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: 'Yes, delete  it!',
       cancelButtonText: 'No, keep it',
     });
     return result.isConfirmed;
   }
+
+  showUniversityDeletedSuccess(): void {
+    Swal.fire({
+      title: 'Success',
+      text: 'University deleted successfully.',
+      icon: 'success',
+      showConfirmButton: false,
+      timer:1500
+    });
+  }
+
 
 
 }

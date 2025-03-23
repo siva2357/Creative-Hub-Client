@@ -7,7 +7,7 @@ import { Folder } from 'src/app/core/enums/folder-name.enum';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Observable, throwError } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-
+import { AlertService } from 'src/app/core/services/alerts.service';
 @Component({
   selector: 'app-university-edit',
   templateUrl: './university-edit.component.html',
@@ -45,7 +45,8 @@ export class UniversityEditComponent  implements OnInit  {
     private router: Router,
     private adminService: AdminService,
     private storage: AngularFireStorage,  // CRUD Service
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private alert:AlertService
   ) {}
 
   ngOnInit(): void {
@@ -248,6 +249,9 @@ onFileChange(event: any, filePath: string): void {
       this.isUpdating = true;
       this.adminService.updateUniversityById(this.universityId,universityData).subscribe({
         next: () => {
+          setTimeout(() => {
+            this.isLoading = false;
+            this.alert.showUniversityUpdatedSuccess();
           this.resetState(),
           console.log("University submitted successfully!");
           this.universityUpdateForm.reset();
@@ -258,7 +262,7 @@ onFileChange(event: any, filePath: string): void {
           this.uploadComplete = false;
           this.fileUploadProgress = undefined;
           this.router.navigateByUrl('talent-page/admin/university');
-
+        }, 2000);
         },
         error: (err) => {
           console.error("Error submitting university:", err);
