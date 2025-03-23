@@ -15,7 +15,7 @@ jobs:
         run: |
           echo "export const environment = {" > src/environments/environment.ts
           echo "  apiUrl: 'http://localhost:3000'," >> src/environments/environment.ts
-          echo "  production: true," >> src/environments/environment.ts
+          echo "  production: false," >> src/environments/environment.ts
           echo "  firebaseConfig: {" >> src/environments/environment.ts
           echo "    apiKey: '${{ secrets.FIREBASE_API_KEY }}'," >> src/environments/environment.ts
           echo "    authDomain: '${{ secrets.FIREBASE_AUTH_DOMAIN }}'," >> src/environments/environment.ts
@@ -43,7 +43,7 @@ jobs:
           echo "  }" >> src/environments/environment.prod.ts
           echo "};" >> src/environments/environment.prod.ts
 
-      - run: npm run build --prod
+      - run: npm run build
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -52,4 +52,3 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CREATIVE_HUB_8D4DA }}
           channelId: live
           projectId: creative-hub-8d4da
-        continue-on-error: true
