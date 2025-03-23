@@ -15,10 +15,12 @@ import { ForgotPasswordPageComponent } from './talent-sign-up/forgot-password-pa
 import { ResetPasswordOtpPageComponent } from './talent-sign-up/reset-password-otp-page/reset-password-otp-page.component';
 import { ResetPasswordPageComponent } from './talent-sign-up/reset-password-page/reset-password-page.component';
 import { ChangePasswordPageComponent } from './talent-sign-up/change-password-page/change-password-page.component';
+import { RoleGuard } from 'src/app/core/guards/role.guard';
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
 
 const routes: Routes = [
   // // Default path for recruiter redirects to 'recruiter/dashboard'
-  // { path: '', redirectTo: 'main', pathMatch: 'full' },
+
 
   { path: '', component:  TalentPageComponent, // Main layout component with sidebar
     children: [
@@ -39,12 +41,13 @@ const routes: Routes = [
     { path: 'register/confirmation-page', component: ConfirmationComponent }, // Profile page route
 
     { path: 'recruiter',loadChildren: () => import('./Recruiter/recruiter-pages.module').then((m) => m.RecruiterPageModule),
-      // canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'recruiter' }
+      canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'recruiter' }
     },
     { path: 'seeker',loadChildren: () => import('./Seeker/seeker-pages.module').then((m) => m.SeekerPageModule),
-      // canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'seeker' }
+      canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'seeker' }
     },
-    { path: 'admin',loadChildren: () => import('./admin/admin-pages.module').then((m) => m.AdminPageModule), // canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'admin' }
+    { path: 'admin',loadChildren: () => import('./admin/admin-pages.module').then((m) => m.AdminPageModule),
+      canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'admin' }
     },
     ]
   },
