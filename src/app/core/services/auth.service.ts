@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
 
-  private baseUrl: string = "http://localhost:3000";
+  private baseUrl: string = environment.apiUrl;
 
 
 
