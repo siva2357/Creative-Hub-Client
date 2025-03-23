@@ -13,7 +13,7 @@ jobs:
 
       - name: Create `environment.ts`
         run: |
-          echo "export const environment = {" > src/environments/environment.prod.ts
+          echo "export const environment = {" > src/environments/environment.ts
           echo "  apiUrl: 'http://localhost:3000'," >> src/environments/environment.ts
           echo "  production: true," >> src/environments/environment.ts
           echo "  firebaseConfig: {" >> src/environments/environment.ts
