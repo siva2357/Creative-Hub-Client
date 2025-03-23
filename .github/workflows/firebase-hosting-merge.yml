@@ -13,30 +13,41 @@ jobs:
 
       - name: Create `environment.ts`
         run: |
-          echo "export const environment = {" > src/environments/environment.ts
-          echo "  production: false," >> src/environments/environment.ts
-          echo "  firebaseConfig: {" >> src/environments/environment.ts
-          echo "    apiKey: '${{ secrets.FIREBASE_API_KEY }}'," >> src/environments/environment.ts
-          echo "    authDomain: '${{ secrets.FIREBASE_AUTH_DOMAIN }}'," >> src/environments/environment.ts
-          echo "    projectId: '${{ secrets.FIREBASE_PROJECT_ID }}'," >> src/environments/environment.ts
-          echo "    storageBucket: '${{ secrets.FIREBASE_STORAGE_BUCKET }}'," >> src/environments/environment.ts
-          echo "    messagingSenderId: '${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}'," >> src/environments/environment.ts
-          echo "    appId: '${{ secrets.FIREBASE_APP_ID }}'," >> src/environments/environment.ts
-          echo "    measurementId: '${{ secrets.FIREBASE_MEASUREMENT_ID }}'" >> src/environments/environment.ts
-          echo "  }" >> src/environments/environment.ts
-          echo "};" >> src/environments/environment.ts
+          cat <<EOF > src/environments/environment.ts
+          export const environment = {
+            apiUrl: 'http://localhost:3000',
+            production: false,
+            firebaseConfig: {
+              apiKey: '${{ secrets.FIREBASE_API_KEY }}',
+              authDomain: '${{ secrets.FIREBASE_AUTH_DOMAIN }}',
+              projectId: '${{ secrets.FIREBASE_PROJECT_ID }}',
+              storageBucket: '${{ secrets.FIREBASE_STORAGE_BUCKET }}',
+              messagingSenderId: '${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}',
+              appId: '${{ secrets.FIREBASE_APP_ID }}',
+              measurementId: '${{ secrets.FIREBASE_MEASUREMENT_ID }}'
+            }
+          };
+          EOF
 
-      - name: Replace Environment Variables in `environment.prod.ts`
+      - name: Update `environment.prod.ts`
         run: |
-          sed -i "s|apiKey: ''|apiKey: '${{ secrets.FIREBASE_API_KEY }}'|" src/environments/environment.prod.ts
-          sed -i "s|authDomain: ''|authDomain: '${{ secrets.FIREBASE_AUTH_DOMAIN }}'|" src/environments/environment.prod.ts
-          sed -i "s|projectId: ''|projectId: '${{ secrets.FIREBASE_PROJECT_ID }}'|" src/environments/environment.prod.ts
-          sed -i "s|storageBucket: ''|storageBucket: '${{ secrets.FIREBASE_STORAGE_BUCKET }}'|" src/environments/environment.prod.ts
-          sed -i "s|messagingSenderId: ''|messagingSenderId: '${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}'|" src/environments/environment.prod.ts
-          sed -i "s|appId: ''|appId: '${{ secrets.FIREBASE_APP_ID }}'|" src/environments/environment.prod.ts
-          sed -i "s|measurementId: ''|measurementId: '${{ secrets.FIREBASE_MEASUREMENT_ID }}'|" src/environments/environment.prod.ts
+          cat <<EOF > src/environments/environment.prod.ts
+          export const environment = {
+            apiUrl: '${{ secrets.BACKEND_API_URL }}',
+            production: true,
+            firebaseConfig: {
+              apiKey: '${{ secrets.FIREBASE_API_KEY }}',
+              authDomain: '${{ secrets.FIREBASE_AUTH_DOMAIN }}',
+              projectId: '${{ secrets.FIREBASE_PROJECT_ID }}',
+              storageBucket: '${{ secrets.FIREBASE_STORAGE_BUCKET }}',
+              messagingSenderId: '${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}',
+              appId: '${{ secrets.FIREBASE_APP_ID }}',
+              measurementId: '${{ secrets.FIREBASE_MEASUREMENT_ID }}'
+            }
+          };
+          EOF
 
-      - run: npm run build
+      - run: npm run build --prod
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
