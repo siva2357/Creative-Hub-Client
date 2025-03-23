@@ -43,7 +43,8 @@ jobs:
           echo "  }" >> src/environments/environment.prod.ts
           echo "};" >> src/environments/environment.prod.ts
 
-      - run: npm run build
+      - name: Build the project for production
+        run: npm run build -- --configuration=production  # ✅ Ensures production build
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
