@@ -2,34 +2,28 @@
 
 
 
-<!-- Job Platform Section -->
-<div class="container-fluid p-5 bg-body-tertiary" >
-  <div class="row align-items-center g-5 py-5  mb-3">
-
-    <!-- Left Content -->
-    <div class="col-lg-6 text-lg-start text-center">
-      <h2 class="fw-bold text-dark" style="text-shadow: 0 0 8px rgba(0, 0, 0, 0.1);">
-        Unlock Your <span class="text-primary">Career Potential</span> with creative Hub
-      </h2>
-      <p class="lead text-secondary">
-        Connect with top companies, apply for jobs, and take the next step in your career journey—all in one place.
-      </p>
+<div class="container-fluid p-5 bg-body-tertiary">
+  <div class="row align-items-center  g-5  mb-3 mt-5">
 
 
-      <div class="d-flex flex-wrap justify-content-start gap-3 mb-4 mt-5">
+
+    <div class="col-lg-6">
+      <h2 class="display-6 fw-bold text-body-emphasis lh-1 mb-3">Unlock Your <span class="text-primary">Career Potential</span> with creative Hub</h2>
+      <p class="lead">Connect with top companies, apply for jobs, and take the next step in your career journey—all in one place.</p>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+
         <button type="button" class="btn btn-outline-primary px-5 poppins-medium" (click)="signUp()">Sign Up</button>
         <button type="button" class="btn btn-outline-primary px-5 poppins-medium" (click)="login()">Log In</button>
       </div>
-
     </div>
 
-    <!-- Right Image -->
     <div class="col-lg-6 d-flex justify-content-center">
       <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1742533426/10191067-removebg-preview_s8puxg.png"
            class="img-fluid rounded "
            alt="Job Platform"
            style="height: 450px; width: 500px; ">
     </div>
+
 
   </div>
 </div>
@@ -102,28 +96,32 @@
 
 </section>
 
-
-
-
 <section id="portfolio-section">
-  <div class="container-fluid " style="font-family: 'Poppins', sans-serif;">
-    <div class="container p-5 justify-content-md-center rounded-4">
+  <div class="container-fluid p-5" style="font-family: 'Poppins', sans-serif;">
+    <div class="container  justify-content-md-center rounded-4">
       <h1 class="text-center mb-5 mt-5">
         <span class="fw-bold text-primary">Hire</span> Best In Industry Talent
       </h1>
 
       <!-- Responsive Flexbox -->
-      <div class="d-flex flex-wrap justify-content-center gap-4">
-        <div class="col" style="min-width: 250px;">
-          <app-sample-seeker-profile></app-sample-seeker-profile>
-        </div>
-        <div class="col" style="min-width: 250px;">
-          <app-sample-seeker-profile></app-sample-seeker-profile>
-        </div>
-        <div class="col" style="min-width: 250px;">
-          <app-sample-seeker-profile></app-sample-seeker-profile>
-        </div>
-      </div>
+<div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 ">
+  <div class="col">
+    <app-sample-seeker-profile></app-sample-seeker-profile>
+
+  </div>
+
+  <div class="col">
+       <app-sample-seeker-profile></app-sample-seeker-profile>
+
+  </div>
+
+  <div class="col">
+    <app-sample-seeker-profile></app-sample-seeker-profile>
+
+</div>
+</div>
+
+
 
       <!-- Explore More Talent -->
       <div class="text-center mt-5">
