@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
       - run: npm ci
 
       - name: Create `environment.ts`
@@ -43,11 +47,14 @@ jobs:
           echo "  }" >> src/environments/environment.prod.ts
           echo "};" >> src/environments/environment.prod.ts
 
+      - name: Debug Environment File
+        run: cat src/environments/environment.ts
+
       - name: Build the project for production
         run: npm run build -- --configuration=production  # ✅ Ensures production build
 
       - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0
+        uses: FirebaseExtended/action-hosting-deploy@v1
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CREATIVE_HUB_8D4DA }}
