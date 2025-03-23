@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Recruiter, Seeker } from '../models/user.model';
+import { Recruiter, Seeker, Admin } from '../models/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {jwtDecode} from 'jwt-decode' ;
 import { RecruiterProfile } from '../models/profile-details.model';
@@ -116,11 +116,11 @@ if (token) {
   }
 
 
-  getAdminById(id: string): Observable<Seeker> {
+  getAdminById(id: string): Observable<Admin> {
     if (this.role === 'admin' && this.userData._id === id) {
       return of(this.userData);  // Use 'of' for synchronous response
     } else {
-      return this.http.get<Seeker>(`${this.baseUrl}/admin/${id}`, { headers: this.getHeaders() })
+      return this.http.get<Admin>(`${this.baseUrl}/admin/${id}`, { headers: this.getHeaders() })
         .pipe(catchError(error => this.handleError(error)));
     }
   }
