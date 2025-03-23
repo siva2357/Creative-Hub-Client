@@ -165,8 +165,9 @@ export class CompanyPostComponent implements OnInit ,OnDestroy {
       this.isSubmitting = true;
       this.adminService.createCompany(companyData).subscribe({
         next: () => {
-          this.isLoading = false;
-          this.alert.showCompanyCreatedSuccess();
+          setTimeout(() => {
+            this.isLoading = false;
+            this.alert.showCompanyCreatedSuccess();
           console.log("Company created successfully!");
           this.companyPostForm.reset();
           this.uploadedFileData = null;
@@ -176,6 +177,7 @@ export class CompanyPostComponent implements OnInit ,OnDestroy {
           this.uploadComplete = false;
           this.fileUploadProgress = undefined;
           this.router.navigateByUrl('talent-page/admin/company');
+        }, 2000);
         },
         error: (err) => {
           console.error("Error submitting company:", err);
