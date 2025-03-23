@@ -30,7 +30,7 @@ jobs:
       - name: Create `environment.prod.ts`
         run: |
           echo "export const environment = {" > src/environments/environment.prod.ts
-          echo "  apiUrl: '${{ secrets.BACKEND_API_URL }}'," >> src/environments/environment.prod.ts
+          echo "  apiUrl: 'https://creative-hub-server.onrender.com'," >> src/environments/environment.prod.ts
           echo "  production: true," >> src/environments/environment.prod.ts
           echo "  firebaseConfig: {" >> src/environments/environment.prod.ts
           echo "    apiKey: '${{ secrets.FIREBASE_API_KEY }}'," >> src/environments/environment.prod.ts
