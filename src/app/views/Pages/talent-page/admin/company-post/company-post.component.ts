@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { DEFAULT_TOOLBAR, Editor, Toolbar } from 'ngx-editor';
 import { Company } from 'src/app/core/models/company.model';
+import { AlertService } from 'src/app/core/services/alerts.service';
 
 @Component({
   selector: 'app-company-post',
@@ -38,7 +39,8 @@ export class CompanyPostComponent implements OnInit ,OnDestroy {
     private router: Router,
     private adminService: AdminService,
     private storage: AngularFireStorage,  // CRUD Service
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private alert:AlertService
   ) {}
 
 
@@ -163,7 +165,9 @@ export class CompanyPostComponent implements OnInit ,OnDestroy {
       this.isSubmitting = true;
       this.adminService.createCompany(companyData).subscribe({
         next: () => {
-          console.log("University submitted successfully!");
+          this.isLoading = false;
+          this.alert.showCompanyCreatedSuccess();
+          console.log("Company created successfully!");
           this.companyPostForm.reset();
           this.uploadedFileData = null;
           this.isSubmitting = false;
@@ -172,7 +176,6 @@ export class CompanyPostComponent implements OnInit ,OnDestroy {
           this.uploadComplete = false;
           this.fileUploadProgress = undefined;
           this.router.navigateByUrl('talent-page/admin/company');
-
         },
         error: (err) => {
           console.error("Error submitting company:", err);
