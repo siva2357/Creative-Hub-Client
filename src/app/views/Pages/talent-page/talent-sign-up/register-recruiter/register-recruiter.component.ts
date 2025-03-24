@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Recruiter } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth.service';
-
+import { AlertService } from 'src/app/core/services/alerts.service';
 @Component({
   selector: 'app-register-recruiter',
   templateUrl: './register-recruiter.component.html',
@@ -18,7 +18,7 @@ export class RegisterRecruiterComponent implements OnInit {
   errorMessage = '';
   registrationSuccess: boolean = false;
   recruiter!:Recruiter
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService : AuthService) {}
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService : AuthService, private alert:AlertService) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -60,6 +60,7 @@ export class RegisterRecruiterComponent implements OnInit {
         (response: any) => {
           console.log('Registration successful', response);
           this.registrationSuccess = true;
+          this.alert.showRegistrationSuccess()
             this.isLoading = false;
             this.router.navigate(['talent-page/register/otp-verification'], {
               queryParams: { email: recruiterData.registrationDetails.email }

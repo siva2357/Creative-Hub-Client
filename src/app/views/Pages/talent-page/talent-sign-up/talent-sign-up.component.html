@@ -10,12 +10,12 @@
           <div class="mb-4 w-100">
             <div class="d-flex flex-wrap justify-content-center align-items-center gap-3 w-100">
               <input type="radio" id="seekerRadio" name="userType" class="btn-check" (change)="selectUserType('seeker')" autocomplete="off">
-              <label class="btn btn-outline-primary rounded-3 px-3 py-2 poppins-medium" for="seekerRadio" style="font-size: 14px;">As Seeker</label>
+              <label class="btn btn-outline-primary rounded-3 px-3  poppins-medium" for="seekerRadio" style="font-size: 14px;">As Seeker</label>
               <input type="radio" id="recruiterRadio" name="userType" class="btn-check" (change)="selectUserType('recruiter')" autocomplete="off">
-              <label class="btn btn-outline-primary rounded-3 px-3 py-2 poppins-medium" for="recruiterRadio" style="font-size: 14px;">As Recruiter</label>
+              <label class="btn btn-outline-primary rounded-3 px-3  poppins-medium" for="recruiterRadio" style="font-size: 14px;">As Recruiter</label>
             </div>
           </div>
-          <button *ngIf="isUserTypeSelected" type="button" class="btn btn-outline-primary rounded-3 px-4 py-2 poppins-medium w-75" style="font-size: 14px;" (click)="navigateToRegistration()"> Sign Up</button>
+          <button *ngIf="isUserTypeSelected" type="button" class="btn btn-outline-primary rounded-3 px-4  poppins-medium w-50" style="font-size: 14px;" (click)="navigateToRegistration()"> Sign Up</button>
           <p class="mb-0 text-center mt-3 poppins-regular" style="font-size: 14px;">Already a member? <span class="text-primary poppins-semibold" (click)="login()" style="cursor: pointer;">Login</span></p>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Recruiter, Seeker } from 'src/app/core/models/user.model';
-
+import { AlertService } from 'src/app/core/services/alerts.service';
 @Component({
   selector: 'app-otp-verification-page',
   templateUrl: './otp-verification-page.component.html',
@@ -21,7 +21,8 @@ export class OtpVerificationPageComponent  implements OnInit {
     private authService: AuthService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private alert:AlertService
   ) {
     this.otpForm = this.fb.group({
       otp1: ['', [Validators.required, Validators.maxLength(1)]],
@@ -98,7 +99,7 @@ export class OtpVerificationPageComponent  implements OnInit {
     this.authService.verifyOtp(otp, this.userData.registrationDetails.email).subscribe(
       (response: any) => {
         console.log('OTP verified successfully', response);
-
+        this.alert.showOTPSuccess()
         // Ensure the response contains the role (recruiter/seeker)
         if (response.success && response.role) {
           this.isLoading = false;  // Hide loading after OTP is verified

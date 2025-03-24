@@ -1,4 +1,4 @@
-<div class="container-fluid mt-3" *ngIf="!isLoading">
+<div class="container-fluid mt-3" *ngIf="!isLoading" style="font-family: 'Poppins', sans-serif;">
 
 
   <form [formGroup]="profileDetailsForm" (ngSubmit)="submitProfile()">
@@ -236,8 +236,8 @@
 
     <div class="container mb-5">
       <div class="d-flex justify-content-between mt-5">
-        <button type="button" class="btn btn-sm btn-outline-danger px-4 py-2 fw-bold"  (click)="discard()">Discard</button>
-        <button type="submit" class="btn btn-sm btn-primary px-4 py-2  fw-bold" [disabled]="profileDetailsForm.invalid">Save</button>
+        <button type="button" class="btn btn-sm btn-outline-danger px-4  poppins-medium"  (click)="discard()">Discard</button>
+        <button type="submit" class="btn btn-sm btn-outline-primary px-4  poppins-medium" [disabled]="profileDetailsForm.invalid">Save</button>
       </div>
     </div>
 

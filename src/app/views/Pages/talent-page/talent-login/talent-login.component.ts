@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Login } from 'src/app/core/models/auth.model';
-
+import { AlertService } from 'src/app/core/services/alerts.service';
 @Component({
   selector: 'app-talent-login',
   templateUrl: './talent-login.component.html',
@@ -18,7 +18,7 @@ export class TalentLoginComponent {
   submitted = false;
   errorMessage = '';
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private alert:AlertService) {
     this.loginDetails = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@gmail\.com$/)]],
       password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
@@ -43,56 +43,48 @@ export class TalentLoginComponent {
 
     this.isLoading = true;
 
-    // Call the login API
     this.authService.login(this.loginDetails.value).subscribe(
         response => {
             console.log('Login response:', response);
             this.loginSuccess = true;
 
             if (response.token) {
-                // Store the token and user data in localStorage
-                localStorage.setItem('Authorization', response.token); // Store token
-                localStorage.setItem('userRole', response.role); // Store user role
-                localStorage.setItem('userId', response.userId); // Store user ID
-                localStorage.setItem('userData', JSON.stringify(response)); // Store complete user data
-
-                // Extract and store user role
+                localStorage.setItem('Authorization', response.token);
+                localStorage.setItem('userRole', response.role);
+                localStorage.setItem('userId', response.userId);
+                localStorage.setItem('userData', JSON.stringify(response));
                 const userType = response.role;
                 this.authService.setUserRole(userType);
             }
 
+            this.alert.showLoginSuccess();
             setTimeout(() => {
-              this.isLoading = true;
+              this.isLoading = false;
 
-              // For both recruiters and seekers, if profileComplete is false, redirect to a common profile completion page.
               if (response.role === 'recruiter') {
-                if (response.profileComplete) {
-                  this.router.navigate(['talent-page/recruiter']);
-                } else {
-                  this.router.navigate(['talent-page/recruiter/profile-form']); // Common profile completion page
-                }
+                this.router.navigate(response.profileComplete ?
+                  ['talent-page/recruiter'] :
+                  ['talent-page/recruiter/profile-form']);
               } else if (response.role === 'seeker') {
-                if (response.profileComplete) {
-                  this.router.navigate(['talent-page/seeker']);
-                } else {
-                  this.router.navigate(['talent-page/seeker/profile-form']); // Same common profile page
-                }
+                this.router.navigate(response.profileComplete ?
+                  ['talent-page/seeker'] :
+                  ['talent-page/seeker/profile-form']);
               } else if (response.role === 'admin') {
                 this.router.navigate(['talent-page/admin']);
               } else {
                 console.warn('Unknown user role:', response.role);
               }
-            }, 3000);
-
+            }, 2000);
         },
         error => {
             console.error('Login error:', error);
-            this.errorMessage = 'Invalid credentials'; // Show error message to user
+            this.errorMessage = 'Invalid credentials';
             this.isLoading = false;
             this.loginSuccess = false;
         }
     );
 }
+
 
 
 

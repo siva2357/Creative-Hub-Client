@@ -15,7 +15,7 @@
               <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-envelope"></i></span>
                 <input [ngClass]="{'is-invalid': registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched}"
-                  placeholder="Email Address" formControlName="email" type="email" class="form-control" />
+                  placeholder="Email Address" formControlName="email" type="email" class="form-control form-control-sm"/>
               </div>
               <small *ngIf="registrationForm.get('email')?.touched && registrationForm.get('email')?.errors?.['required']" class="text-danger">Email is required.</small>
             </div>
@@ -24,7 +24,7 @@
             <div class="form-group mt-3">
               <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Create Password" class="form-control" />
+                <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Create Password" class="form-control form-control-sm" />
                 <button type="button" class="btn btn-outline-secondary" (click)="showPassword = !showPassword">
                   <i class="bi" [ngClass]="showPassword ? 'bi-eye' : 'bi-eye-slash'"></i>
                 </button>
@@ -36,7 +36,7 @@
             <div class="form-group mt-3">
               <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                <input [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" placeholder="Confirm Password" class="form-control" />
+                <input [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" placeholder="Confirm Password" class="form-control form-control-sm" />
                 <button type="button" class="btn btn-outline-secondary" (click)="showConfirmPassword = !showConfirmPassword">
                   <i class="bi" [ngClass]="showConfirmPassword ? 'bi-eye' : 'bi-eye-slash'"></i>
                 </button>
@@ -45,9 +45,9 @@
             </div>
 
             <!-- Buttons -->
-            <div class="d-flex justify-content-between mt-4">
-              <button (click)="goBack()" class="btn btn-outline-secondary">Back</button>
-              <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid">Submit</button>
+            <div class="d-flex justify-content-between mt-5" style="font-size: 14px;">
+              <button (click)="goBack()" class="btn btn-sm btn-outline-secondary poppins-medium">Back</button>
+              <button type="submit" class="btn btn-sm btn-outline-primary poppins-medium"[disabled]="registrationForm.invalid">Submit</button>
             </div>
           </form>
 

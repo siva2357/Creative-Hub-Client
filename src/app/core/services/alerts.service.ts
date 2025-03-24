@@ -7,6 +7,40 @@ import Swal from 'sweetalert2';
 })
 export class AlertService {
 
+  // Authentication Related actions
+
+      // Admin related actions
+      showRegistrationSuccess(): void {
+        Swal.fire({
+          title: 'Success',
+          text: 'Registration successfull',
+          icon: 'success',
+          showConfirmButton: false,
+          timer:1500
+        });
+      }
+
+            // Admin related actions
+            showOTPSuccess(): void {
+              Swal.fire({
+                title: 'Success',
+                text: 'OTP verified successfully',
+                icon: 'success',
+                showConfirmButton: false,
+                timer:1500
+              });
+            }
+
+    // Admin related actions
+    showLoginSuccess(): void {
+      Swal.fire({
+        title: 'Success',
+        text: 'Login successfull',
+        icon: 'success',
+        showConfirmButton: false,
+        timer:1500
+      });
+    }
 
   // Admin related actions
   showCompanyCreatedSuccess(): void {

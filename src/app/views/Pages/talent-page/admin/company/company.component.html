@@ -121,7 +121,7 @@
           </li>
 
           <li *ngFor="let page of pageNumbers" class="page-item" [class.active]="page === currentPage">
-            <a class="page-link" (click)="onPageChange(page)" style="cursor: pointer;">{{ page }}</a>
+            <a class="page-link" (click)="onPageChange(page)" style="cursor: pointer; font-size: 14px;">{{ page }}</a>
           </li>
 
           <li class="page-item" [class.disabled]="currentPage === totalPages">
