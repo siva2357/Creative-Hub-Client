@@ -23,18 +23,18 @@
 </div>
 
 <!-- User Profiles Section -->
-<div class="container my-5">
+<div class="container-fluid ">
   <div class="row g-4">
       <!-- Filter Section -->
-      <div class="col-lg-4">
-        <div class="card shadow-sm p-4 rounded-4 border-0">
-          <h4 class="fw-semibold text-primary mb-3">Filters</h4>
+      <div class="col-lg-3 ">
+        <div class="card shadow-sm p-4 rounded-0 border-0">
+          <h4 class="fw-semibold text-primary mb-3" style="font-size: 22px;">Filters</h4>
 
 
           <!-- Category Dropdown -->
-          <div class="mb-3">
-            <label class="form-label fw-semibold">Category</label>
-            <select class="form-select  form-select-md border-secondary">
+          <div class="mb-3" style="font-size: 14px;">
+            <label class="form-label fw-semibold" >Category</label>
+            <select class="form-select  form-select-sm border-secondary">
               <option selected>Choose Category</option>
               <option>Sketch</option>
               <option>NFT</option>
@@ -43,9 +43,9 @@
           </div>
 
           <!-- Languages Dropdown -->
-          <div class="mb-3">
+          <div class="mb-3" style="font-size: 14px;">
             <label class="form-label fw-semibold">Languages</label>
-            <select class="form-select  form-select-md border-secondary">
+            <select class="form-select  form-select-sm border-secondary">
               <option selected>Select Language</option>
               <option>English</option>
               <option>Spanish</option>
@@ -56,9 +56,9 @@
 
 
           <!-- Qualification Dropdown -->
-          <div class="mb-3">
+          <div class="mb-3" style="font-size: 14px;">
             <label class="form-label fw-semibold">Qualification</label>
-            <select class="form-select  form-select-md border-secondary">
+            <select class="form-select  form-select-sm border-secondary">
               <option selected>Select Qualification</option>
               <option>Bachelor's</option>
               <option>Master's</option>
@@ -67,9 +67,9 @@
           </div>
 
           <!-- Skills Dropdown -->
-          <div class="mb-3">
-            <label class="form-label fw-semibold">Skills</label>
-            <select class="form-select  form-select-md border-secondary">
+          <div class="mb-3" style="font-size: 14px;">
+            <label class="form-label fw-semibold" >Skills</label>
+            <select class="form-select  form-select-sm border-secondary">
               <option selected>Select Skills</option>
               <option>3D Modeling</option>
               <option>Animation</option>
@@ -78,16 +78,16 @@
           </div>
 
           <!-- Apply Filters Button -->
-          <button class="btn btn-primary w-100 mt-3">Apply Filters</button>
+          <button class="btn btn-outline-primary w-100 mt-3" style="font-size: 14px;">Apply Filters</button>
 
         </div>
       </div>
 
 
       <!-- Profiles Display Section -->
-      <div class="col-lg-8">
-        <div class="row g-5">
-            <div class="col-md-6">
+      <div class="col-lg-9 ">
+        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 ">
+          <div class="col-md-6">
                 <app-seeker-profile-card></app-seeker-profile-card>
             </div>
             <div class="col-md-6">

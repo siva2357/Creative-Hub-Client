@@ -12,7 +12,7 @@ import { ProfileService } from 'src/app/core/services/profile-service';
 export class RecruiterProfilePageComponent {
   recruiterId!: string;
 
-  public profileDetails! :RecruiterProfile;
+  public profile! :RecruiterProfile;
   errorMessage: string = '';
 
     constructor(private router: Router,private authService: AuthService,
@@ -38,7 +38,7 @@ export class RecruiterProfilePageComponent {
             (data:RecruiterProfile) => {
               console.log('Recruiter profile details:', data);
               if (data) {
-                this.profileDetails = data;
+                this.profile = data;
               } else {
                 this.errorMessage = 'No profile data found';
               }
