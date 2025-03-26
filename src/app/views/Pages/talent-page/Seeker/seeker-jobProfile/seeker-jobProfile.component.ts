@@ -13,7 +13,6 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   styleUrls: ['./seeker-jobProfile.component.css'],
 })
 export class SeekerJobProfileComponent implements OnInit {
-  // Assume JobPost is your interface/model for a job
   jobs: JobPost[] = [];
   appliedJobs: JobPost[] = [];
   selectedJob!: JobPost;
@@ -31,9 +30,6 @@ export class SeekerJobProfileComponent implements OnInit {
 
   ngOnInit() {
     this.seekerId = localStorage.getItem('userId') || '';
-
-    console.log('User ID:', this.seekerId);
-
     if (this.seekerId) {
       this.fetchJobPosts();
       this.loadAppliedJobs();
@@ -43,17 +39,14 @@ export class SeekerJobProfileComponent implements OnInit {
   }
 
   fetchJobPosts() {
-    this.jobService.getAllJobPosts().subscribe(
+    this.jobService.getAllJobPosts(this.seekerId).subscribe(
       (response: JobPost[]) => {
         this.jobs = response.map((jobPost: JobPost) => ({
-
-
           ...jobPost,
           jobPostDetails: {
             ...jobPost.jobPostDetails,
             sanitizedJobDescription: this.sanitizeHtml(jobPost.jobPostDetails.jobDescription || ''),
-            // Compute applied status based on the applicants array
-            isApplied: jobPost.applicants?.some(app => app.seekerId.toString() === this.seekerId) || false
+            isApplied: jobPost.applicants?.some(app => app.seekerId && app.seekerId.toString() === this.seekerId) || false
           },
           recruiterId: jobPost.recruiterId ? { ...jobPost.recruiterId } : undefined,
           companyId: jobPost.companyId ? {
@@ -66,7 +59,7 @@ export class SeekerJobProfileComponent implements OnInit {
         }));
       },
       (error) => {
-        console.error('Error fetching job posts:', error);
+        console.log('Error fetching job posts:', error);
         this.errorMessage = 'Failed to load job posts. Please try again later.';
       }
     );
@@ -87,7 +80,7 @@ export class SeekerJobProfileComponent implements OnInit {
 
       },
       error: (err) => {
-        console.error('Error loading applied jobs:', err);
+        console.log('Error loading applied jobs:', err);
       }
     });
   }
@@ -102,7 +95,7 @@ export class SeekerJobProfileComponent implements OnInit {
 
   applyJob(job: JobPost): void {
     if (!job._id) {
-      console.error('Job ID is missing');
+      console.log('Job ID is missing');
       return;
     }
     const jobId: string = job._id;

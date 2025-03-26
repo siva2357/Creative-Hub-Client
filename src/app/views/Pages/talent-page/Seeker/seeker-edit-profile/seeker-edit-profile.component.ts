@@ -10,6 +10,7 @@ import { University } from 'src/app/core/models/university.model';
 import { SeekerProfile } from 'src/app/core/models/profile-details.model';
 import { Folder } from 'src/app/core/enums/folder-name.enum';
 import { Observable, throwError } from 'rxjs';
+import { QUALIFICATION } from 'src/app/core/enums/qualification.enum';
 
 @Component({
   selector: 'app-seeker-edit-profile',
@@ -25,7 +26,7 @@ export class SeekerEditProfileComponent implements OnInit, OnDestroy {
   seekerId!: string;
   public profile!: SeekerProfile;
   public universityList!: University[];
-
+  public degrees = Object.values(QUALIFICATION); // Convert Enum to an array
 
   ifPreview: boolean = false;
   ifFetched: boolean = false;
@@ -348,7 +349,7 @@ export class SeekerEditProfileComponent implements OnInit, OnDestroy {
       if (filePath) {
         console.log("Deleting old file:", filePath);
 
-        this.deleteprojectFile(filePath).subscribe({
+        this.deleteProfile(filePath).subscribe({
           next: () => {
             console.log("Old file deleted successfully. Proceeding with new file upload.");
             this.uploadNewFile(newFilePath, newFileRef, file);
@@ -390,7 +391,7 @@ export class SeekerEditProfileComponent implements OnInit, OnDestroy {
         });
       }
 
-      deleteprojectFile(filePath: string): Observable<void> {
+      deleteProfile(filePath: string): Observable<void> {
         if (!filePath) {
           console.error("No file path provided for deletion.");
           return throwError(() => new Error("No file path provided for deletion."));

@@ -8,17 +8,17 @@
   <div class="card p-3">
     <ul class="nav flex-column" id="settingsTab" role="tablist">
       <li class="nav-item mb-2" role="presentation">
-        <button class="btn w-100 custom-tab active" id="main-settings-tab" data-bs-toggle="tab" data-bs-target="#main-settings" type="button" role="tab">
+        <button class="btn w-100 btn-sm btn-outline-primary custom-tab active" id="main-settings-tab" data-bs-toggle="tab" data-bs-target="#main-settings" type="button" role="tab">
           Profile Settings
         </button>
       </li>
       <li class="nav-item mb-2" role="presentation">
-        <button class="btn w-100 custom-tab" id="social-network-tab" data-bs-toggle="tab" data-bs-target="#social-network" type="button" role="tab">
+        <button class="btn w-100 btn-sm btn-outline-primary custom-tab" id="social-network-tab" data-bs-toggle="tab" data-bs-target="#social-network" type="button" role="tab">
           Social Network
         </button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="btn w-100 custom-tab" id="manage-account-tab" data-bs-toggle="tab" data-bs-target="#manage-account" type="button" role="tab">
+        <button class="btn w-100 btn-sm btn-outline-primary custom-tab" id="manage-account-tab" data-bs-toggle="tab" data-bs-target="#manage-account" type="button" role="tab">
           Manage Account
         </button>
       </li>
@@ -38,17 +38,17 @@
 
     <div class="tab-pane fade" id="social-network" role="tabpanel">
       <div class="card p-4">
-        <h3>Social Network</h3>
+        <h5>Social Network</h5>
         <p>Connect your social accounts.</p>
       </div>
     </div>
 
     <div class="tab-pane fade" id="manage-account" role="tabpanel">
       <div class="card p-4">
-        <h3>Manage Account</h3>
+        <h5>Manage Account</h5>
         <p>Delete or deactivate your account.</p>
 
-        <button (click)="deleteAccount()" class="btn btn-danger w-25">Delete Account</button>
+        <button (click)="deleteAccount()" class="btn btn-sm btn-outline-danger px-4  w-25">Delete Account</button>
       </div>
     </div>
   </div>

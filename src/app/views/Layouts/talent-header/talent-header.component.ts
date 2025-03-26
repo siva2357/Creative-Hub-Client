@@ -45,9 +45,6 @@ export class TalentHeaderComponent implements OnInit {
     this.userId = localStorage.getItem('userId') || this.authService.getUserId() || '';
     const role = localStorage.getItem('userRole') || this.authService.getRole() || '';
 
-    console.log("User ID:", this.userId);
-    console.log("User Role:", role); // Log the user role for debugging
-
     if (this.userId && role) {
       if (role === 'seeker') {
         this.getSeekerDetails();
@@ -67,7 +64,6 @@ export class TalentHeaderComponent implements OnInit {
   getAdminDetails() {
     this.userService.getAdminById(this.userId).subscribe(
       (data: any) => {
-        console.log('Admin Details:', data);
         this.adminDetails = data;
         this.userName = this.adminDetails.registrationDetails.userName;
         this.profile = this.adminDetails.registrationDetails.profilePicture;
@@ -82,7 +78,6 @@ export class TalentHeaderComponent implements OnInit {
 getSeekerDetails() {
     this.profileService.getSeekerProfileById(this.userId).subscribe(
       (data: any) => {
-        console.log('Seeker Details:', data);
         this.userDetails = data;
         this.loading = false;
         this.userName = this.userDetails?.profileDetails?.userName ?? '';
@@ -98,7 +93,6 @@ getSeekerDetails() {
 getRecruiterDetails() {
   this.profileService.getRecruiterProfileById(this.userId).subscribe(
       (data: any) => {
-        console.log('Recruiter Details:', data);
         this.userDetails = data;
         this.userName = this.userDetails?.profileDetails?.userName ?? '';
         this.profile = this.userDetails.profileDetails.profilePicture.url

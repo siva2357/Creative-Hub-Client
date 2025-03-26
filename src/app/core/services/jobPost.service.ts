@@ -28,8 +28,6 @@ export class JobPostService {
     // Debugging: Decode and check token expiration
     try {
       const decodedToken: any = jwtDecode(token);
-      console.log('Decoded Token:', decodedToken);
-      console.log('Expiration Date:', new Date(decodedToken.exp * 1000));  // `exp` is in seconds
     } catch (error) {
       console.error("🚨 Token decoding failed:", error);
     }
@@ -60,25 +58,6 @@ export class JobPostService {
   getClosedJobsByRecruiter(recruiterId:string, apiFilterParams?: ApiSearchParams): Observable<{totalJobPosts: number;  jobPosts: JobPost[]}> {
     return this.http.get<{totalJobPosts: number;  jobPosts: JobPost[] }>(`${this.baseUrl}/recruiter/${recruiterId}/jobPosts/closed`, {  headers: this.getHeaders() }).pipe(catchError(this.handleError));
   }
-
-  // getClosedJobsByRecruiter(recruiterId: string, apiFilterParams?: JobPostFilterParams): Observable<{ totalJobPosts: number; jobPosts: JobPost[] }> {
-  //   let params = new HttpParams();
-
-  //   // Add query parameters for pagination and search
-  //   if (apiFilterParams) {
-  //     params = params.set('pageNumber', apiFilterParams.pageNumber.toString())
-  //                    .set('limit', apiFilterParams.limit.toString())
-  //                    .set('searchString', apiFilterParams.searchString || '');  // Ensure searchString is included if set
-  //   }
-
-  //   return this.http.get<{ totalJobPosts: number; jobPosts: JobPost[] }>(
-  //     `${this.baseUrl}/recruiter/${recruiterId}/jobPosts/closed`,
-  //     { headers: this.getHeaders(), params: params }
-  //   ).pipe(catchError(this.handleError));
-  // }
-
-
-
 
 
   updateJobPostById(recruiterId:string,jobId: string, jobPostData: JobPost): Observable<JobPost> {
@@ -112,13 +91,16 @@ export class JobPostService {
 
 
 // Seeker actions for job Posts
-  getAllJobPosts(): Observable<JobPost[]> {
-    return this.http.get<JobPost[]>(`${this.baseUrl}/seeker/jobPosts`, { headers: this.getHeaders() }).pipe(catchError(this.handleError));
+  getAllJobPosts(seekerId:string): Observable<JobPost[]> {
+    return this.http.get<JobPost[]>(`${this.baseUrl}/seeker/${seekerId}/jobPosts`, { headers: this.getHeaders() }).pipe(catchError(this.handleError));
   }
 
   getJobPostById(jobId: string): Observable<JobPost> {
     return this.http.get<JobPost>(`${this.baseUrl}/seeker/jobPosts/${jobId}`, { headers: this.getHeaders() }).pipe(catchError(this.handleError));
   }
+
+
+
 
   applyJobPostById(seekerId:string, jobId: string, jobPostData: JobPost): Observable<JobPost> {
     return this.http.post<JobPost>(`${this.baseUrl}/seeker/${seekerId}/job-post/${jobId}/apply`, jobPostData, { headers: this.getHeaders() }).pipe(catchError(this.handleError));

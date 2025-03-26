@@ -15,9 +15,7 @@
               style="margin-left: 30px;  border-radius: 10px; margin-top:50px; margin-left: 30px;">
               <div class="profile-avatar rounded-circle mb-3">
 
-                <img id="avatarImage"
-                  src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1737957959/profie_images_j53njq.png" alt="Avatar"
-                  class="img-fluid">
+                <img id="avatarImage"  [src]="profile?.profileDetails?.profilePicture?.url" alt="Avatar" class="img-fluid">
               </div>
 
             </div>
@@ -31,13 +29,13 @@
 
             <div class="col-auto d-flex flex-column mx-3">
               <p class="fw-semibold mb-0 text-primary">Seeker Name</p>
-              <p class="fw-semibold mb-0 text-start">Name</p>
+              <p class="fw-semibold mb-0 text-start">{{profile?.profileDetails?.firstName}} {{profile?.profileDetails?.lastName}}</p>
             </div>
 
 
             <div class="col-auto d-flex flex-column mx-3">
               <p class="fw-semibold mb-0 text-primary text-start">Location</p>
-              <p class="fw-semibold mb-0 text-start">Hyderabad</p>
+              <p class="fw-semibold mb-0 text-start">{{profile?.profileDetails?.city}}</p>
             </div>
 
             <!-- Job Posts Card -->
@@ -78,34 +76,25 @@
               <tbody>
                 <tr>
                   <td style="width: 20%; border: none;">Full Name:</td>
-                  <td style="border: none;"> Seeker Name</td>
+                  <td style="border: none;">{{profile?.profileDetails?.firstName}} {{profile?.profileDetails?.lastName}} </td>
                 </tr>
                 <tr>
                   <td style="border: none;">Date Of Birth:</td>
-                  <td style="border: none;">08 November, 2001</td>
+                  <td style="border: none;">{{profile?.profileDetails?.dateOfBirth | date:'dd-MM-yyyy'}}</td>
                 </tr>
                 <tr>
                   <td style="border: none;">Gender:</td>
-                  <td style="border: none;">Male</td>
+                  <td style="border: none;">{{profile?.profileDetails?.gender}}</td>
                 </tr>
                 <tr>
                   <td style="border: none;">College Name:</td>
-                  <td style="border: none;">SRM Unversity, chennai</td>
+                  <td style="border: none;">{{profile?.profileDetails?.universityName}}</td>
                 </tr>
                 <tr>
                   <td style="border: none;">Bio-Data:</td>
-                  <td style="border: none; text-align: justify;">I am Siva Prasad studying civil engineering with computer
-                    applications.
-                    I am interested in 3D Modelling design and want to persue my career in Architecture field.
-                    Had a basic knowledge of HTML,CSS.</td>
+                  <td style="border: none; text-align: justify;" [innerHTML]="profile?.profileDetails?.bioDescription"></td>
                 </tr>
-                <tr>
-                  <td style="border: none;">Address:</td>
-                  <td style="border: none; text-align: justify;">I am Siva Prasad studying civil engineering with computer
-                    applications.
-                    I am interested in 3D Modelling design and want to persue my career in Architecture field.
-                    Had a basic knowledge of HTML,CSS.</td>
-                </tr>
+
               </tbody>
             </table>
 
@@ -122,23 +111,15 @@
               <tbody>
                 <tr>
                   <td style="width: 20%; border: none;">Institution:</td>
-                  <td style="border: none;"> SRM Unversity, chennai</td>
-                </tr>
-                <tr>
-                  <td style="border: none;">Department:</td>
-                  <td style="border: none;">Game developer animation</td>
+                  <td style="border: none;">{{profile?.profileDetails?.universityName}}</td>
                 </tr>
                 <tr>
                   <td style="border: none;">Program/Degree:</td>
-                  <td style="border: none;"> B.Des</td>
-                </tr>
-                <tr>
-                  <td style="border: none;">Branch/Specialization:</td>
-                  <td style="border: none;">Branch Name</td>
+                  <td style="border: none;">{{profile?.profileDetails?.universityDegree}}</td>
                 </tr>
                 <tr>
                   <td style="border: none;">Institutional Roll No:</td>
-                  <td style="border: none;">123456789</td>
+                  <td style="border: none;">{{profile?.profileDetails?.universityNumber}}</td>
                 </tr>
               </tbody>
             </table>
@@ -147,27 +128,26 @@
 
 
 
-          <div class="container ">
+           <div class="container ">
             <h5>Contact details</h5>
             <hr>
             <table class="table">
               <tbody>
                 <tr>
-                  <td style="width: 20%; border: none;">Institution:</td>
-                  <td style="border: none;"> SRM Unversity, chennai</td>
+                  <td style="width: 20%; border: none;">Phone Number:</td>
+                  <td style="border: none;">{{profile?.profileDetails?.phoneNumber}}</td>
                 </tr>
                 <tr>
-                  <td style="border: none;">Department:</td>
-                  <td style="border: none;">Game developer animation</td>
+                  <td style="width: 20%; border: none;">Email:</td>
+                  <td style="border: none;">{{profile?.profileDetails?.email}}</td>
                 </tr>
                 <tr>
-                  <td style="border: none;">Program/Degree:</td>
-                  <td style="border: none;"> B.Des</td>
+                  <td style="border: none;">Address:</td>
+                  <td style="border: none; text-align: justify;">
+                    {{profile?.profileDetails?.streetAddress}}, {{profile?.profileDetails?.city}}, {{profile?.profileDetails?.state}}, {{profile?.profileDetails?.country}}, {{profile?.profileDetails?.pincode}}
+                  </td>
                 </tr>
-                <tr>
-                  <td style="border: none;">Branch/Specialization:</td>
-                  <td style="border: none;">Branch Name</td>
-                </tr>
+
               </tbody>
             </table>
 

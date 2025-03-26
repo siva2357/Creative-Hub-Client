@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ProjectUpload } from 'src/app/core/models/project-upload.model';
@@ -61,11 +61,100 @@ export class SeekerPostProjectPageComponent implements OnInit, OnDestroy {
       file: [null, [Validators.required]], // File field
       projectTitle: ['', [Validators.required]],
       projectType: ['', [Validators.required]],
-      softwares: ['', [Validators.required]],
-      tags: ['', [Validators.required]],
+      softwares: [[], [this.tagsValidator]],
+      tags: [[], [this.tagsValidator]], // ✅ Ensure tags is an array
       projectDescription: ['', [Validators.required]]
     });
   }
+
+      // Custom Validator to ensure at least one tag is present
+      softwaresValidator(control: AbstractControl): ValidationErrors | null {
+        const softwares = control.value;
+        return softwares && softwares.length > 0 ? null : { required: true };
+      }
+
+      onSoftwaresBlur() {
+        const tags = this.projectUploadForm.get('softwares')?.value || [];
+
+        // ✅ If user left input field empty & no tags exist, trigger validation
+        if (tags.length === 0) {
+          this.projectUploadForm.get('softwares')?.setErrors({ required: true });
+        }
+
+        this.projectUploadForm.get('softwares')?.markAsTouched();
+        this.projectUploadForm.get('softwares')?.updateValueAndValidity();
+      }
+
+      addSoftware(value: string) {
+      const chipValue = value.trim();
+      const softwares = this.projectUploadForm.get('softwares')?.value || [];
+      if (!softwares.includes(chipValue)) {
+        softwares.push(chipValue);
+        this.projectUploadForm.get('softwares')?.setValue([...softwares]); // ✅ Spread operator to ensure Angular detects changes
+      }
+
+      this.projectUploadForm.get('softwares')?.markAsTouched();
+      this.projectUploadForm.get('softwares')?.updateValueAndValidity();
+    }
+
+    removeSoftware(index: number) {
+      const softwares = [...(this.projectUploadForm.get('softwares')?.value || [])];
+      softwares.splice(index, 1);
+      this.projectUploadForm.get('softwares')?.setValue([...softwares]); // ✅ Spread to force update
+      if (softwares.length === 0) {
+        this.projectUploadForm.get('softwares')?.setErrors({ required: true });
+      }
+      this.projectUploadForm.get('softwares')?.markAsTouched();
+      this.projectUploadForm.get('softwares')?.updateValueAndValidity();
+    }
+
+
+
+
+    // Custom Validator to ensure at least one tag is present
+    tagsValidator(control: AbstractControl): ValidationErrors | null {
+      const tags = control.value;
+      return tags && tags.length > 0 ? null : { required: true };
+    }
+
+    onTagsBlur() {
+      const tags = this.projectUploadForm.get('tags')?.value || [];
+
+      // ✅ If user left input field empty & no tags exist, trigger validation
+      if (tags.length === 0) {
+        this.projectUploadForm.get('tags')?.setErrors({ required: true });
+      }
+
+      this.projectUploadForm.get('tags')?.markAsTouched();
+      this.projectUploadForm.get('tags')?.updateValueAndValidity();
+    }
+
+  addTag(value: string) {
+    const chipValue = value.trim();
+    const tags = this.projectUploadForm.get('tags')?.value || [];
+    if (!tags.includes(chipValue)) {
+      tags.push(chipValue);
+      this.projectUploadForm.get('tags')?.setValue([...tags]); // ✅ Spread operator to ensure Angular detects changes
+    }
+
+    this.projectUploadForm.get('tags')?.markAsTouched();
+    this.projectUploadForm.get('tags')?.updateValueAndValidity();
+  }
+
+  removeTag(index: number) {
+    const tags = [...(this.projectUploadForm.get('tags')?.value || [])];
+    tags.splice(index, 1);
+
+    this.projectUploadForm.get('tags')?.setValue([...tags]); // ✅ Spread to force update
+
+    if (tags.length === 0) {
+      this.projectUploadForm.get('tags')?.setErrors({ required: true });
+    }
+
+    this.projectUploadForm.get('tags')?.markAsTouched();
+    this.projectUploadForm.get('tags')?.updateValueAndValidity();
+  }
+
 
   uploadFile(event: any) {
     const file = event.target.files && event.target.files[0];

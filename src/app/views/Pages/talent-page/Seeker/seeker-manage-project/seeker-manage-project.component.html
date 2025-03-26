@@ -29,9 +29,6 @@
     <table class="table table-hover  text-center align-middle shadow-sm" style="font-size: 14px;">
       <thead class="table-light">
         <tr>
-          <th scope="col" style="width: 5%;">
-            <input type="checkbox" [checked]="isAllSelected()" (change)="toggleSelectAll()">
-          </th>
           <th scope="col" style="width: 5%;">S.No</th>
           <th scope="col" style="width: 10%;">Project Image</th>
           <th scope="col" style="width: 15%;">Project Title</th>
@@ -44,9 +41,6 @@
       </thead>
       <tbody *ngIf="filteredData.length > 0">
         <tr *ngFor="let project of paginatedData; let i = index">
-          <td>
-            <input type="checkbox" [(ngModel)]="project.selected" (change)="selectProject(project)">
-          </td>
           <td>{{ (currentPage - 1) * itemsPerPage + (i + 1) }}</td>
 
           <td style="text-align: center; vertical-align: middle;">
@@ -129,7 +123,7 @@
           </li>
 
           <li *ngFor="let page of pageNumbers" class="page-item" [class.active]="page === currentPage">
-            <a class="page-link" (click)="onPageChange(page)">{{ page }}</a>
+            <a class="page-link" (click)="onPageChange(page)" style="font-size: 14px;">{{ page }}</a>
           </li>
 
           <li class="page-item" [class.disabled]="currentPage === totalPages">

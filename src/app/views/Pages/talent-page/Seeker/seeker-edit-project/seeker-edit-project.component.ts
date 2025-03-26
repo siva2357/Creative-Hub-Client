@@ -1,9 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -134,6 +136,97 @@ export class SeekerEditProjectComponent implements OnInit, OnDestroy {
       this.updateProjectForm.disable();
     }
   }
+
+
+
+        // Custom Validator to ensure at least one tag is present
+        softwaresValidator(control: AbstractControl): ValidationErrors | null {
+          const softwares = control.value;
+          return softwares && softwares.length > 0 ? null : { required: true };
+        }
+
+        onSoftwaresBlur() {
+          const tags = this.updateProjectForm.get('softwares')?.value || [];
+
+          // ✅ If user left input field empty & no tags exist, trigger validation
+          if (tags.length === 0) {
+            this.updateProjectForm.get('softwares')?.setErrors({ required: true });
+          }
+
+          this.updateProjectForm.get('softwares')?.markAsTouched();
+          this.updateProjectForm.get('softwares')?.updateValueAndValidity();
+        }
+
+        addSoftware(value: string) {
+        const chipValue = value.trim();
+        const softwares = this.updateProjectForm.get('softwares')?.value || [];
+        if (!softwares.includes(chipValue)) {
+          softwares.push(chipValue);
+          this.updateProjectForm.get('softwares')?.setValue([...softwares]); // ✅ Spread operator to ensure Angular detects changes
+        }
+
+        this.updateProjectForm.get('softwares')?.markAsTouched();
+        this.updateProjectForm.get('softwares')?.updateValueAndValidity();
+      }
+
+      removeSoftware(index: number) {
+        const softwares = [...(this.updateProjectForm.get('softwares')?.value || [])];
+        softwares.splice(index, 1);
+        this.updateProjectForm.get('softwares')?.setValue([...softwares]); // ✅ Spread to force update
+        if (softwares.length === 0) {
+          this.updateProjectForm.get('softwares')?.setErrors({ required: true });
+        }
+        this.updateProjectForm.get('softwares')?.markAsTouched();
+        this.updateProjectForm.get('softwares')?.updateValueAndValidity();
+      }
+
+
+
+
+      // Custom Validator to ensure at least one tag is present
+      tagsValidator(control: AbstractControl): ValidationErrors | null {
+        const tags = control.value;
+        return tags && tags.length > 0 ? null : { required: true };
+      }
+
+      onTagsBlur() {
+        const tags = this.updateProjectForm.get('tags')?.value || [];
+
+        // ✅ If user left input field empty & no tags exist, trigger validation
+        if (tags.length === 0) {
+          this.updateProjectForm.get('tags')?.setErrors({ required: true });
+        }
+
+        this.updateProjectForm.get('tags')?.markAsTouched();
+        this.updateProjectForm.get('tags')?.updateValueAndValidity();
+      }
+
+    addTag(value: string) {
+      const chipValue = value.trim();
+      const tags = this.updateProjectForm.get('tags')?.value || [];
+      if (!tags.includes(chipValue)) {
+        tags.push(chipValue);
+        this.updateProjectForm.get('tags')?.setValue([...tags]); // ✅ Spread operator to ensure Angular detects changes
+      }
+
+      this.updateProjectForm.get('tags')?.markAsTouched();
+      this.updateProjectForm.get('tags')?.updateValueAndValidity();
+    }
+
+    removeTag(index: number) {
+      const tags = [...(this.updateProjectForm.get('tags')?.value || [])];
+      tags.splice(index, 1);
+
+      this.updateProjectForm.get('tags')?.setValue([...tags]); // ✅ Spread to force update
+
+      if (tags.length === 0) {
+        this.updateProjectForm.get('tags')?.setErrors({ required: true });
+      }
+
+      this.updateProjectForm.get('tags')?.markAsTouched();
+      this.updateProjectForm.get('tags')?.updateValueAndValidity();
+    }
+
 
   get projectDescriptionControl(): FormControl {
     return this.updateProjectForm.get('projectDescription') as FormControl;

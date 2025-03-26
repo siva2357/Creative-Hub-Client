@@ -14,22 +14,36 @@
       <!-- Right-Side Content -->
       <div class="d-flex align-items-center" style="margin-right: 30px; margin-top: -5px;">
 
-        <button type="button" class="btn btn-light rounded-circle me-3">
-          <i class="bi bi-bell" style=" color: black;"></i>
-        </button>
+
+
+
+        <div class="dropdown d-inline-block d-flex ">
+          <button type="button" class="btn btn-light rounded-circle me-3" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-bell" style="color: black;"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end  p-0 shadow text-center" style="width: 18rem;">
+            <li><p class="m-2">Sample notification msg</p></li>
+          </ul>
+
+        </div>
+
+
+
 
         <div class="poppins-medium" style="margin-right: 20px; font-size: 14px;">{{userName}}</div>
         <div class="dropdown">
           <button class="nav-link d-flex justify-content-center align-items-center rounded-circle text-decoration-none bg-white" data-bs-toggle="dropdown" aria-expanded="false">
             <img [src]="profile" alt="Profile Image" style="width: 35px; height: 35px; border-radius: 50%;">
           </button>
-          <ul class="dropdown-menu dropdown-menu-end shadow">
+          <ul class="dropdown-menu dropdown-menu-end shadow " style="width: 15rem;">
             <li><a class="dropdown-item" (click)="goToAccountSettingsPage()">Settings</a></li>
             <li><a class="dropdown-item" (click)="goToChangePasswordPage()">Change password</a></li>
             <hr class="mb-0 mt-0">
             <li><a class="dropdown-item" style="cursor: pointer; font-size: 14px;" (click)="onLogout()">Sign Out</a></li>
           </ul>
         </div>
+
+
       </div>
     </div>
   </nav>

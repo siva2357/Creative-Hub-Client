@@ -1,3 +1,6 @@
+import { SeekerProfile } from "./profile-details.model";
+import { ProjectUpload } from "./project-upload.model";
+
 export interface Recruiter {
   _id?: string;
   registrationDetails: {
@@ -34,6 +37,20 @@ export interface Seeker {
       forgotPasswordCode?: string;
       forgotPasswordCodeValidation?: number;
   };
+  role: string;
+  lastLoginAt?: Date | null;
+  lastLogoutAt?: Date | null;
+  status?: "active" | "inactive"; // Match backend enum
+  createdAt?: Date; // Mongoose timestamps field
+  updatedAt?: Date; // Mongoose timestamps field
+}
+
+
+
+export interface SeekerData {
+  _id?: string;
+  profile: SeekerProfile,
+  seekerProjectUpload:ProjectUpload
   role: string;
   lastLoginAt?: Date | null;
   lastLogoutAt?: Date | null;

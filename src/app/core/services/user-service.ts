@@ -24,8 +24,7 @@ export class UserService {
 const token = localStorage.getItem('JWT_Token');
 if (token) {
   const decodedToken: any = jwtDecode(token);
-  console.log('Decoded Token:', decodedToken);
-  console.log('Expiration Date:', new Date(decodedToken.exp * 1000));  // exp is in seconds
+
 }
 
     if (!token) {
@@ -106,12 +105,12 @@ if (token) {
 
 
   deleteRecruiterById(id: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/recruiter/${id}/delete`, { headers: this.getHeaders() })
+    return this.http.delete(`${this.baseUrl}/auth/recruiter/${id}/delete`, { headers: this.getHeaders() })
       .pipe(catchError(error => this.handleError(error)));
   }
 
   deleteSeekerById(id: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/seeker/${id}/delete`, { headers: this.getHeaders() })
+    return this.http.delete(`${this.baseUrl}/auth/seeker/${id}/delete`, { headers: this.getHeaders() })
       .pipe(catchError(error => this.handleError(error)));
   }
 

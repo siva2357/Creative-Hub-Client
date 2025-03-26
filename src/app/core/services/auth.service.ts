@@ -1,5 +1,3 @@
-
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, switchMap, tap, throwError } from 'rxjs';
@@ -7,7 +5,6 @@ import { Login, LoginResponse } from '../models/auth.model';
 import { Recruiter, Seeker } from '../models/user.model';
 import { Router } from '@angular/router';
 import {jwtDecode} from 'jwt-decode' ;
-import { getAuth, signInWithCustomToken } from "firebase/auth";
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -69,8 +66,6 @@ login(loginData: Login): Observable<LoginResponse> {
           } else {
             this.setUserData(response);
             localStorage.setItem('userId', response.userId);
-            console.log("Token Set in LocalStorage:", response.token); // Check token
-
             localStorage.setItem('JWT_Token', response.token);
           }
         } else {
@@ -113,17 +108,12 @@ logout() {
   this.http.post(`${this.baseUrl}/auth/logout/user`, {}, { headers, withCredentials: true }).subscribe(
     (response: any) => {
       console.log(response.message);
-
-      // Clear local storage
       localStorage.removeItem('userData');
       localStorage.removeItem('JWT_Token');
       localStorage.removeItem('Authorization');
       localStorage.removeItem('userRole');
       localStorage.removeItem('userId');
-
       this.userRole = null;
-
-      // Redirect to login page
       this.router.navigate(['talent-page/login']);
     },
     (error) => {
@@ -132,11 +122,8 @@ logout() {
   );
 }
 
-
-
 // Set user data (when login succeeds)
 private setUserData(user: LoginResponse) {
-  console.log('Setting complete user data:', user);
   if (user && user.token) {
     localStorage.setItem('userData', JSON.stringify(user));
     localStorage.setItem('JWT_Token', user.token);
@@ -148,7 +135,6 @@ private setUserData(user: LoginResponse) {
   }
 }
 
-// Error handling
 private handleError(error: any): Observable<never> {
   console.error('An error occurred:', error);
   window.alert('An unexpected error occurred. Please try again.');
@@ -156,9 +142,6 @@ private handleError(error: any): Observable<never> {
 }
 
 
-
-
-  // Send verification code
 sendVerificationCode(email: string): Observable<any> {
   return this.http.patch(`${this.baseUrl}/auth/send-verification-code`, { email })
     .pipe(catchError(error => this.handleError(error)));
@@ -166,38 +149,22 @@ sendVerificationCode(email: string): Observable<any> {
 
 
 verifyOtp(providedCode: string, email: string): Observable<any> {
-  return this.http.patch(`${this.baseUrl}/auth/verify-verification-code`, {
-      email,
-      providedCode
-    })
-    .pipe(
-      catchError((error) => {
-        console.error('Error verifying OTP:', error);
-        throw error; // Pass error back to the frontend
-      })
-    );
+  return this.http.patch(`${this.baseUrl}/auth/verify-verification-code`, { email, providedCode }).pipe( catchError((error) => {  throw error;  }));
 }
 
- // Function to resend OTP to the user's email
+
  resendOtp(email: string): Observable<any> {
   return this.http.patch(`${this.baseUrl}/auth/send-verification-code`, { email })
     .pipe(catchError(error => this.handleError(error)));
 }
 
 
-
-
-
-
-  // Get stored token
   getToken(): string | null {
-    const token = localStorage.getItem('JWT_Token');  // Use the correct token name
+    const token = localStorage.getItem('JWT_Token');
     if (token) {
-      const decodedToken: any = jwtDecode(token);  // Decode the JWT token to inspect it
-      console.log('Decoded Token:', decodedToken);
-      console.log('Expiration Date:', new Date(decodedToken.exp * 1000));  // exp is in seconds
+      const decodedToken: any = jwtDecode(token);
     }
-    return token;  // Return the token after checking if it exists
+    return token;
   }
 
 
@@ -211,7 +178,6 @@ verifyOtp(providedCode: string, email: string): Observable<any> {
 
   getUserData(): any {
     const user = JSON.parse(localStorage.getItem('userData') || '{}');
-    console.log('Fetched user data:', user);
     return user || null;
   }
 
@@ -222,7 +188,7 @@ verifyOtp(providedCode: string, email: string): Observable<any> {
 
   getUserName(): string | null {
     const user = this.getUserData();
-    return user?.userName || null;  // Assuming 'userName' is stored in 'registrationDetails'
+    return user?.userName || null;
   }
   getRole(): string | null {
     const user = this.getUserData();

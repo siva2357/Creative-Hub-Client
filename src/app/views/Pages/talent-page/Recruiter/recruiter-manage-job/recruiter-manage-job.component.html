@@ -24,9 +24,6 @@
     <table class="table  table-hover text-center align-middle shadow-sm" style="font-size: 14px;">
       <thead class="table-light">
         <tr>
-          <th scope="col" style="width: 5%;">
-            <input type="checkbox" [checked]="isAllSelected()" (change)="toggleSelectAll()">
-          </th>
           <th scope="col" style="width: 5%;">S.No</th>
           <th scope="col" style="width: 10%;">Job ID</th>
           <th scope="col" style="width: 15%;">Job Title</th>
@@ -40,9 +37,6 @@
       </thead>
       <tbody *ngIf="filteredJobs.length > 0">
         <tr *ngFor="let job of paginatedJobs; let i = index">
-          <td>
-            <input type="checkbox" [(ngModel)]="job.selected" (change)="selectJob(job)">
-          </td>
           <td>{{ (currentPage - 1) * itemsPerPage + (i + 1) }}</td>
           <td>{{ job.jobPostDetails.jobId }}</td>
           <td>{{ job.jobPostDetails.jobTitle }}</td>
@@ -69,9 +63,6 @@
       </tbody>
     </table>
 
-    <div *ngIf="selectedJobs.length > 0" class="text-end">
-      <button class="btn btn-danger px-4 shadow-sm" (click)="deleteSelectedJobs()">Delete All Jobs</button>
-    </div>
   </div>
 
 

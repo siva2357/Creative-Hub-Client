@@ -3,34 +3,40 @@
 
   <form [formGroup]="updateProfileForm" (ngSubmit)="updateProfile()">
 
+<div class="col mb-5 mt-5">
+  <div  class="container d-flex flex-column align-items-center justify-content-center rounded-3 file-upload-container p-4 border border-primary border-dashed">
+    <!-- PREVIEW SECTION -->
+    <div class="col ">
 
-<div class="row ">
-  <div class="col mb-5">
-    <div class="container d-flex flex-row align-items-center justify-content-start rounded-3 ">
-      <!-- Profile Image -->
-      <div class="profile-avatar position-relative rounded me-3" style="width: 100px; height: 100px; overflow: hidden; ">
-        <img *ngIf="fetchedURL" [src]="profile.profileDetails.profilePicture.url" class="w-100 h-100" alt="Profile Image">
-        <img *ngIf="ifPreview && fileType === 'image'" [src]="previewURL" class="w-100 h-100" alt="Preview Image">
-      </div>
-      <!-- Title & Button Section -->
-
-
-      <div class="d-flex flex-column">
-        <input  type="file" id="fileInput" #fileInput name="fileInput" (change)="onFileChange($event, profile.profileDetails.profilePicture.fileName)" hidden />
-        <button class="btn btn-outline-primary px-3 btn-sm">Change Photo </button>
-        <small class="text-muted mt-2" style="font-size: 12px;">
-          <i class="bi bi-info-circle" style="font-size: 1rem; color: rgb(0, 110, 255);"></i> Allowed formats: JPEG, PNG, JPG
-        </small>
-        <small *ngIf="updateProfileForm.get('profilePicture')?.hasError('required') && updateProfileForm.get('profilePicture')?.touched" class="text-danger" style="font-size: 12px;"> Profile picture is required. </small>
-        <p *ngIf="uploadComplete" class="text-success mt-2">Upload Completed!</p>
+      <div *ngIf="!ifPreview" class="d-flex align-items-center justify-content-center bg-light rounded-3 mt-4 p-4 border border-secondary"  style="min-height: 200px;">
+        <img *ngIf="fetchedURL" [src]="profile.profileDetails.profilePicture.url" class="card-img-top rounded" style="width: 150px; height: auto;"  alt="Preview Image">
       </div>
 
-      <!-- Dynamic Progress Bar -->
-      <div class="progress w-100 mt-3 mb-5" *ngIf="fileUploadProgress" role="progressbar" aria-label="Dynamic File Upload Progress">
-        <div class="progress-bar" [style.width.%]="fileUploadProgress | async"> {{ fileUploadProgress | async }}% </div>
+      <div *ngIf="ifPreview" class="d-flex flex-wrap align-items-center justify-content-center bg-light rounded-3 mt-4 p-2 border border-secondary">
+        <div class="card position-relative">
+          <img [src]="previewURL" class="card-img-top rounded" style="width: 150px; height: auto;"  alt="Preview Image">
+        </div>
       </div>
-
     </div>
+
+    <input type="file" id="file"  (change)="onFileChange($event, profile.profileDetails.profilePicture.fileName)" hidden />
+    <label for="file" class="file-upload-label mt-3">
+      <i class="bi bi-cloud-arrow-up upload-icon text-primary" style="font-size: 30px; cursor: pointer;"></i>
+    </label>
+    <p class="text-muted" style="font-size: 14px;">Click to upload file</p>
+    <small class="text-muted " style="font-size: 12px;">
+      <i class="bi bi-info-circle" style="font-size: 1rem; color: rgb(0, 110, 255);"></i> Allowed formats: JPEG, PNG, JPG
+    </small>
+
+    <!-- Dynamic Progress Bar -->
+    <div class="progress w-75 mt-3" *ngIf="fileUploadProgress">
+      <div class="progress-bar bg-success" [style.width.%]="fileUploadProgress | async">
+        {{ fileUploadProgress | async }}%
+      </div>
+    </div>
+
+    <!-- Success message -->
+    <div *ngIf="uploadComplete" class="mt-3 text-success poppins-semibold">Upload Completed!</div>
   </div>
 </div>
 

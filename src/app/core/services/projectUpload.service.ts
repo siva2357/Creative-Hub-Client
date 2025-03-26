@@ -25,8 +25,6 @@ export class ProjectUploadService {
     // Debugging: Decode and check token expiration
     try {
       const decodedToken: any = jwtDecode(token);
-      console.log('Decoded Token:', decodedToken);
-      console.log('Expiration Date:', new Date(decodedToken.exp * 1000));  // `exp` is in seconds
     } catch (error) {
       console.error("🚨 Token decoding failed:", error);
     }

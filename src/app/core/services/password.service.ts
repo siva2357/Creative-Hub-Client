@@ -28,13 +28,13 @@ export class PasswordService {
 
   // Function to change password for recruiter
   changeRecruiterPassword(id: string, passwordModel:ChangePassword): Observable<any> {
-    return this.http.patch(`${this.baseUrl}/recruiter/${id}/change-password`, passwordModel , { headers: this.getHeaders() })
+    return this.http.patch(`${this.baseUrl}/auth/recruiter/${id}/change-password`, passwordModel , { headers: this.getHeaders() })
       .pipe(catchError(error => this.handleError(error)));
   }
 
   // Function to change password for seeker
   changeSeekerPassword(id: string, passwordModel:ChangePassword): Observable<any> {
-    return this.http.patch(`${this.baseUrl}/seeker/${id}/change-password`,  passwordModel , { headers: this.getHeaders() })
+    return this.http.patch(`${this.baseUrl}/auth/seeker/${id}/change-password`,  passwordModel , { headers: this.getHeaders() })
       .pipe(catchError(error => this.handleError(error)));
   }
 

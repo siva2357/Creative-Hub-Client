@@ -12,7 +12,8 @@ import { ProfileService } from 'src/app/core/services/profile-service';
 export class RecruiterProfilePageComponent {
   recruiterId!: string;
 
-  public profile! :RecruiterProfile;
+  profile: RecruiterProfile | null = null;
+
   errorMessage: string = '';
 
     constructor(private router: Router,private authService: AuthService,
@@ -34,21 +35,17 @@ export class RecruiterProfilePageComponent {
       }
 
         loadRecruiterProfile() {
-          this.profileService.getRecruiterProfileById(this.recruiterId).subscribe(
-            (data:RecruiterProfile) => {
-              console.log('Recruiter profile details:', data);
-              if (data) {
-                this.profile = data;
-              } else {
-                this.errorMessage = 'No profile data found';
-              }
-            },
-            (error) => {
-              console.error('Error fetching profile data', error);
-              this.errorMessage = 'Error fetching profile details.';
+                this.profileService.getRecruiterProfileById(this.recruiterId).subscribe(
+                    (data: RecruiterProfile) => {
+                        console.log('Recruiter profile details:', data);
+                        this.profile = data;
+                    },
+                    (error) => {
+                        console.error('Error fetching profile data', error);
+                        this.errorMessage = 'Error fetching profile details.';
+                    }
+                );
             }
-          );
-        }
 
 
 

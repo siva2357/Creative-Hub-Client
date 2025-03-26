@@ -34,7 +34,7 @@ const routes: Routes = [
 		{ path: 'job-applicants', component: RecruiterJobApplicantsPageComponent, title: 'Job Applicants Page'  } ,// Hire Seeker page route
     { path: 'jobpost/:jobPostId/applicants', component: JobpostJobApplicantsComponent, title: 'Job Applicants Page'  } ,// Hire Seeker page route
 		{ path: 'hire-seeker', component: RecruiterHireSeekerPageComponent, title: 'Hire Seeker Page'  }, // Hire Seeker page route
-    { path: 'seeker-profile/:id', component: RecruiterSeekerProfileComponent, title: 'Seeker Profile Page' },
+    { path: ':recruiterId/seeker-profile/:id', component: RecruiterSeekerProfileComponent, title: 'Seeker Profile Page' },
 		{ path: 'profile-form', component: RecruiterProfileFormComponent, title: 'Recruiter Fill Profile Page' },
     { path: 'account-settings/:id', component: RecruiterAccountSettingsPageComponent , title: 'Recruiter account-settings page' },
     { path: 'edit-profile/:id', component: RecruiterEditProfileComponent, title: 'Recruiter Edit Profile Page' },

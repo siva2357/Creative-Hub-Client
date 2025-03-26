@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import {jwtDecode} from 'jwt-decode' ;
-import { University } from '../models/university.model';
+
 import { Company } from '../models/company.model';
 import { RecruiterProfile, SeekerProfile } from '../models/profile-details.model';
 import { environment } from 'src/environments/environment';
+import { Seeker, SeekerData } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +19,7 @@ export class ProfileService {
 
   private getHeaders(): HttpHeaders {
 const token = localStorage.getItem('JWT_Token');
-if (token) {
-  const decodedToken: any = jwtDecode(token);
-  console.log('Decoded Token:', decodedToken);
-  console.log('Expiration Date:', new Date(decodedToken.exp * 1000));  // exp is in seconds
-}
+
     if (!token) {
       console.error("🚨 No token found in localStorage!");
       return new HttpHeaders(); // Return empty headers to avoid undefined errors
@@ -44,6 +40,12 @@ if (token) {
         .pipe(catchError(error => this.handleError(error)));
     }
   }
+
+    getAllRecruiters(): Observable<{ totalRecruiters: number; recruiters: RecruiterProfile[] }> {
+      return this.http.get<{ totalRecruiters: number; recruiters: RecruiterProfile[] }>(`${this.baseUrl}/recruiters`, { headers: this.getHeaders() })
+        .pipe(catchError(error => this.handleError(error)));
+    }
+
 
 
   // ✅ Create Recruiter Profile
@@ -72,6 +74,28 @@ getSeekerProfileById(seekerId:string): Observable<SeekerProfile> {
 }
 
 
+getSeekerDataById(recruiterId: string, seekerId: string): Observable<SeekerData> { // Fix parameter order
+  return this.http.get<SeekerData>(
+    `${this.baseUrl}/recruiter/${recruiterId}/seekerData/${seekerId}/profileData`, // Ensure URL matches backend
+    { headers: this.getHeaders() }
+  ).pipe(
+    catchError(error => this.handleError(error))
+  );
+}
+
+
+
+getSeekerData(recruiterId: string): Observable<{ recruiterId: string, totalSeekers: number; seekers: SeekerData[] }> {
+  return this.http.get<{ recruiterId: string, totalSeekers: number; seekers: SeekerData[] }>(
+    `${this.baseUrl}/recruiter/${recruiterId}/seekerData`,
+    { headers: this.getHeaders() }
+  ).pipe(
+    catchError(error => this.handleError(error))
+  );
+}
+
+
+
 // ✅ Create Recruiter Profile
 postSeekerProfile(profileData: SeekerProfile): Observable<SeekerProfile> {
   return this.http.post<SeekerProfile>(`${this.baseUrl}/seeker/profile-details`, profileData, { headers: this.getHeaders() })
@@ -80,7 +104,7 @@ postSeekerProfile(profileData: SeekerProfile): Observable<SeekerProfile> {
 
 // ✅ Update Recruiter Profile
 updateSeekerProfile(seekerId:string, updatedData: SeekerProfile): Observable<SeekerProfile> {
-  return this.http.put<SeekerProfile>(`${this.baseUrl}//seeker/${seekerId}/profile-details`, updatedData, { headers: this.getHeaders() })
+  return this.http.put<SeekerProfile>(`${this.baseUrl}/seeker/${seekerId}/profile-details`, updatedData, { headers: this.getHeaders() })
     .pipe(catchError(error => this.handleError(error)));
 }
 

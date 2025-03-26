@@ -13,6 +13,7 @@ import { SeekerProfile } from 'src/app/core/models/profile-details.model';
 import { Observable } from 'rxjs';
 import { Folder } from 'src/app/core/enums/folder-name.enum';
 import { Seeker } from 'src/app/core/models/user.model';
+import { QUALIFICATION } from 'src/app/core/enums/qualification.enum';
 
 @Component({
   selector: 'app-seeker-profile-form',
@@ -29,6 +30,7 @@ export class SeekerProfileFormComponent implements OnInit, OnDestroy{
   seekerId!: string;
   public profileDetails! :Seeker;
   public universityList! :University[];
+  public degrees = Object.values(QUALIFICATION); // Convert Enum to an array
 
 
   ifPreview = false;
@@ -57,9 +59,6 @@ export class SeekerProfileFormComponent implements OnInit, OnDestroy{
     // Get the userId and role from localStorage or AuthService
     this.seekerId = localStorage.getItem('userId')|| '';
     const role = localStorage.getItem('userRole') ||  '';
-
-    console.log("User ID:", this.seekerId);
-    console.log("User Role:", role); // Log the user role for debugging
 
     if (this.seekerId && role) {
         this.loadSeekerProfile();
@@ -105,7 +104,6 @@ this.editor.destroy();
       this.isLoading = true;
       this.userService.getSeekerById(this.seekerId).subscribe(
         (data:Seeker) => {
-          console.log('Recruiter profile details:', data);
           if (data) {
             this.profileDetails = data;
             this.profileDetailsForm.patchValue({
@@ -128,11 +126,10 @@ this.editor.destroy();
       this.isLoading = true;
       this.adminService.getAllUniversities().subscribe(
         (data) => {
-          console.log('company list:', data);
           if (data && data.universities) {
             this.universityList = data.universities; // Extract the companies array
           } else {
-            this.errorMessage = 'No companies found';
+            this.errorMessage = 'No universities found';
           }
           this.isLoading = false;
         },
@@ -180,6 +177,30 @@ this.editor.destroy();
       }
 
 
+  deletePreview(): void {
+    this.previewURL = null;
+    this.fileType = null;
+    this.fileUploadProgress = undefined;
+    this.uploadComplete =false;
+
+    if (this.uploadedFileData) {
+      const { filePath } = this.uploadedFileData;
+
+      this.storage.ref(filePath).delete().subscribe({
+        next: () => {
+          console.log('File deleted from Firebase Storage');
+          this.uploadedFileData = null;
+          this.ifPreview = false;
+        },
+        error: (error) => {
+          console.error('Error deleting file from Firebase Storage:', error);
+          this.errorMessage = 'Failed to delete the file. Please try again.';
+        }
+      });
+    }
+  }
+
+
       getFileType(file: File): string {
         const mimeType = file.type;
 
@@ -199,13 +220,6 @@ this.editor.destroy();
 
 
       submitProfile() {
-        if (this.profileDetailsForm.invalid) {
-            console.log("Form is invalid:", this.profileDetailsForm.value);
-            this.errorMessage = 'Please fill in all required fields correctly.';
-            return;
-        }
-
-        // Construct the profile data correctly
         const profileData: SeekerProfile = {
             profileDetails: {
                     firstName: this.profileDetailsForm.value.firstName,
@@ -225,7 +239,7 @@ this.editor.destroy();
                     yearOfGraduation: this.profileDetailsForm.value.yearOfGraduation,
                     universityNumber: this.profileDetailsForm.value.universityNumber,
                     bioDescription: this.profileDetailsForm.value.bioDescription,
-                profilePicture: this.uploadedFileData || { fileName: '', url: ''}, // Provide a default value when null
+                    profilePicture: this.uploadedFileData || { fileName: '', url: ''}, // Provide a default value when null
               }
         };
 

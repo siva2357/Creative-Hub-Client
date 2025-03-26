@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Input } from '@angular/core';
+import { JobPost } from 'src/app/core/models/jobPost.model';
 
 @Component({
   selector: 'app-job-post-card',
@@ -7,6 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./job-post-card.component.css']
 })
 export class JobPostCardComponent {
+
+  @Input() job!:JobPost
+
       constructor(private router: Router) { }
 
     jobProfile(){
