@@ -96,7 +96,7 @@ export class JobPostService {
   }
 
   getJobPostById(jobId: string): Observable<JobPost> {
-    return this.http.get<JobPost>(`${this.baseUrl}/seeker/jobPosts/${jobId}`, { headers: this.getHeaders() }).pipe(catchError(this.handleError));
+    return this.http.get<JobPost>(`${this.baseUrl}/seeker/jobPost/${jobId}`, { headers: this.getHeaders() }).pipe(catchError(this.handleError));
   }
 
 
@@ -109,6 +109,12 @@ export class JobPostService {
   getAppliedJobPosts(seekerId:string): Observable<JobPost[]> {
     return this.http.get<JobPost[]>(`${this.baseUrl}/seeker/${seekerId}/applied-jobs`, { headers: this.getHeaders() }).pipe(catchError(this.handleError));
   }
+
+  getAppliedJobPost(seekerId: string, jobId: string): Observable<{ isApplied: boolean }> {
+    return this.http.get<{ isApplied: boolean }>(`${this.baseUrl}/seeker/${seekerId}/applied-job/${jobId}`,
+      { headers: this.getHeaders() }).pipe(catchError(this.handleError));
+  }
+
 
   withdrawJobPostById(seekerId:string, jobId: string, jobPostData: JobPost): Observable<JobPost> {
     return this.http.post<JobPost>(`${this.baseUrl}/seeker/${seekerId}/job-post/${jobId}/withdraw`,jobPostData, { headers: this.getHeaders() }).pipe(catchError(this.handleError));

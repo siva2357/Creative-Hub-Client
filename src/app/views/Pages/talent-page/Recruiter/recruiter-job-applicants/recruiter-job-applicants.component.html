@@ -24,11 +24,8 @@
 
     <div class="table-responsive mb-5">
       <table class="table table-hover text-center align-middle shadow-sm poppins-medium" style="font-size: 14px;">
-        <thead class="table-light">
+        <thead class="table-light" >
           <tr>
-            <th scope="col" style="width: 5%;">
-              <input type="checkbox" [checked]="isAllSelected()" (change)="toggleSelectAll()">
-            </th>
             <th scope="col" style="width: 5%;">S.No</th>
             <th scope="col" style="width: 10%;">Job ID</th>
             <th scope="col" style="width: 15%;">Job Title</th>
@@ -41,9 +38,6 @@
         </thead>
         <tbody *ngIf="filteredJobs.length > 0">
           <tr *ngFor="let job of paginatedJobs; let i = index">
-            <td>
-              <input type="checkbox" [(ngModel)]="job.selected" (change)="selectJob(job)">
-            </td>
             <td>{{ (currentPage - 1) * itemsPerPage + (i + 1) }}</td>
             <td>{{ job.jobPostDetails.jobId }}</td>
             <td>{{ job.jobPostDetails.jobTitle }}</td>
@@ -64,10 +58,6 @@
           </tr>
         </tbody>
       </table>
-
-      <div *ngIf="selectedJobs.length > 0" class="text-end">
-        <button class="btn btn-danger px-4 shadow-sm" (click)="deleteSelectedJobs()">Delete All Applicants</button>
-      </div>
     </div>
 
 
@@ -86,17 +76,17 @@
         <nav aria-label="Page navigation">
           <ul class="pagination m-0 flex-wrap">
             <li class="page-item" [class.disabled]="currentPage === 1">
-              <a class="page-link" aria-label="Previous" (click)="onPageChange(currentPage - 1)">
+              <a class="page-link" aria-label="Previous" (click)="onPageChange(currentPage - 1)" style="font-size: 14px;">
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
 
             <li *ngFor="let page of pageNumbers" class="page-item" [class.active]="page === currentPage">
-              <a class="page-link" (click)="onPageChange(page)">{{ page }}</a>
+              <a class="page-link" (click)="onPageChange(page)" style="font-size: 14px;">{{ page }}</a>
             </li>
 
             <li class="page-item" [class.disabled]="currentPage === totalPages">
-              <a class="page-link" aria-label="Next" (click)="onPageChange(currentPage + 1)">
+              <a class="page-link" aria-label="Next" (click)="onPageChange(currentPage + 1)" style="font-size: 14px;">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>
@@ -106,7 +96,7 @@
 
       <!-- Showing entries info -->
       <div class="col-12 col-md-4 text-center text-md-end">
-        <div class="text-muted small">
+        <div class="text-muted small" style="font-size: 14px;">
           <strong>Showing:</strong> {{ (currentPage - 1) * itemsPerPage + 1 }} - {{ getEndIndex() }} of {{ totalEntries }} entries
         </div>
       </div>

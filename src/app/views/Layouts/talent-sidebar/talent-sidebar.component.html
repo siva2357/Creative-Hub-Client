@@ -1,4 +1,4 @@
-<div class="sidebar" [ngClass]="{'open': sidebarOpen}" style="font-family: 'Poppins', sans-serif;">
+<div class="sidebar bg-body-secondary " [ngClass]="{'open': sidebarOpen}" style="font-family: 'Poppins', sans-serif;">
   <ul class="nav-list" style="margin-top: 60px;">
     <li *ngFor="let menu of menuItems" style="margin-left: 10px; margin-right: 10px; margin-top: 15px;">
       <a [routerLink]="menu.link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">

@@ -25,8 +25,6 @@ export class RecruiterClosedJobsPageComponent implements OnInit {
   itemsPerPage: number = 5;
   totalPages: number = 1;
   pageNumbers: number[] = [];
-  selectedJob:any
-  selectedJobs: any[] = []; // Define selectedJobs with 'any' type
   isFullTime = false;
   isPartTime = false;
   isDeleteVisible = false; // To control visibility of the delete button
@@ -128,55 +126,7 @@ export class RecruiterClosedJobsPageComponent implements OnInit {
     this.updatePagination()
   }
 
-  updateSelectedJobs() {
-    this.selectedJobs = this.paginatedJobs.filter(job => job.selected);
-  }
 
-
-toggleSelectAll() {
-  const shouldSelectAll = !this.isAllSelected();
-  this.paginatedJobs.forEach(job => {
-    job.selected = shouldSelectAll;
-  });
-
-  if (shouldSelectAll) {
-    this.selectedJobs = [
-      ...this.selectedJobs,
-      ...this.paginatedJobs.filter(job => !this.selectedJobs.some(j => j.id === job.id))
-    ];
-  } else {
-    this.selectedJobs = this.selectedJobs.filter(
-      job => !this.paginatedJobs.some(pJob => pJob.id === job.id)
-    );
-  }
-}
-
-isAllSelected(): boolean {
-  return this.paginatedJobs.length > 0 && this.paginatedJobs.every(job => job.selected);
-}
-
-selectJob(job: any) {
-  job.selected = !job.selected;
-  if (job.selected) {
-    this.selectedJobs.push(job);
-  } else {
-    this.selectedJobs = this.selectedJobs.filter(j => j.id !== job.id);
-  }
-
-  this.selectAll = this.isAllSelected();
-}
-
-
-
-deleteSelectedJobs() {
-  this.jobs = this.jobs.filter(job => !this.selectedJobs.includes(job));
-  this.filteredJobs = this.filteredJobs.filter(job => !this.selectedJobs.includes(job));
-
-  this.selectedJobs = [];
-  this.selectAll = false;
-
-  this.paginateJobs();
-}
 
 
   filterJobs(): void {

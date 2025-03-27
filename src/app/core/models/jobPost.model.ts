@@ -1,5 +1,7 @@
 import { SafeHtml } from "@angular/platform-browser";
 import { ApiSearchParams } from "./api-pagination-params";
+import { RecruiterProfile } from "./profile-details.model";
+import { Company } from "./company.model";
 
 export interface Applicant {
   seekerId: string;
@@ -16,7 +18,6 @@ export class JobPostFilterParams extends ApiSearchParams {
    vacancy?: number;
 }
 export interface JobPost {
-
   _id?: string;
   jobPostDetails: {
     jobId: string;
@@ -35,21 +36,9 @@ export interface JobPost {
     status?: string;  // Optional, since backend defaults to "Open"
     isApplied :boolean;
   };
-  recruiterId?: {
-    registrationDetails?: {
-      firstName?: string;
-      lastName?: string;
-    };
-  }
-  companyId?:{
-    companyDetails?: {
-      companyLogo?: { fileName: string; url: string };
-      companyName?: string;
-      companyDescription?: string;
-      sanitizedCompanyDescription?: SafeHtml; // Change ty
-    };
-  }
+  recruiterProfile?: RecruiterProfile; // ✅ Corrected structure
 
+  companyId?: Company,
   totalApplicants? :number,
   applicants?: Applicant[];  // Array of Applicant objects
 

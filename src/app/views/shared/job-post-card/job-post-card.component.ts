@@ -14,9 +14,13 @@ export class JobPostCardComponent {
 
       constructor(private router: Router) { }
 
-    jobProfile(){
-      // this.router.navigateByUrl(`talent-page/recruiter/seeker-profile/${seeker._id}`)
-      this.router.navigateByUrl(`talent-page/seeker/job-details/:id`)
+     jobProfile() {
+      if (this.job && this.job._id) {
+        console.log('Navigating to Seeker Profile:', this.job._id);
+        this.router.navigateByUrl(`talent-page/seeker/job-details/${this.job._id}`);
+      } else {
+        console.error(' Job ID is missing.');
+      }
     }
 
 }
