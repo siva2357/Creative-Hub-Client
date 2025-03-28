@@ -1,45 +1,62 @@
 <app-talent-header></app-talent-header>
-<div class="container-fluid py-5">
 
-    <div class="row justify-content-center">
-        <!-- Media Display Section -->
-        <div class="col-lg-8 d-flex justify-content-center align-items-center mb-4">
-            <div class="card shadow-sm border-0 p-3">
-                <ng-container *ngIf="fileType === 'image'">
-                    <img *ngIf="fetchedURL" [src]="project.projectDetails.file.url" class="img-fluid rounded" style="width: 600px; height:auto;" alt="Preview Image">
-                </ng-container>
-                <ng-container *ngIf="fileType === 'video'">
-                    <video *ngIf="fetchedURL" [src]="project.projectDetails.file.url" class="img-fluid rounded" style="width: 600px; height:auto;" controls></video>
-                </ng-container>
-            </div>
-        </div>
+<div class="container-fluid p-5 d-flex flex-column align-items-center">
 
-        <!-- Project Details Section -->
-        <div class="col-lg-4">
-            <div class="card shadow-sm border-0">
-                <div class="card-body">
-                    <h6 class="mb-3">Project Details</h6>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Publish Date: <span class="float-end">{{project.createdAt | date:'dd-MM-yyyy'}}</span></li>
-                        <li class="list-group-item">Software Used: <span class="float-end">{{project.projectDetails.softwares}}</span></li>
-                        <li class="list-group-item">Project Type: <span class="float-end">{{project.projectDetails.projectType}}</span></li>
-                        <li class="list-group-item">Category: <span class="float-end">{{project.projectDetails.tags}}</span></li>
-                    </ul>
-                </div>
-            </div>
+    <!-- Media Display Section -->
+    <div class="media-container d-flex justify-content-center align-items-center mb-4 w-100">
+        <div class="card shadow-lg border-0 p-3 rounded-4 w-75">
+            <ng-container *ngIf="fileType === 'image'">
+                <img *ngIf="fetchedURL" [src]="project.projectDetails.file.url"
+                     class="img-fluid rounded-4 w-100"
+                     style="max-height: 500px; object-fit: cover;"
+                     alt="Project Image">
+            </ng-container>
+            <ng-container *ngIf="fileType === 'video'">
+                <video *ngIf="fetchedURL" [src]="project.projectDetails.file.url"
+                       class="img-fluid rounded-4 w-100"
+                       style="max-height: 500px; object-fit: cover;"
+                       controls></video>
+            </ng-container>
         </div>
     </div>
 
-    <!-- Project Description Section -->
-    <div class="container-xxl mt-5">
-        <h6 class=" mb-4">{{project.projectDetails.projectTitle}}</h6>
-        <div class="card shadow-sm border-0">
-            <div class="card-header">Project Details</div>
+    <!-- Project Details Section -->
+    <div class="container p-4 w-75">
+        <h4 class="mb-4 fw-bold text-center">{{ project.projectDetails.projectTitle }}</h4>
 
+        <div class="card shadow-sm border-0 rounded-4">
             <div class="card-body">
-              <h6>Description</h6>
-              <p class="text-muted" [innerHTML]="project.projectDetails.projectDescription"></p>
+                <h6 class="mb-3 fw-semibold text-primary">Project Information</h6>
+
+                <table class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <td class="fw-semibold">📅 Publish Date:</td>
+                            <td class="text-end">{{ project.createdAt | date:'dd-MM-yyyy' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-semibold">🛠 Software Used:</td>
+                            <td class="text-end">{{ project.projectDetails.softwares }}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-semibold">📌 Project Type:</td>
+                            <td class="text-end">{{ project.projectDetails.projectType }}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-semibold">🏷 Category:</td>
+                            <td class="text-end">{{ project.projectDetails.tags }}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-semibold">📝 Description:</td>
+                            <td class="text-end">
+                                <p [innerHTML]="project.projectDetails.projectDescription"></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
             </div>
         </div>
     </div>
+
 </div>

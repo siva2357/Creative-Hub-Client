@@ -4,9 +4,9 @@
     <!-- Profile & Company Info -->
     <div class="d-flex align-items-center gap-3">
       <div class="d-flex justify-content-center align-items-center rounded-circle shadow-sm bg-white"
-           style="width: 60px; height: 60px;">
-        <img [src]="job.companyId?.companyDetails?.companyLogo?.url"
-             alt="Profile" class="rounded-circle" style="width: 50px; height: 50px;">
+        style="width: 60px; height: 60px;">
+        <img [src]="job.companyId?.companyDetails?.companyLogo?.url" alt="Profile" class="rounded-circle"
+          style="width: 50px; height: 50px;">
       </div>
       <div class="text-start">
         <h6 class="fw-semibold text-primary mb-1">{{job.companyId?.companyDetails?.companyName}}</h6>
@@ -15,8 +15,7 @@
     </div>
 
     <!-- Applied Button -->
-    <button *ngIf="job.jobPostDetails.isApplied" type="button"
-            class="badge btn btn-success fw-semibold px-3">
+    <button *ngIf="job.jobPostDetails.isApplied" type="button" class="badge btn btn-success fw-semibold px-3">
       Applied
     </button>
   </div>
@@ -24,39 +23,60 @@
   <!-- Card Body -->
   <div class="card-body">
     <!-- Job Details -->
+
+
+
     <div class="row g-2 text-muted">
-      <div class="col-6 d-flex align-items-center gap-2">
-        <i class="bi bi-moon-stars"></i>
-        <span  style="font-size: 14px;">{{job.jobPostDetails.jobType}}</span>
+
+      <div class="col-6">
+        <span class="badge text-dark  border border-primary d-flex align-items-center gap-2" style="font-size: 10px;">
+          <i class="bi bi-moon-stars"></i>
+          <span class="text-wrap text-start">{{job.jobPostDetails.jobType}}</span>
+        </span>
       </div>
-      <div class="col-6 d-flex align-items-center gap-2">
-        <i class="bi bi-geo-alt"></i>
-        <span style="font-size: 14px;">{{job.jobPostDetails.location}}</span>
+
+      <div class="col-6">
+        <span class="badge text-dark  border border-primary d-flex align-items-center gap-2" style="font-size: 10px;">
+          <i class="bi bi-geo-alt"></i>
+          <span class="text-wrap text-start">{{job.jobPostDetails.location}}</span>
+        </span>
       </div>
-      <div class="col-6 d-flex align-items-center gap-2">
-        <i class="bi bi-briefcase"></i>
-        <span style="font-size: 14px;">{{job.jobPostDetails.vacancy}} Openings</span>
+
+      <div class="col-6">
+        <span class="badge text-dark  border border-primary d-flex align-items-center gap-2" style="font-size: 10px;">
+          <i class="bi bi-briefcase"></i>
+          <span class="text-wrap text-start">{{job.jobPostDetails.vacancy}} Openings</span>
+        </span>
       </div>
-      <div class="col-6 d-flex align-items-center gap-2">
-        <i class="bi bi-mortarboard"></i>
-        <span style="font-size: 14px;">{{job.jobPostDetails.qualification}}</span>
+
+      <div class="col-6">
+        <span class="badge text-dark  border border-primary d-flex align-items-center gap-2" style="font-size: 10px;">
+          <i class="bi bi-mortarboard"></i>
+          <span class="text-wrap text-start">{{job.jobPostDetails.qualification}}</span>
+        </span>
       </div>
-      <div class="col-6 d-flex align-items-center gap-2">
-        <i class="bi bi-clock"></i>
-        <span style="font-size: 14px;">{{job.jobPostDetails.experience}} Experience</span>
+
+      <div class="col-6">
+        <span class="badge text-dark  border border-primary d-flex align-items-center gap-2" style="font-size: 10px;">
+          <i class="bi bi-clock"></i>
+          <span class="text-wrap text-start">{{job.jobPostDetails.experience}}</span>
+        </span>
       </div>
-      <div class="col-6 d-flex align-items-center gap-2">
-        <i class="bi bi-cash"></i>
-        <span style="font-size: 14px;">{{job.jobPostDetails.salary}}</span>
+
+      <div class="col-6">
+        <span class="badge text-dark  border border-primary d-flex align-items-center gap-2" style="font-size: 10px;">
+          <i class="bi bi-cash"></i>
+          <span class="text-wrap text-start">{{job.jobPostDetails.salary}}</span>
+        </span>
       </div>
+
     </div>
 
     <!-- View Profile Button -->
     <div class="d-flex justify-content-center mt-4">
-      <button class="btn btn-primary btn-sm px-4 rounded-3 shadow-sm fw-semibold"
-              style="font-size: 14px;" (click)="jobProfile()">
-        View Profile
-      </button>
+      <button class="btn btn-outline-primary btn-sm px-4 rounded-3 shadow-sm fw-semibold" style="font-size: 12px;" (click)="jobProfile()"> View Profile</button>
     </div>
   </div>
 </div>
+
+

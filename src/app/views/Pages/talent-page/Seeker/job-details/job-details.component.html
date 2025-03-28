@@ -1,6 +1,6 @@
 <!-- Sticky Header -->
-<div class="container-fluid position-sticky py-2 bg-light">
-  <div class="d-flex align-items-center">
+<div class="container-fluid position-sticky py-2">
+  <div class="d-flex align-items-center mt-3">
     <i class="bi bi-arrow-left fs-3 me-2" style="cursor: pointer;" (click)="goBack()"></i>
     <p class="m-0 fw-bold">Back</p>
   </div>
@@ -14,112 +14,79 @@
 
       <!-- Company Info -->
       <div class="d-flex align-items-center mb-3">
-        <img [src]="job.companyId?.companyDetails?.companyLogo?.url" alt="Company Logo" class="rounded-circle me-3"
-          style="width: 50px; height: 50px;">
+        <img [src]="job.companyId?.companyDetails?.companyLogo?.url" alt="Company Logo" class="rounded-circle me-3" style="width: 50px; height: 50px;">
         <div>
-          <h5 class="mb-0 fw-bold">{{ job.companyId?.companyDetails?.companyName }}</h5>
-          <p class="mb-0 text-muted">{{ job.companyId?.companyDetails?.companyAddress }}</p>
+          <h5 class="mb-0 fw-bold" style="font-size: 18px;">{{ job.companyId?.companyDetails?.companyName }}</h5>
+          <p class="mb-0 text-muted" style="font-size: 14px;">{{ job.companyId?.companyDetails?.companyAddress }}</p>
         </div>
       </div>
 
       <!-- Job Info -->
-      <div class="row justify-content-between mb-4 mt-5">
+      <div class="row justify-content-between  mt-5">
         <div class="col-6 text-start">
-          <p class="mb-1"><i class="bi bi-calendar-event me-2"></i>Posted On</p>
-          <p class="fw-bold">{{ job.jobPostDetails.postedOn | date: 'dd/MM/yyyy' }}</p>
+          <p class="mb-1" style="font-size: 14px;"><i class="bi bi-calendar-event me-2"></i>Posted On</p>
+          <p class="fw-bold" style="font-size: 14px;">{{ job.jobPostDetails.postedOn | date: 'dd/MM/yyyy' }}</p>
         </div>
         <div class="col-6 text-end">
-          <p class="mb-1"><i class="bi bi-calendar-check me-2"></i>Apply By</p>
-          <p class="fw-bold">{{ job.jobPostDetails.applyByDate | date: 'dd/MM/yyyy' }}</p>
+          <p class="mb-1" style="font-size: 14px;"><i class="bi bi-calendar-check me-2"></i>Apply By</p>
+          <p class="fw-bold" style="font-size: 14px;">{{ job.jobPostDetails.applyByDate | date: 'dd/MM/yyyy' }}</p>
         </div>
       </div>
 
-      <!-- Job Highlights -->
-      <div class="card border p-3 mb-4">
+
+      <div class="card border border-primary shadow-sm p-3 mb-3">
+
         <div class="row text-start">
           <div class="col-4">
-            <p class="mb-1"><i class="bi bi-cash"></i> Salary</p>
-            <p class="fw-bold">{{ job.jobPostDetails.salary }}</p>
+            <p class="mb-1 text-muted" style="font-size: 14px;"><i class="bi bi-cash"></i> Salary</p>
+            <p class="fw-semibold" style="font-size: 14px;">{{ job.jobPostDetails.salary }}</p>
           </div>
           <div class="col-4">
-            <p class="mb-1"><i class="bi bi-geo-alt"></i> Location</p>
-            <p class="fw-bold">{{ job.jobPostDetails.location }}</p>
+            <p class="mb-1 text-muted" style="font-size: 14px;"><i class="bi bi-geo-alt"></i> Location</p>
+            <p class="fw-semibold" style="font-size: 14px;">{{ job.jobPostDetails.location }}</p>
           </div>
           <div class="col-4">
-            <p class="mb-1"><i class="bi bi-tv"></i> Category</p>
-            <p class="fw-bold">{{ job.jobPostDetails.jobCategory }}</p>
+            <p class="mb-1 text-muted" style="font-size: 14px;"><i class="bi bi-tv"></i> Category</p>
+            <p class="fw-semibold" style="font-size: 14px;">{{ job.jobPostDetails.jobCategory }}</p>
           </div>
         </div>
 
         <div class="row text-start mt-3">
           <div class="col-4">
-            <p class="mb-1"><i class="bi bi-people"></i> Openings</p>
-            <p class="fw-bold">{{ job.jobPostDetails.vacancy }}</p>
+            <p class="mb-1 text-muted" style="font-size: 14px;"><i class="bi bi-people"></i> Openings</p>
+            <p class="fw-semibold" style="font-size: 14px;">{{ job.jobPostDetails.vacancy }}</p>
           </div>
           <div class="col-4">
-            <p class="mb-1"><i class="bi bi-briefcase"></i> Job Role</p>
-            <p class="fw-bold">{{ job.jobPostDetails.jobTitle }}</p>
+            <p class="mb-1 mb-1 text-muted" style="font-size: 14px;"><i class="bi bi-briefcase"></i> Job Role</p>
+            <p class="fw-semibold" style="font-size: 14px;">{{ job.jobPostDetails.jobTitle }}</p>
           </div>
           <div class="col-4">
-            <p class="mb-1"><i class="bi bi-building"></i> Job Type</p>
-            <p class="fw-bold">{{ job.jobPostDetails.jobType }}</p>
+            <p class="mb-1  text-muted" style="font-size: 14px;"><i class="bi bi-building"></i> Job Type</p>
+            <p class="fw-semibold" style="font-size: 14px;">{{ job.jobPostDetails.jobType }}</p>
           </div>
         </div>
-      </div>
 
-
-      <div class="card border shadow-sm p-3 mb-3">
-        <div class="row text-start">
-          <div class="col-4">
-            <p class="mb-1 text-muted"><i class="bi bi-cash"></i> Salary</p>
-            <p class="fw-bold">{{ job.jobPostDetails.salary }}</p>
-          </div>
-          <div class="col-4">
-            <p class="mb-1 text-muted"><i class="bi bi-geo-alt"></i> Location</p>
-            <p class="fw-bold">{{ job.jobPostDetails.location }}</p>
-          </div>
-          <div class="col-4">
-            <p class="mb-1 text-muted"><i class="bi bi-tv"></i> Category</p>
-            <p class="fw-bold">{{ job.jobPostDetails.jobCategory }}</p>
-          </div>
-        </div>
-        <div class="row text-start mt-3">
-          <div class="col-4">
-            <p class="mb-1 text-muted"><i class="bi bi-cash"></i> Salary</p>
-            <p class="fw-bold">{{ job.jobPostDetails.salary }}</p>
-          </div>
-          <div class="col-4">
-            <p class="mb-1 text-muted"><i class="bi bi-geo-alt"></i> Location</p>
-            <p class="fw-bold">{{ job.jobPostDetails.location }}</p>
-          </div>
-          <div class="col-4">
-            <p class="mb-1 text-muted"><i class="bi bi-tv"></i> Category</p>
-            <p class="fw-bold">{{ job.jobPostDetails.jobCategory }}</p>
-          </div>
-        </div>
       </div>
 
 
       <!-- Recruiter Info -->
-      <h6 class="fw-bold">Posted By:</h6>
+      <h6 class="fw-semibold">Posted By:</h6>
       <div class="card border border-primary shadow-sm p-3 mb-4">
         <div class="d-flex align-items-center">
-          <img [src]="job.companyId?.companyDetails?.companyLogo?.url"
-               alt="Recruiter Name" class="rounded-circle border border-primary shadow-sm"
-               style="width: 50px; height: 50px;">
+          <img [src]="job.companyId?.companyDetails?.companyLogo?.url" alt="Recruiter Name" class="rounded-circle border border-primary shadow-sm" style="width: 50px; height: 50px;">
           <div class="ms-3">
-            <h6 class="mb-0 fw-bold">{{job.recruiterProfile?.profileDetails?.firstName}}
-              {{job.recruiterProfile?.profileDetails?.lastName}}</h6>
-            <p class="mb-0 text-muted">{{job.recruiterProfile?.profileDetails?.designation}}</p>
+            <h6 class="mb-0 fw-bold" style="font-size: 14px;">{{job.recruiterProfile?.profileDetails?.firstName}} {{job.recruiterProfile?.profileDetails?.lastName}}</h6>
+            <p class="mb-0 text-muted" style="font-size: 14px;">{{job.recruiterProfile?.profileDetails?.designation}}</p>
           </div>
         </div>
       </div>
 
 
       <!-- Job Description -->
-      <div class="card border shadow-sm p-3 mb-4">
-        <h6 class="fw-bold">Job Description:</h6>
-        <p class="mb-0 text-justify text-break" [innerHTML]="job.jobPostDetails.jobDescription"></p>
+      <h6 class="fw-semibold">Job Description:</h6>
+      <div class="card border  border-primary shadow-sm p-3 mb-4">
+
+        <p class="mb-0 text-justify text-break"  [innerHTML]="job.jobPostDetails.jobDescription" style="font-size: 14px;"></p>
       </div>
 
 
@@ -127,21 +94,11 @@
 
     <!-- Apply Section -->
     <div class="col-lg-4">
-      <div class="card border text-center p-3">
-        <button *ngIf="!job.jobPostDetails.isApplied"
-        class="btn btn-success w-100 py-2 fw-bold shadow-sm"
-        (click)="applyJob(job)">
-  Apply Now
-</button>
-
-<button *ngIf="job.jobPostDetails.isApplied"
-        class="btn btn-danger w-100 py-2 fw-bold shadow-sm"
-        (click)="withdrawJob(job)">
-  Withdraw Application
-</button>
-
-      </div>
+        <button *ngIf="!job.jobPostDetails.isApplied" class="btn  btn-outline-success btn-sm  w-50 py-2 fw-bold shadow-sm" (click)="applyJob(job)"> Apply Now</button>
+        <button *ngIf="job.jobPostDetails.isApplied" class="btn btn-outline-danger btn-sm w-50  py-2 fw-bold shadow-sm" style="font-size: 14px;"  (click)="withdrawJob(job)"> Withdraw </button>
     </div>
 
   </div>
 </main>
+
+
