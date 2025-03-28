@@ -21,6 +21,12 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      - name: Remove Existing Firebase CLI (if any)
+        run: npm uninstall -g firebase-tools
+
+      - name: Install Firebase CLI (Older Version)
+        run: npm install -g firebase-tools@13.10.0
+
       - name: Create `environment.ts`
         run: |
           echo "export const environment = {" > src/environments/environment.ts
