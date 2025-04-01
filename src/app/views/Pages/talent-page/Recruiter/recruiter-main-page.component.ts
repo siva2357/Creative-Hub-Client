@@ -15,7 +15,7 @@ export class RecruiterMainPageComponent {
 
 
   menu: MenuItem[] = [
-    { label: 'Dashboard', link: 'dashboard', icon: 'bi bi-grid' },
+    // { label: 'Dashboard', link: 'dashboard', icon: 'bi bi-grid' },
     { label: 'My Profile', link: 'profile', icon: 'bi bi-person-circle' },
     { label: 'Post Job', link: 'post-job', icon: 'bi bi-plus-square' },
     { label: 'Manage Jobs', link: 'manage-jobs', icon: 'bi bi-pencil-square' },

@@ -1,16 +1,16 @@
-<div class="card rounded-4 shadow border-0 p-3" style="background: #f8f9fa;">
+<div class="card rounded-4 shadow-lg border-0 p-3" style="background: #f8f9fa;">
   <!-- Card Header -->
-  <div class="card-header bg-white rounded-3 py-3 d-flex justify-content-between align-items-center">
+  <div class="card-header bg-white rounded-3 py-3 d-flex justify-content-between align-items-center flex-wrap">
     <!-- Profile & Company Info -->
     <div class="d-flex align-items-center gap-3">
       <div class="d-flex justify-content-center align-items-center rounded-circle shadow-sm bg-white"
         style="width: 60px; height: 60px;">
         <img [src]="job.companyId?.companyDetails?.companyLogo?.url" alt="Profile" class="rounded-circle"
-          style="width: 50px; height: 50px;">
+          style="width: 50px; height: 50px; object-fit: cover;">
       </div>
       <div class="text-start">
-        <h6 class="fw-semibold text-primary mb-1">{{job.companyId?.companyDetails?.companyName}}</h6>
-        <p class="text-muted mb-0" style="font-size: 14px;">{{job.jobPostDetails.jobTitle}}</p>
+        <h6 class="fw-semibold text-primary mb-1 text-break">{{job.companyId?.companyDetails?.companyName}}</h6>
+        <p class="text-muted mb-0 text-break" style="font-size: 14px;">{{job.jobPostDetails.jobTitle}}</p>
       </div>
     </div>
 
@@ -23,60 +23,49 @@
   <!-- Card Body -->
   <div class="card-body">
     <!-- Job Details -->
-
-
-
-    <div class="row g-2 text-muted">
-
-      <div class="col-6">
-        <span class="badge text-dark  border border-primary d-flex align-items-center gap-2" style="font-size: 10px;">
-          <i class="bi bi-moon-stars"></i>
-          <span class="text-wrap text-start">{{job.jobPostDetails.jobType}}</span>
-        </span>
+    <div class="row text-muted align-items-center " style="font-size: 14px;">
+      <div class="col-6 col-md-3">
+        <div class="d-flex flex-column">
+          <span class="fw-bold">Job Id:</span>
+          <span>{{ job.jobPostDetails.jobId }}</span>
+        </div>
       </div>
 
-      <div class="col-6">
-        <span class="badge text-dark  border border-primary d-flex align-items-center gap-2" style="font-size: 10px;">
-          <i class="bi bi-geo-alt"></i>
-          <span class="text-wrap text-start">{{job.jobPostDetails.location}}</span>
-        </span>
+      <div class="col-6 col-md-3">
+        <div class="d-flex flex-column">
+          <span class="fw-bold">Location:</span>
+          <span>{{ job.jobPostDetails.location }}</span>
+        </div>
       </div>
 
-      <div class="col-6">
-        <span class="badge text-dark  border border-primary d-flex align-items-center gap-2" style="font-size: 10px;">
-          <i class="bi bi-briefcase"></i>
-          <span class="text-wrap text-start">{{job.jobPostDetails.vacancy}} Openings</span>
-        </span>
+      <div class="col-6 col-md-3">
+        <div class="d-flex flex-column">
+          <span class="fw-bold">Category:</span>
+          <span>{{ job.jobPostDetails.jobCategory }}</span>
+        </div>
       </div>
 
-      <div class="col-6">
-        <span class="badge text-dark  border border-primary d-flex align-items-center gap-2" style="font-size: 10px;">
-          <i class="bi bi-mortarboard"></i>
-          <span class="text-wrap text-start">{{job.jobPostDetails.qualification}}</span>
-        </span>
+      <div class="col-6 col-md-3">
+        <div class="d-flex flex-column">
+          <span class="fw-bold">Posted On:</span>
+          <span>{{ job.jobPostDetails.postedOn | date:'dd-MM-yyyy' }}</span>
+        </div>
       </div>
 
-      <div class="col-6">
-        <span class="badge text-dark  border border-primary d-flex align-items-center gap-2" style="font-size: 10px;">
-          <i class="bi bi-clock"></i>
-          <span class="text-wrap text-start">{{job.jobPostDetails.experience}}</span>
-        </span>
-      </div>
 
-      <div class="col-6">
-        <span class="badge text-dark  border border-primary d-flex align-items-center gap-2" style="font-size: 10px;">
-          <i class="bi bi-cash"></i>
-          <span class="text-wrap text-start">{{job.jobPostDetails.salary}}</span>
-        </span>
-      </div>
 
-    </div>
 
-    <!-- View Profile Button -->
-    <div class="d-flex justify-content-center mt-4">
-      <button class="btn btn-outline-primary btn-sm px-4 rounded-3 shadow-sm fw-semibold" style="font-size: 12px;" (click)="jobProfile()"> View Profile</button>
     </div>
   </div>
+
+  <div class="card-footer">
+
+      <!-- Apply Now Button (Responsive & Centered) -->
+      <div class="col-12 d-flex justify-content-center mb-0">
+        <button class="btn btn-outline-primary btn-sm px-4 rounded-3 shadow-sm fw-semibold" style="font-size: 12px;" (click)="jobProfile()">Apply Now</button>
+      </div>
+  </div>
+
 </div>
 
 

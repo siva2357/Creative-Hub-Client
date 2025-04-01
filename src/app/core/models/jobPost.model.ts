@@ -26,9 +26,9 @@ export interface JobPost {
     jobCategory: string;
     experience: string;
     salary: string;
-    vacancy: number;
-    location: number;
-    qualification: number;
+    vacancy: string;
+    location: string;
+    qualification: string;
     jobDescription: string;
     sanitizedJobDescription?: SafeHtml;
     postedOn: Date;

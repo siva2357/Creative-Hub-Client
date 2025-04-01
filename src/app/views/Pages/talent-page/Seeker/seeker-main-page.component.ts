@@ -13,7 +13,7 @@ export class SeekerMainPageComponent {
   }
 
   menu: MenuItem[] = [
-    { label: 'Dashboard', link: 'dashboard', icon: 'bi bi-grid'},
+    // { label: 'Dashboard', link: 'dashboard', icon: 'bi bi-grid'},
     { label: 'My Profile', link: 'profile', icon: 'bi bi-person-circle'},
     { label: 'Post project', link: 'post-project', icon: 'bi bi-plus-square'},
     { label: 'Portfolio', link: 'portfolio', icon: 'bi bi-grid-3x3-gap'},

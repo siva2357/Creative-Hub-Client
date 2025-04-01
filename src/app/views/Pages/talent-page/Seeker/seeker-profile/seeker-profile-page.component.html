@@ -32,30 +32,25 @@
     <!-- Details Sections -->
     <div class="container mt-5">
       <h5 class="text-primary">Basic Details</h5>
-      <hr class="mt-0 border-primary">
       <table class="table">
         <thead>
           <tr>
             <th scope="col" style="width: 25%;">Full Name:</th>
-            <td>{{profile?.profileDetails?.firstName}} {{profile?.profileDetails?.lastName}}</td>
+            <td style="background: none;">{{profile?.profileDetails?.firstName}} {{profile?.profileDetails?.lastName}}</td>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th scope="col">Date of Birth</th>
-            <td>{{profile?.profileDetails?.dateOfBirth | date:'dd-MM-yyyy'}}</td>
+            <td style="background: none;">{{profile?.profileDetails?.dateOfBirth | date:'dd-MM-yyyy'}}</td>
           </tr>
           <tr>
             <th scope="col">Gender</th>
-            <td>{{profile?.profileDetails?.gender}}</td>
-          </tr>
-          <tr>
-            <th scope="col">College Name</th>
-            <td>{{profile?.profileDetails?.universityName}}</td>
+            <td style="background: none;">{{profile?.profileDetails?.gender}}</td>
           </tr>
           <tr>
             <th scope="col">Bio-Data</th>
-            <td [innerHTML]="profile?.profileDetails?.bioDescription"></td>
+            <td style="background: none;" [innerHTML]="profile?.profileDetails?.bioDescription"></td>
           </tr>
 
         </tbody>
@@ -64,22 +59,21 @@
 
     <div class="container">
       <h5 class="text-primary">Educational Details</h5>
-      <hr class="border-primary">
       <table class="table">
         <thead>
           <tr>
             <th scope="col" style="width: 25%;">Institution</th>
-            <td>{{profile?.profileDetails?.universityName}}</td>
+            <td style="background: none;">{{profile?.profileDetails?.universityName}}</td>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th scope="col">Program/Degree</th>
-            <td>{{profile?.profileDetails?.universityDegree}}</td>
+            <td style="background: none;">{{profile?.profileDetails?.universityDegree}}</td>
           </tr>
           <tr>
             <th scope="col">Institutional Number</th>
-            <td>{{profile?.profileDetails?.universityNumber}}</td>
+            <td style="background: none;">{{profile?.profileDetails?.universityNumber}}</td>
           </tr>
         </tbody>
       </table>
@@ -88,27 +82,27 @@
 
     <div class="container">
       <h5 class="text-primary">Contact Details</h5>
-      <hr class="border-primary">
 
       <table class="table">
         <thead>
           <tr>
             <th scope="col" style="width: 25%;">Phone Number</th>
-            <td>{{profile?.profileDetails?.phoneNumber}}</td>
+            <td style="background: none;">{{profile?.profileDetails?.phoneNumber}}</td>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th scope="col">Email</th>
-            <td>{{profile?.profileDetails?.email}}</td>
+            <td style="background: none;">{{profile?.profileDetails?.email}}</td>
           </tr>
           <tr>
             <th scope="col">Address</th>
-            <td> {{profile?.profileDetails?.streetAddress}}, {{profile?.profileDetails?.city}},
+            <td style="background: none;"> {{profile?.profileDetails?.streetAddress}}, {{profile?.profileDetails?.city}},
               {{profile?.profileDetails?.state}}, {{profile?.profileDetails?.country}}, {{profile?.profileDetails?.pincode}}</td>
           </tr>
         </tbody>
       </table>
 
     </div>
+
   </div>

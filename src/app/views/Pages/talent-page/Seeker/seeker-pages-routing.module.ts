@@ -15,14 +15,14 @@ import { SeekerProfilePageComponent } from './seeker-profile/seeker-profile-page
 import { SeekerAccountSettingsPageComponent } from './seeker-account-settings-page/seeker-account-settings-page.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
 const routes: Routes = [
-	{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+	{ path: '', redirectTo: 'profile', pathMatch: 'full' },
 
 		{ path: 'profile-form', component: SeekerProfileFormComponent, title: 'Seeker Fill Profile Page' },
 
 
 	{ path: '', component:  SeekerMainPageComponent, // Main layout component with sidebar
 	  children: [
-		{ path: 'dashboard', component: SeekerDashboardComponent,  title: 'Seeker dashboard page'   }, // Profile page route
+		// { path: 'dashboard', component: SeekerDashboardComponent,  title: 'Seeker dashboard page'   }, // Profile page route
 		{ path: 'profile',component: SeekerProfilePageComponent,  title: 'Seeker profile page'},
 		{ path: 'post-project', component: SeekerPostProjectPageComponent, title: 'Seeker post project Page'   }, // Profile page route
 		{ path: 'manage-project', component: SeekerManageProjectPageComponent,  title: 'Seeker manage project Page'   }, // Profile page route

@@ -18,14 +18,14 @@ import { RecruiterAccountSettingsPageComponent } from './recruiter-account-setti
 
 const routes: Routes = [
 	// Default path for recruiter redirects to 'recruiter/dashboard'
-	{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+	{ path: '', redirectTo: 'profile', pathMatch: 'full' },
 
 	{ path: 'profile-form', component: RecruiterProfileFormComponent, title: 'Recruiter Fill Profile Page' },
 
 
 	{ path: '', component: RecruiterMainPageComponent, // Main layout component with sidebar
 	  children: [
-		{ path: 'dashboard', component: RecruiterDashboardComponent, title: 'Recruiter dashboard page'  }, // Dashboard route
+		// { path: 'dashboard', component: RecruiterDashboardComponent, title: 'Recruiter dashboard page'  }, // Dashboard route
 		{ path: 'profile', component:RecruiterProfilePageComponent, title:"Recruiter profile page"},
 		{ path: 'post-job', component: RecruiterPostJobPageComponent, title: 'Post Jobpost Page'  } ,// Hire Seeker page route
 		{ path: 'manage-jobs', component: RecruiterManageJobPageComponent, title: 'Manage Jobpost Page'  } ,// Hire Seeker page route
