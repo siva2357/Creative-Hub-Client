@@ -48,7 +48,7 @@ export class SeekerJobProfileComponent implements OnInit {
 
 public selectedFilters: any = {
   searchQuery: '',
-  selectedLocation: '',
+  selectedQualification: '',
   selectedCategory: '',
   selectedJobType: ''
 };

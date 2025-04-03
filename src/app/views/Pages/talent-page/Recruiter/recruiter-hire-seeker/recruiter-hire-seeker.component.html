@@ -1,137 +1,77 @@
+<div class="container-fluid my-5 ">
 
+  <div class="container-fluid  mt-5 mb-5">
+    <!-- Filters Card -->
+    <div class="row d-flex flex-wrap justify-content-center">
+      <div class="card  p-4 rounded-4 border-0 w-100">
+        <h4 class="fw-semibold text-primary mb-3" style="font-size: 22px;">Filters</h4>
 
+        <div class="row d-flex flex-wrap justify-content-center">
 
-
-
-<!-- Cover Section -->
-
-
-<!-- Cover Section -->
-<div class="container-fluid mt-5 mb-5 p-5 rounded-5" style="background: radial-gradient(circle, rgba(255, 255, 255, 0.648), #11131c);   position: relative;  overflow: hidden;">
-  <img src="https://res.cloudinary.com/dpp8aspqs/image/upload/v1735967997/hiring_people_dsgpfa.png"  alt="AR/VR Background"  style=" position: absolute;  top: 0;  left: 0;  width: 100%;  height: 700px;  object-fit: cover; z-index: 1; opacity: 0.3;">
-
-  <div style="position: relative; z-index: 2; text-align: center;">
-
-    <div class="row" style="margin-top: 40px; margin-bottom: 40px;">
-        <div class=" text-center  rounded-3">
-            <h1 class=" mt-5 display-4 text-black">Hire <span class="fw-bold">Best</span> in industry talent</h1>
-            <p class="col-lg-6 mx-auto mb-4 mt-4 text-black fs-4">Find the perfect Talent for your next project</p>
-        </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- User Profiles Section -->
-<div class="container-fluid ">
-  <div class="row g-4">
-      <!-- Filter Section -->
-      <div class="col-lg-4 ">
-        <div class="card shadow-sm p-4 rounded-0 border-0">
-          <h4 class="fw-semibold text-primary mb-3" style="font-size: 22px;">Filters</h4>
-
-
-          <!-- Category Dropdown -->
-          <div class="mb-3" style="font-size: 14px;">
-            <label class="form-label fw-semibold" >Category</label>
-            <select class="form-select  form-select-sm border-secondary">
-              <option selected>Choose Category</option>
-              <option>Sketch</option>
-              <option>NFT</option>
-              <option>3D Art</option>
-            </select>
+          <div class="mb-3 col-12 col-md-3" style="font-size: 14px;">
+            <label class="form-label fw-semibold" style="font-size: 14px;">Location</label>
+            <input type="text" class="form-control form-control-sm border-secondary" style="font-size: 14px;"
+              [(ngModel)]="selectedFilters.searchQuery" (input)="onFilterSelect($event, 'searchQuery')"
+              placeholder="Enter location">
           </div>
 
           <!-- Languages Dropdown -->
-          <div class="mb-3" style="font-size: 14px;">
+          <div class="mb-3 col-12 col-md-3" style="font-size: 14px;">
             <label class="form-label fw-semibold">Languages</label>
-            <select class="form-select  form-select-sm border-secondary">
-              <option selected>Select Language</option>
-              <option>English</option>
-              <option>Spanish</option>
-              <option>French</option>
+            <select class="form-select  form-select-sm border-secondary"  [(ngModel)]="selectedFilters.selectedLanguage" (change)="onFilterSelect($event, 'selectedLanguage')">
+              <option value="">Select Language</option>
+              <option *ngFor="let lan of languages" [value]="lan">
+                {{ lan }}
+              </option>
             </select>
           </div>
 
 
 
           <!-- Qualification Dropdown -->
-          <div class="mb-3" style="font-size: 14px;">
+          <div class="mb-3 col-12 col-md-3" style="font-size: 14px;">
             <label class="form-label fw-semibold">Qualification</label>
-            <select class="form-select  form-select-sm border-secondary">
-              <option selected>Select Qualification</option>
-              <option>Bachelor's</option>
-              <option>Master's</option>
-              <option>Diploma</option>
+            <select class="form-select  form-select-sm border-secondary"  [(ngModel)]="selectedFilters.selectedQualification" (change)="onFilterSelect($event, 'selectedQualification')">
+              <option value="">Select Qualification</option>
+              <option *ngFor="let qualification of qualifications" [value]="qualification">
+                {{ qualification }}
+              </option>
             </select>
           </div>
 
-          <!-- Skills Dropdown -->
-          <div class="mb-3" style="font-size: 14px;">
-            <label class="form-label fw-semibold" >Skills</label>
-            <select class="form-select  form-select-sm border-secondary">
-              <option selected>Select Skills</option>
-              <option>3D Modeling</option>
-              <option>Animation</option>
-              <option>Graphic Design</option>
-            </select>
+          <div class="mb-3 col-12 col-md-3 d-flex align-items-end">
+            <button class="btn btn-primary w-100" style="font-size: 14px;" (click)="applyFilter()">Apply</button>
           </div>
-
-          <!-- Apply Filters Button -->
-          <button class="btn btn-outline-primary w-100 mt-3" style="font-size: 14px;">Apply Filters</button>
 
         </div>
+
       </div>
-
-
-      <!-- Profiles Display Section -->
-      <div class="col-lg-8 ">
-        <div class="row row-cols-1 row-cols-lg-2 align-items-stretch g-4 ">
-          <div class="col-md-6" *ngFor="let seeker of paginatedData">
-            <app-seeker-profile-card [seeker]="seeker"></app-seeker-profile-card>
-          </div>
-        </div>
-
-        <div class="row align-items-center mb-3 p-2 border rounded shadow-sm bg-light mt-5">
-          <!-- Items per page selector -->
-          <div class="col-12 col-md-4 d-flex align-items-center mb-2 mb-md-0">
-            <label for="itemsPerPage" class="fw-bold me-2">Items per page:</label>
-            <select id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="updatePagination()" class="form-select form-select-sm w-auto">
-              <option *ngFor="let size of [5, 10, 15, 20, 50, 100]" [value]="size">{{ size }}</option>
-            </select>
-          </div>
-
-          <!-- Pagination -->
-          <div class="col-12 col-md-4 d-flex justify-content-center mb-2 mb-md-0">
-            <nav aria-label="Page navigation">
-              <ul class="pagination m-0 flex-wrap">
-                <li class="page-item" [class.disabled]="currentPage === 1">
-                  <a class="page-link" aria-label="Previous" (click)="onPageChange(currentPage - 1)">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-
-                <li *ngFor="let page of pageNumbers" class="page-item" [class.active]="page === currentPage">
-                  <a class="page-link" (click)="onPageChange(page)" style="font-size: 14px;">{{ page }}</a>
-                </li>
-
-                <li class="page-item" [class.disabled]="currentPage === totalPages">
-                  <a class="page-link" aria-label="Next" (click)="onPageChange(currentPage + 1)">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-
-          <!-- Showing entries info -->
-          <div class="col-12 col-md-4 text-center text-md-end">
-            <div class="text-muted small">
-              <strong>Showing:</strong> {{ (currentPage - 1) * itemsPerPage + 1 }} - {{ getEndIndex() }} of {{ totalEntries }} entries
-            </div>
-          </div>
-        </div>
     </div>
 
   </div>
+
+
+
+  <div class="container-fluid mt-5 mb-5">
+    <div class="row g-4">
+      <!-- Card Container -->
+      <div class="col-lg-12">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 align-items-stretch g-4">
+
+          <!-- Seeker Cards -->
+          <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let seeker of paginatedData">
+            <app-seeker-profile-card [seeker]="seeker"></app-seeker-profile-card>
+          </div>
+
+          <!-- No Seekers Available Message -->
+          <div class="col-lg-12" *ngIf="filteredData.length === 0">
+            <div class="text-center text-muted fw-bold py-3">No seekers available to display.</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>

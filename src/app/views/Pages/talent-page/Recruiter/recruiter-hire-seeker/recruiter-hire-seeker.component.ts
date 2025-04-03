@@ -1,9 +1,12 @@
+import { Languages } from './../../../../../core/models/profile-details.model';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SeekerProfile } from 'src/app/core/models/profile-details.model';
 import { Seeker, SeekerData } from 'src/app/core/models/user.model';
 import { ProfileService } from 'src/app/core/services/profile-service';
 import { UserService } from 'src/app/core/services/user-service';
+import { QUALIFICATION } from 'src/app/core/enums/qualification.enum';
+import { LANGUAGE } from 'src/app/core/enums/language.enum';
 
 @Component({
   selector: 'app-recruiter-hire-seeker',
@@ -15,6 +18,21 @@ export class RecruiterHireSeekerPageComponent {
   recruiterId!:string
 
  errorMessage: string = '';
+
+
+     public qualifications = Object.values(QUALIFICATION); // Convert Enum to an array
+     public languages = Object.values(LANGUAGE); // Convert Enum to an array
+
+
+
+ public selectedFilters: any = {
+   searchQuery: '',
+   selectedQualification: '',
+   selectedLanguage: '',
+   selectedJobType: ''
+ };
+
+ public appliedFilters: any = {};
 
 
  filteredData: any[] = []; // Filtered jobs after applying search and checkbox filters
@@ -65,6 +83,32 @@ export class RecruiterHireSeekerPageComponent {
     }
 
 
+// Method to store selected filter values
+onFilterSelect(event: Event, filterType: string) {
+  const target = event.target as HTMLSelectElement;
+  this.selectedFilters[filterType] = target.value;
+}
+
+// Apply filters only when clicking the button
+applyFilter() {
+  // Apply filters based on selected values
+  this.filteredData = this.seekers.filter(seeker => {
+    return (
+      (this.selectedFilters. selectedQualification ? seeker.profile.profileDetails.universityDegree.toLowerCase().includes(this.selectedFilters.selectedQualification.toLowerCase()) : true) &&
+      (this.selectedFilters.searchQuery ? seeker.profile.profileDetails.city.toLowerCase().includes(this.selectedFilters.searchQuery.toLowerCase()) : true) &&
+      (this.selectedFilters.selectedLanguage ? seeker.profile.profileDetails.city.toLowerCase().includes(this.selectedFilters.selectedLanguage.toLowerCase()) : true)
+
+    );
+  });
+
+  // Update the total entries after filtering
+  this.totalEntries = this.filteredData.length;
+
+  // Call a function to update pagination if needed
+  this.updatePagination();
+}
+
+
 
     getStartIndex(): number {
       if (this.totalEntries === 0) return 0;
@@ -103,11 +147,16 @@ export class RecruiterHireSeekerPageComponent {
     }
 
 
-    updatePagination(): void {
-      this.totalEntries = this.filteredData.length;
-      this.totalPages = Math.max(Math.ceil(this.totalEntries / this.itemsPerPage), 1); // Ensure at least 1 page
-      this.paginateData();
-    }
+    // updatePagination(): void {
+    //   this.totalEntries = this.filteredData.length;
+    //   this.totalPages = Math.max(Math.ceil(this.totalEntries / this.itemsPerPage), 1); // Ensure at least 1 page
+    //   this.paginateData();
+    // }
+
+    updatePagination() {
+      this.totalPages = Math.ceil(this.filteredData.length / this.itemsPerPage);
+      this.pageNumbers = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+      this.paginateData();  }
 
     onPageChange(page: number): void {
       if (page >= 1 && page <= this.totalPages) {

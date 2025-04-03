@@ -52,39 +52,39 @@
 
 
   <!-- Profiles Display Section -->
+
   <div class="row g-4">
     <div class="col-lg-12">
-      <div class="row row-cols-1 row-cols-lg-2 align-items-stretch g-4">
-        <div class="col-lg-12" *ngFor="let job of paginatedData">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 g-4">
+        <div class="col" *ngFor="let job of paginatedData">
           <app-job-post-card [job]="job"></app-job-post-card>
         </div>
 
-        <div class="col-lg-12" *ngIf="filteredData.length === 0">
+        <div class="col-12" *ngIf="filteredData.length === 0">
           <div class="text-center text-muted fw-bold py-3">No jobs available to display.</div>
         </div>
-
       </div>
     </div>
   </div>
 
-  <!-- Pagination and Items per Page -->
-  <div class="row align-items-center mb-3 p-2 border rounded shadow-sm bg-light mt-5">
+
+
+  <div class="row align-items-center justify-content-between mb-3 p-2 border rounded shadow-sm bg-light mt-5">
+
     <!-- Items per page selector -->
-    <div class="col-12 col-md-4 d-flex align-items-center mb-2 mb-md-0" style="font-size: 14px;">
-      <label for="itemsPerPage" class="fw-bold me-2">Items per page:</label>
-      <select id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="updatePagination()"
-        class="form-select form-select-sm w-auto">
+    <div class="col--lg-12 col-md-4  col-sm-4 d-flex align-items-center mb-3 mb-md-0" style="font-size: 14px;">
+      <label for="itemsPerPage" class="fw-regular me-2 mb-0">Items per page:</label>
+      <select id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="updatePagination()" class="form-select form-select-sm w-auto">
         <option *ngFor="let size of [5, 10, 15, 20, 50, 100]" [value]="size">{{ size }}</option>
       </select>
     </div>
 
     <!-- Pagination -->
-    <div class="col-12 col-md-4 d-flex justify-content-center mb-2 mb-md-0">
+    <div class="col-12 col-md-4  col-sm-4 d-flex justify-content-center mb-3">
       <nav aria-label="Page navigation">
-        <ul class="pagination m-0 flex-wrap">
+        <ul class="pagination pagination-sm m-0 flex-wrap">
           <li class="page-item" [class.disabled]="currentPage === 1">
-            <a class="page-link" aria-label="Previous" (click)="onPageChange(currentPage - 1)"
-              style="font-size: 14px; cursor: pointer;">
+            <a class="page-link" aria-label="Previous" (click)="onPageChange(currentPage - 1)" style="font-size: 14px; cursor: pointer;">
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
@@ -94,8 +94,7 @@
           </li>
 
           <li class="page-item" [class.disabled]="currentPage === totalPages">
-            <a class="page-link" aria-label="Next" (click)="onPageChange(currentPage + 1)"
-              style="font-size: 14px; cursor: pointer;">
+            <a class="page-link" aria-label="Next" (click)="onPageChange(currentPage + 1)" style="font-size: 14px; cursor: pointer;">
               <span aria-hidden="true">&raquo;</span>
             </a>
           </li>
@@ -103,13 +102,19 @@
       </nav>
     </div>
 
+
+
     <!-- Showing entries info -->
-    <div class="col-12 col-md-4 text-center text-md-end">
+    <div class="col-12 col-md-4 col-sm-4 text-center text-md-end mt-3 mt-md-0">
       <div class="text-muted small" style="font-size: 14px;">
-        <strong>Showing:</strong> {{ (currentPage - 1) * itemsPerPage + 1 }} - {{ getEndIndex() }} of {{ totalEntries }}
-        entries
+        <strong>Showing:</strong> {{ (currentPage - 1) * itemsPerPage + 1 }} - {{ getEndIndex() }} of {{ totalEntries }} entries
       </div>
     </div>
+
   </div>
+
+
+
+
 
 </div>
