@@ -8,6 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './views/Pages/main-page/main-page.component';
 import { TalentPageModule } from './views/Pages/talent-page/talent-pages.module';
+import { CoursePageModule } from './views/Pages/course-page/course-pages.module';
+import { CommunityPageModule } from './views/Pages/community-page/community-pages.module';
+import { PublishPageModule } from './views/Pages/publish-page/publish-pages.module';
 
 import { UnauthorizedPageComponent } from './views/other-pages/unauthorized-page/unauthorized-page.component';
 import { LayoutModule } from "./views/Layouts/layout.module";
@@ -40,6 +43,9 @@ import { environment } from 'src/environments/environment';
     LayoutModule,
     SharedModule,
     TalentPageModule,
+    CoursePageModule,
+    CommunityPageModule,
+     PublishPageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig), // Use legacy compatibility mode
     AngularFireStorageModule, // Use storage services
 
