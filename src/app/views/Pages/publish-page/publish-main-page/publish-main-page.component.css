@@ -1,0 +1,37 @@
+.coming-soon-wrapper {
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(135deg, #0d47a1, #74c0fc); /* dark blue → light blue */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 50, 0.35); /* subtle dark overlay */
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 2rem;
+}
+
+.illustration {
+  max-width: 250px;
+  opacity: 0.95;
+}
+
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
