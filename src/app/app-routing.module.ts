@@ -10,7 +10,7 @@ const routes: Routes = [
   // Public routes
   { path: 'main', component: MainPageComponent, title: 'Main page' },
   { path: 'talent-page', loadChildren: () => import('./views/Pages/talent-page/talent-pages.module').then((m) => m.TalentPageModule ), title: 'Talent Page' },
-  { path: '**', redirectTo: 'talent-page' }, // Fallback rou
+  { path: '**', redirectTo: 'main' }, // Fallback rou
 
 ];
 

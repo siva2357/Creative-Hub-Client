@@ -85,12 +85,6 @@ export class TalentLoginComponent {
     );
 }
 
-
-
-
-
-
-
   login() {
     this.router.navigate(['talent-page/login']); // Corrected navigation
   }

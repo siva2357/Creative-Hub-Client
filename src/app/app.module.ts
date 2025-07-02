@@ -5,16 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-
-
 import { AppComponent } from './app.component';
-
-
 import { MainPageComponent } from './views/Pages/main-page/main-page.component';
-
-
-
-
 import { TalentPageModule } from './views/Pages/talent-page/talent-pages.module';
 
 import { UnauthorizedPageComponent } from './views/other-pages/unauthorized-page/unauthorized-page.component';

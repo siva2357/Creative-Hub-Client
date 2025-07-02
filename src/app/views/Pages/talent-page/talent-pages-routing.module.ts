@@ -31,23 +31,18 @@ const routes: Routes = [
     { path: 'forgotPassword-otp-verification', component:  ResetPasswordOtpPageComponent}, // Profile page route
     { path: 'reset-password', component:  ResetPasswordPageComponent}, // Profile page route
     { path: 'change-password/:id', component:  ChangePasswordPageComponent}, // Profile page route
-
-
     { path: 'register/seeker', component: RegisterSeekerComponent }, // Profile page route
     { path: 'register/recruiter', component: RegisterRecruiterComponent }, // Profile page route
     { path: 'register/otp-verification', component:  OtpVerificationPageComponent }, // Profile page route
-
-
     { path: 'register/confirmation-page', component: ConfirmationComponent }, // Profile page route
-
     { path: 'recruiter',loadChildren: () => import('./Recruiter/recruiter-pages.module').then((m) => m.RecruiterPageModule),
-      canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'recruiter' }
+      // canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'recruiter' }
     },
     { path: 'seeker',loadChildren: () => import('./Seeker/seeker-pages.module').then((m) => m.SeekerPageModule),
-      canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'seeker' }
+      // canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'seeker' }
     },
     { path: 'admin',loadChildren: () => import('./admin/admin-pages.module').then((m) => m.AdminPageModule),
-      canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'admin' }
+      // canActivate: [AuthGuard, RoleGuard], data: { expectedRole: 'admin' }
     },
     ]
   },

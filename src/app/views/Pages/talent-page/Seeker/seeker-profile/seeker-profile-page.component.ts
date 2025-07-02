@@ -26,7 +26,7 @@ export class SeekerProfilePageComponent implements OnInit {
             this.loadSeekerProfile();
         } else {
             this.errorMessage = 'Invalid user role or missing User ID.';
-            this.router.navigate(['/login']); // Redirect to login if unauthorized
+            // this.router.navigate(['/login']); // Redirect to login if unauthorized
         }
     }
 

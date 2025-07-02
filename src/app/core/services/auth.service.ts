@@ -13,9 +13,6 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
 
   private baseUrl: string = environment.apiUrl;
-
-
-
   private userRole: string | null = null;
 
   constructor(private http: HttpClient, private router: Router) { }

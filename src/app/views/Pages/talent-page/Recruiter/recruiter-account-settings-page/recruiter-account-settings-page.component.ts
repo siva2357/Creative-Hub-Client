@@ -15,18 +15,11 @@ export class RecruiterAccountSettingsPageComponent {
       loading: boolean = true;  // For managing loading state
       public userDetails: any;
 
-      constructor(
-        private userService: UserService,
-        private router: Router,
-        private authService: AuthService
-      ) {}
+      constructor( private userService: UserService, private router: Router, private authService: AuthService) {}
 
       ngOnInit(): void {
-        // Get the recruiter ID from localStorage
         this.recruiterId = localStorage.getItem('userId') || '';
-
         console.log("Recruiter ID:", this.recruiterId);
-
         if (this.recruiterId) {
             this.getRecruiterDetails();
         } else {
@@ -51,7 +44,6 @@ export class RecruiterAccountSettingsPageComponent {
         const confirmation = window.confirm("Are you sure you want to delete your account? This action cannot be undone.");
 
         if (confirmation) {
-          // Ensure only recruiters can delete their own account
           if (!this.userDetails || this.userDetails.role !== 'recruiter') {
             alert("Invalid user role. Only recruiters can delete their accounts.");
             return;
@@ -60,12 +52,8 @@ export class RecruiterAccountSettingsPageComponent {
           this.userService.deleteRecruiterById(this.recruiterId).subscribe(
             () => {
               alert("Account deleted successfully.");
-
-              // **Clear user session & stored data**
               localStorage.clear();
               sessionStorage.clear();
-
-              // **Redirect to login page**
               this.router.navigate(['talent-page/login']);
             },
             (error) => {
